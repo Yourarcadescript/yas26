@@ -475,7 +475,7 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		  `game_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 		  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 		  `category` int(11) NOT NULL DEFAULT '7',
-		  `small_thumbnail_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,wwewewew
+		  `small_thumbnail_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 		  `med_thumbnail_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 		  `large_thumbnail_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 		  `created` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
