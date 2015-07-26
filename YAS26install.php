@@ -76,7 +76,8 @@ if (file_exists("includes/db_functions.inc.php") || file_exists("includes/config
     
 function PageURL() {
 	$pageURL = 'http';
-	if ($_SERVER["HTTPS"] == "on") {
+
+	if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {
 		$pageURL .= "s";
 	}
 	$pageURL .= "://";
@@ -148,13 +149,13 @@ function PageURL() {
 		Site Meta data:<br/><input type="text" name="metades" size="30"><br/>
 		Site Keywords:<br/><input type="text" name="keywords" size="30"><br/>
 		<br/>
-		Social App IDs for Facebook and Twitter logins<br/>
+		Social App IDs for Facebook and Twitter logins (*)<br/>
 		Facebook App ID:<br/><input type="text" name="fbAppID" size="30"><br/>
 		Facebook App Secret:<br/><input type="text" name="fbAppSecret" size="30"><br/>
 		Twitter Consumer key:<br/><input type="text" name="twAppId" size="30"><br/>
 		Twitter Consumer secret:<br/><input type="text" name="twAppSecret" size="30"><br/><br/>
 		<input type="submit" name="config" value="Install"><br/><br/>
-		Social App IDS can be entered in the Admin Cpanel at any time (optional)
+		* Social App IDS can be entered in the Admin Cpanel at any time (optional)
 		<input type="hidden" name="host" value="<?php echo $_POST['host'];?>"/>
 		<input type="hidden" name="username" value="<?php echo $_POST['username'];?>"/>
 		<input type="hidden" name="password" value="<?php echo $_POST['password'];?>"/>
@@ -176,13 +177,13 @@ function PageURL() {
 			exit;
 		}
 		$folders = array('includes', 'swf', 'img', 'media/files', 'media/img', 'avatars', 'avatars/useruploads', 'cache', 'cache/img', 'admin/backup');
-		$mode = 777;
+		$mode = 755;
 		foreach($folders as $folder) {
 			@chmod($folder, octdec($mode));
 			if (!is_writeable($folder)) {
 				if ($folder == 'includes') {
 					echo 'The "includes" folder is not writeable. The script has attempted to change the folder permissions but was unsuccessful.
-					The install cannot continue. Please maually chmod the following folders to \'777\' and try the installation again.<br/>
+					The install cannot continue. Please maually chmod the following folders to \'755\' and try the installation again.<br/>
 					includes<br/>
 					swf<br/> 
 					img<br/> 
@@ -474,7 +475,7 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		  `game_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 		  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 		  `category` int(11) NOT NULL DEFAULT '7',
-		  `small_thumbnail_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `small_thumbnail_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,wwewewew
 		  `med_thumbnail_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 		  `large_thumbnail_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 		  `created` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
@@ -486,7 +487,7 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		  PRIMARY KEY (`id`),
 		  KEY `uid` (`uid`)
 		) ENGINE=MyISAM  CHARACTER SET = utf8 COLLATE utf8_unicode_ci;");
-		
+
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `forumcats` (
 		  `id` int(11) NOT NULL AUTO_INCREMENT,
 		  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
@@ -514,7 +515,7 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		  `topic` int(8) NOT NULL,
 		  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
 		  PRIMARY KEY (`id`)
-		) ENGINE=MyISAM  DEFAULT CHARSET=latin1;");
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `forumtopics` (
 		  `id` int(8) NOT NULL AUTO_INCREMENT,
@@ -607,7 +608,8 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		$mysqli->query("INSERT INTO `links` (`id`, `url`, `text`, `description`, `in`, `out`, `approved`, `reciprocal`, `email`) VALUES
 		(1, 'http://www.arcadehangout.com', 'Cool Arcade Games', 'Cool Free Arcade Games!', 0, 0, 'yes', '', 'admin@arcadehangout.com'),
 		(2, 'http://www.games-flash.co.uk/', 'Games-Flash', 'Play Free Online Games!', 0, 0, 'yes', '', 'admin@games-flash.co.uk'),
-		(3, 'http://www.jasminrocks.com/', 'Jasminrocks', 'Girls Play Bloons Tower Defense 4!', 0, 0, 'yes', '', 'admin@arcadehangout.com');");
+		(3, 'http://www.jasminrocks.com/', 'Jasminrocks', 'Girls Play Bloons Tower Defense 4!', 0, 0, 'yes', '', 'admin@arcadehangout.com'),
+		(4, 'http://www.flashpilot.net/', 'Flashpilot', 'Play free online games', 0, 0, 'yes', '', '');");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `membersonline` (
 		  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -705,6 +707,7 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		PRIMARY KEY (`id`),
 		KEY `uid` (`uid`)
 		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;");
+		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `ratingsbar` (
 		  `id` int(11) NOT NULL AUTO_INCREMENT,
 		  `total_votes` int(11) NOT NULL DEFAULT '0',
@@ -777,11 +780,11 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		$jobs['backup'][0] = 30;
 		$jobs['backup'][1] = $plus_month;
 		$jobs['backup'][2] = 1;
-		$jobstring = mysql_escape_string(serialize($jobs));
+		$jobstring = $mysqli->real_escape_string(serialize($jobs));
 				
 		$mysqli->query("INSERT INTO `settings` (`id`, `main`, `gperpage`, `numbgames`, `gamesort`, `seolink`, `seo`, `approvelinks`, `numblinks`, `version`, `theme`, `skin`, `password`, `mochi_pub_key`, `mochi_secret_key`, `userecaptcha`, `lightbox`, `email`, `disabled`, `regclosed`, `fb_app_id`, `fb_app_secret`, `tw_app_id`, `tw_app_secret`, `cachelife`, `siteurl`, `sitepath`, `sitename`, `slogan`, `metades`, `metakeywords`, `jobs`, `galogin`, `gapassword`, `gaurl`) VALUES
-        (1, 1, 15, 3, 'newest', 'yes', 'no', 'no', 10, '2.6', '".mysql_escape_string($_POST['theme'])."', '".mysql_escape_string($_POST['skin'])."', '".md5('admin')."', '', '', 'yes', 'no', '".mysql_escape_string($_POST['supportemail'])."', 'no', 'no', '".mysql_escape_string($_POST['fbAppId'])."', '".mysql_escape_string($_POST['fbAppSecret'])."', '".mysql_escape_string($_POST['twAppId'])."', '".mysql_escape_string($_POST['twAppSecret'])."', 60, '".mysql_escape_string($_POST['siteurl'])."', '".mysql_escape_string($_POST['sitepath'])."', '".mysql_escape_string($_POST['sitename'])."', '".mysql_escape_string($_POST['slogan'])."', '".mysql_escape_string($_POST['metades'])."', '".mysql_escape_string($_POST['keywords'])."', '$jobstring', '', '', '')");
-        
+        (1, 1, 15, 3, 'newest', 'yes', 'no', 'no', 10, '2.6', '".$mysqli->real_escape_string($_POST['theme'])."', '".$mysqli->real_escape_string($_POST['skin'])."', '".md5('admin')."', '', '', 'yes', 'no', '".$mysqli->real_escape_string($_POST['supportemail'])."', 'no', 'no', '".$mysqli->real_escape_string($_POST['fbAppId'])."', '".$mysqli->real_escape_string($_POST['fbAppSecret'])."', '".$mysqli->real_escape_string($_POST['twAppId'])."', '".$mysqli->real_escape_string($_POST['twAppSecret'])."', 60, '".$mysqli->real_escape_string($_POST['siteurl'])."', '".$mysqli->real_escape_string($_POST['sitepath'])."', '".$mysqli->real_escape_string($_POST['sitename'])."', '".$mysqli->real_escape_string($_POST['slogan'])."', '".$mysqli->real_escape_string($_POST['metades'])."', '".$mysqli->real_escape_string($_POST['keywords'])."', '$jobstring', '', '', '')");
+
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `stats` (
 		  `id` int(10) NOT NULL AUTO_INCREMENT,
 		  `name` varchar(255) NOT NULL DEFAULT '',
@@ -810,10 +813,6 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		  `location` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
 		  `aboutme` text COLLATE utf8_unicode_ci NOT NULL,
 		  `job` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
-		  `aim` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `msn` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `skype` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `yahoo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 		  `points` int(11) NOT NULL DEFAULT '0',
 		  `endban` int(10) DEFAULT '0',
 		  `oauth_uid` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -822,8 +821,6 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		  `twitter_oauth_token_secret` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
 		  `randomkey` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
 		  `activated` tinyint(1) NOT NULL,
-		  `scores` int(11) NOT NULL DEFAULT '0',
-		  `highscores` int(11) NOT NULL DEFAULT '0',
 		  `gender` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
 		  `birthday` int(11) DEFAULT NULL,
 		  `hobbies` text COLLATE utf8_unicode_ci NOT NULL,
@@ -908,7 +905,7 @@ fclose($h);
 $ch = curl_init();
 curl_setopt($ch,CURLOPT_URL, "http://www.yourarcadescript.com/handshake.php");
 curl_setopt($ch,CURLOPT_POST, 3);
-curl_setopt($ch,CURLOPT_POSTFIELDS, 'or=' . urlencode(PageURL()) . '&fo=install&ver=2.5');
+curl_setopt($ch,CURLOPT_POSTFIELDS, 'or=' . urlencode(PageURL()) . '&fo=install&ver=2.6');
 $result = curl_exec($ch);
 curl_close($ch);	   
 echo "<br/>Site data set. YAS26install.php must be renamed or deleted before you can use your site.<br/><br/>";

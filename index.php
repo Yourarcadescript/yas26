@@ -21,11 +21,8 @@ if ($setting['disabled'] == 'yes') {
 include("includes/inc.php");
 include('includes/raycache.php');
 include('includes/resize.php');
-if (isset($_GET['act']) && $_GET['act'] == "girlgames" || $gender == 'girl') {
-	include("templates/".$setting['theme']."/girl_header.php");
-} else {
-	include("templates/".$setting['theme']."/header.php"); 
-}
+include("templates/".$setting['theme']."/header.php");
+
 switch($_GET['act']){
     case 'editavatar':
         include ("templates/".$setting['theme']."/editavatar.php");
@@ -95,9 +92,6 @@ switch($_GET['act']){
         break;
 	case 'game':
         include ("templates/".$setting['theme']."/game.php");
-        break;
-    case 'girlgames':
-        include ("templates/".$setting['theme']."/girlgames.php");
         break;
 	case 'play':
         include ("templates/".$setting['theme']."/play.php");
