@@ -1,0 +1,2 @@
+<embed src="<?php echo $setting['siteurl'];?>media/flvplayer.swf?file=<?php echo $setting['siteurl'].$row['file'];?>&autoStart=false" width="530" height="530" quality="high" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+</embed>

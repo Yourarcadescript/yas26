@@ -1,0 +1,39 @@
+/*
+This file is NOT NECESSARY for the rater to work. None of these styles are needed.
+This is only to style the demo page
+*/
+
+body {
+	background-color: #fff;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	margin: 0;
+	padding: 20px 0 20px 40px;
+	color: #000;
+	}
+
+#container {
+	width: 50%;
+	border: 1px solid #ccc;
+	padding: 20px;
+	}
+
+h1 {
+	font-size: 21px;
+	font-family: Arial, sans-serif;
+	margin:0 0 5px 0;
+	padding:0;
+	}
+
+h2 {
+	font-size: 16px;
+	color: #333;
+	font-family: Arial, sans-serif;
+	margin:0 0 10px 0;
+	padding:0;
+	}
+
+p 	{
+	margin:3px;
+	padding:0;
+	}

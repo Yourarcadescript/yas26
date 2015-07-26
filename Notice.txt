@@ -1,0 +1,4 @@
+Notice: This script is GPL licensed to you. You may not use this code or webpage layout in any competing product. Its code is copyrighted in the same matter as 
+if you had paid for the license. You may not use it in any product outside this arcade without written consent, period. You may modify the code and layout for 
+your own personal use on an arcade designated as powered by yourarcadescript. If you have any questions or wish to request permission to use any code on your 
+personal/commercial projects, please contact us at support@yourarcadescript.com. 

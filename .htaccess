@@ -1,0 +1,114 @@
+ServerSignature Off
+<FilesMatch "\.(flv|gif|jpg|jpeg|png|ico|css)$">
+#    Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+RewriteEngine on
+# 6G BLACKLIST/FIREWALL (beta)
+# @ http://perishablepress.com/6g-beta/
+# Last updated 1/28/2013
+# Edited for use with YourArcadeScript
+# Last YAS update 4/14/2013
+# 6G:[REQUEST STRINGS]
+<ifModule mod_alias.c>
+ RedirectMatch 403 /(\$|\*)/?$
+ RedirectMatch 403 (?i)([a-zA-Z0-9]{60})
+ RedirectMatch 403 (?i)(https?|ftp|php)\:/
+ RedirectMatch 403 (?i)(\"|\.|\_|\&|\&amp)$
+ RedirectMatch 403 (?i)(\=\\\'|\=\\%27|/\\\'/?)\.
+ RedirectMatch 403 (?i)/(([0-9]{5})|([0-9]{6}))\-([0-9]{10})\.(gif|jpg|png)
+ RedirectMatch 403 (?i)(\,|//|\)\+|/\,/|\{0\}|\(/\(|\+\+\+|\||\\\"\\\")
+ RedirectMatch 403 (?i)\.(asp|bash|cfg|cgi|dll|exe|git|hg|ini|jsp|log|mdb|out|sql|svn|swp|tar|rar|rdf|well)
+ RedirectMatch 403 (?i)/(^$|1|addlink|btn_hover|contact?|dkscsearch|dompdf|easyboard|ezooms|formvars|fotter|fpw|i|imagemanager|index1|install|iprober|legacy\-comments|join|js\-scraper|mapcms|mobiquo|phpinfo|phpspy|pingserver|playing|postgres|product|register|scraper|shell|signup|single\-default|t|sqlpatch|test|textboxes.css|thumb|timthumb|topper|tz|ucp_profile|visit|webring.docs|webshell|)\.php
+ RedirectMatch 403 (?i)/(\=|\$\&|\_mm|administrator|auth|bytest|cachedyou|cgi\-|cvs|config\.|crossdomain\.xml|dbscripts|e107|etc/passwd|function\.array\-rand|function\.parse\-url|livecalendar|localhost|makefile|muieblackcat|release\-notes|rnd|sitecore|tapatalk|wwwroot)
+ RedirectMatch 403 (?i)(\$\(this\)\.attr|\_vti\_|\(null\)|$itemURL|ask/data/ask|com\_crop|document\)\.ready\(fu|echo.*kae|eval\(|fckeditor\.htm|function.parse|function\(\)|gifamp|hilton.ch|index.php\&amp\;quot|jfbswww|monstermmorpg|msnbot\.htm|netdefender/hui|phpMyAdmin/config|proc/self|skin/zero_vote|/spaw2?|text/javascript|this.options)
+</ifModule>
+# 6G:[QUERY STRINGS]
+<IfModule mod_rewrite.c>
+ RewriteCond %{REQUEST_URI} !^/$ [NC]
+ RewriteCond %{QUERY_STRING} (mod|path|tag)= [NC,OR]
+ # {too small kills captcha image}
+ RewriteCond %{QUERY_STRING} ([a-z0-9]{75}) [NC,OR]
+ RewriteCond %{QUERY_STRING} (localhost|loopback|127\.0\.0\.1) [NC,OR]
+ RewriteCond %{QUERY_STRING} (\?|\*|;|'|"|\)|\[|\]|=\\\'$|%0A|%0D|%22|%27|%3C|%00|%2e%2e) [NC,OR]
+ RewriteCond %{QUERY_STRING} (benchmark|boot.ini|declare|drop|echo.*kae|environ|etc/passwd|execute|input_file|insert|md5|mosconfig|scanner|select|union|update) [NC]
+ RewriteRule .* - [F,L]
+</IfModule>
+# 6G:[USER AGENTS]
+<ifModule mod_setenvif.c>
+ SetEnvIfNoCase User-Agent ^$ keep_out
+ SetEnvIfNoCase User-Agent (<|>|'|&lt;|%0A|%0D|%27|%3C|%3E|%00|href\s) keep_out
+ SetEnvIfNoCase User-Agent (archiver|binlar|casper|checkprivacy|clshttp|cmsworldmap|comodo|curl|diavol|dotbot|email|extract|feedfinder|flicky|grab|harvest|httrack|ia_archiver|jakarta|kmccrew|libwww|loader|miner|nikto|nutch|planetwork|purebot|pycurl|python|scan|skygrid|sucker|turnit|vikspider|wget|winhttp|youda|zmeu|zune) keep_out
+ <limit GET POST PUT>
+  Order Allow,Deny
+  Allow from all
+  Deny from env=keep_out
+ </limit>
+</ifModule>
+# 6G:[REFERRERS]
+<IfModule mod_rewrite.c>
+ RewriteCond %{HTTP_REFERER} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+ RewriteCond %{HTTP_REFERER} ([a-z0-9]{42}) [NC]
+ RewriteRule .* - [F]
+</IfModule>
+# 6G:[BAD IPS]
+<Limit GET POST PUT>
+ Order Allow,Deny
+ Allow from all
+ # uncomment/edit/repeat next line to block IPs
+ # Deny from 123.456.789
+</Limit>
+ 
+#######################
+## YAS 2.5.1 URL Rewrites
+#######################
+RewriteRule page-(.*)\.html$ index.php?act=$1&id&page=$2
+RewriteRule edit-profile.html$ index.php?act=editprofile
+RewriteRule "^game/([0-9]+)/(.*)\.html$" index.php?act=game&id=$1 [Last]
+RewriteRule category/([0-9]+)/([0-9]+)\.html$ index.php?act=cat&id=$1&page=$2
+#RewriteRule category/(.*)-([0-9]+)/page([0-9]+)\.html$ index.php?act=cat&id=$2&page=$3
+RewriteRule forumtopics/(.*)/(.*)\.html$ index.php?act=forumtopics&id=$1 [Last]
+RewriteRule terms.html$ index.php?act=terms
+RewriteRule aboutus.html$ index.php?act=aboutus
+RewriteRule contactus.html$ index.php?act=contactus
+RewriteRule members.html$ index.php?act=members
+RewriteRule news.html$ index.php?act=news
+RewriteRule links.html$ index.php?act=links
+RewriteRule addlink.html$ index.php?act=addlink
+RewriteRule editavatar.html$ index.php?act=editavatar
+RewriteRule favourites.html$ index.php?act=favourites
+RewriteRule profile.html$ index.php?act=profile
+RewriteRule register.html$ index.php?act=register
+RewriteRule forgotpassword.html$ index.php?act=forgotpassword
+RewriteRule members/(.*)\.html$ index.php?act=members&page=$1 
+RewriteRule showmember/(.*)\.html$ index.php?act=showmember&id=$1
+RewriteRule shownews/(.*)\.html$ index.php?act=shownews&id=$1
+RewriteRule links/(.*)\.html$ index.php?act=links&page=$1
+RewriteRule favourites/(.*)\.html$ index.php?act=favourites&page=$1
+RewriteRule download.html$ index.php?act=download
+RewriteRule download/(.*)\.html$ index.php?act=download&page=$1
+RewriteRule unsubscribe.html$ index.php?act=unsubscribe
+RewriteRule mostplayed.html$ index.php?act=mostplayed
+RewriteRule mostplayed/(.*).html$ index.php?act=mostplayed&page=$1 [L]
+RewriteRule newest.html$ index.php?act=newest
+RewriteRule newest/(.*)\.html$ index.php?act=newest&page=$1 [L]
+RewriteRule toprated.html$ index.php?act=toprated
+RewriteRule toprated/(.*)\.html$ index.php?act=toprated&page=$1 [L]
+RewriteRule tellafriend.html$ index.php?act=tellafriend
+RewriteRule videos.html$ index.php?act=videos
+RewriteRule videos/(.*)\.html$ index.php?act=videos&page=$1
+RewriteRule all-categories.html$ index.php?act=allcategories
+RewriteRule all-categories/(.*)\.html$ index.php?act=allcategories&page=$1
+RewriteRule most-played.html$ index.php?act=mostplayed
+RewriteRule random.html$ index.php?act=random
+RewriteRule search/(.*)/page(.*)$ index.php?act=search&q=$1&page=$2
+RewriteRule career.html$ index.php?act=career
+RewriteRule faq.html$ index.php?act=faq
+RewriteRule privacy.html$ index.php?act=privacy
+RewriteRule forum.html$ index.php?act=forum
+RewriteRule forumcats.html$ index.php?act=forumcats
+RewriteRule forumcats/(.*)/(.*)\.html$ index.php?act=forumcats&id=$1&page=$2
+RewriteRule recentsearches.html$ index.php?act=recentsearches
+RewriteRule createtopic-([0-9]+).html$ index.php?act=createtopic&cat=$1
+RewriteRule submitgame.html$ index.php?act=submitgame
+#RewriteRule forgotpassword.php$ index.php?act=forgotpassword
+RewriteRule pass_reset_complete.html$ index.php?act=pass_reset_complete
