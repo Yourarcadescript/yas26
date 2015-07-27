@@ -1,71 +1,30 @@
-		
-	********************************************
-	***** To install YourArcadeScript 2.6 ******
-	** For WAMP there is a guide further down **
-	******************************************** 
-
+**To install YourArcadeScript 2.5**
 1) FTP all the files and folders to your host.
 
-2) You will need a host with a PHP server and MySql database with a user which can create and delete tables (best to create a user with all privileges if unsure).
+2) You will need a host with a PHP server and MySql database with a user which can create and delete tables (best to create a user with all prividges if unsure).
 If you are unfamiliar with how to do this please ask for assistance in the forums.
 
-3) Run the install file YAS26install.php from your browser. The install script will ask for your database details and allow you to enter specifics for your arcade.
-The script will attempt to make certain folders writable. If unsuccessful please chmod these folders through your host's c-panel or ftp.
+3) Run the install file YAS25install.php from your browser. The install script will ask for your database details and allow you to enter specifics for your arcade.
+The script will attempt to make certain folders writeable. If unsucessful please chmod these folders through your host's cpanel or ftp.
 
-4) The admin panel is located in http://yoursitename/admin.com and the default password is “admin” without quotes. Change  password immediately.
-
-5) Look for the free 500 game pack in the downloads.(These games can be seen on our http://www.keyarcade.com site - amongst others)
+4)Look for the free 500 game pack in the downloads.(These games can be seen on our http://www.keyarcade.com site - amongst others)
 Upload all games to the /swf folder and thumbnails to the /img folder. You may also consider purchasing premium gamepacks we offer.
 
-6) The templates have various ad placeholders. You may put your ad code in through the admin panel by editing the code with yours, look for the sizes
+5) The templates have various ad placeholders. You may put your ad code in through the admin panel by editing the code with yours, look for the sizes
 in the ad name. Of course you may create your own ads and place them in the script as you wish. From the admin panel note the ad number and 
 insert the code like this, assuming ad #3... <?php echo ad('3'); ?>
 
-7) Adding your own logo: The header logo is logo.pngor logo.jpg in the skins/'skin name'/images folder in each skin for each template. The logo is declared in the #top div in style.css.
+6)Adding your own logo: The header logo is logo.pngor logo.jpg in the skins/'skin name'/images folder in each skin for each template. The logo is declared in the #top div in style.css.
 Logos can be made for free at http://cooltext.com. Another good one is http://flamingtext.com.
 
+7)Look in the Admin panel under manage mochigames for details on setting up the 1 click install of Mochimedia distributed games.
+
+8)Default admin password is... admin. Change immediately.
+
+9)We offer script installation(includes gamepack installs) and low cost game packs. Look at our home page http://www.yourarcadescript.com for details.
 
 If for some reason you encounter any errors during or after installing, please document as many details as possible, perhaps taking a screenshot.
-
-For assistance please go to http://www.yourarcadescript.com/forum or email support@yourarcadescript.com.
-
-	*********************************************
-	**To install YourArcadeScript 2.6 with WAMP**
-	*********************************************
-
-1) Put all the files from "yas26full" to "www" directory.
-The www folder should be in C:\wamp\www or you can find it
-in the Wamp panel.
- 
-2) There are some settings in PHP and Apache which need to be set that may not be by default. In php settings enable 
-short_open_tag
-file_uploads
-allow_url_fopen 
-And in PHP extensions enable
-php_curl
-php_mbstring
-In Apache you need "rewrite _module" in modules set for seo url rewrites. 
-In php.ini search for "error_reporting = E_ALL" and change it to "error_reporting = E_ALL & ~E_NOTICE | E_STRICT".
-Restart all Services.
-
-3) Run the install file YAS26install.php from your browser. The install script will ask for your database details and allow you to enter specifics for your arcade.
-If you havent change anything in the settings the username is "root" and the password should be blank.
-
-4) The admin panel is located in http://yoursitename/admin.com and the default password is “admin” without quotes. Change  password immediately.
-
-5) Look for the free 500 game pack in the downloads.(These games can be seen on our http://www.keyarcade.com site - amongst others)
-Upload all games to the /swf folder and thumbnails to the /img folder. You may also consider purchasing premium gamepacks we offer.
-
-6) The templates have various ad placeholders. You may put your ad code in through the admin panel by editing the code with yours, look for the sizes
-in the ad name. Of course you may create your own ads and place them in the script as you wish. From the admin panel note the ad number and 
-insert the code like this, assuming ad #3... <?php echo ad('3'); ?>
-
-7) Adding your own logo: The header logo is logo.pngor logo.jpg in the skins/'skin name'/images folder in each skin for each template. The logo is declared in the #top div in style.css.
-Logos can be made for free at http://cooltext.com. Another good one is http://flamingtext.com.
-
 
 Youracadescript is CC BY-ND 3.0(http://creativecommons.org/licenses/by-nd/3.0/) licensed and is made available to you with no warranty or right for support. Please consider, you did not pay for this script. While all support offered is voluntary, you will find many willing (including the developers) to assist you, typically same day, often within a few hours.
-
-If for some reason you encounter any errors during or after installing, please document as many details as possible, perhaps taking a screenshot.
 
 For assistance please go to http://www.yourarcadescript.com/forum or email support@yourarcadescript.com.
