@@ -12,7 +12,7 @@ If you are unfamiliar with how to do this please ask for assistance in the forum
 3) Run the install file YAS26install.php from your browser. The install script will ask for your database details and allow you to enter specifics for your arcade.
 The script will attempt to make certain folders writable. If unsuccessful please chmod these folders through your host's c-panel or ftp.
 
-4) The admin panel is located in http://yoursitename/admin.com and the default password is “admin” without quotes. Change  password immediately.
+4) The admin panel is located in http://yoursitename/admin.com and the default password is “admin” without quotes. Change password immediately.
 
 5) Look for the free 500 game pack in the downloads.(These games can be seen on our http://www.keyarcade.com site - amongst others)
 Upload all games to the /swf folder and thumbnails to the /img folder. You may also consider purchasing premium gamepacks we offer.
