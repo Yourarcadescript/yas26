@@ -291,15 +291,16 @@ function yasDB_delete($sql, $escape = false) {
 	}
 	return $result;
 }
-function yasDB_clean($dirty, $encode_ent = false) {
+function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
     global $mysqli;
     $dirty = @trim($dirty);
-	$dirty = strip_tags($dirty);
+	if ($strip_tags)
+		$dirty = strip_tags($dirty);
 	$dirty = htmlspecialchars($dirty);
     if ($encode_ent) {
         $dirty = htmlentities($dirty);
     }
-    if(version_compare(phpversion(),\'4.3.0\') >= 0) {
+    if(version_compare(phpversion(),'4.3.0') >= 0) {
         if(get_magic_quotes_gpc()) {
             $dirty = stripslashes($dirty);
         }
@@ -311,25 +312,6 @@ function yasDB_clean($dirty, $encode_ent = false) {
         }
     }
     return $clean;
-}
-function yasDB_admin($dirty, $encode_ent = false) {
-	global $mysqli;
-	$dirty = @trim($dirty);
-	if ($encode_ent) {
-		$dirty = htmlentities($dirty);
-	}
-	if(version_compare(phpversion(),\'4.3.0\') >= 0) {
-		if(get_magic_quotes_gpc()) {
-			$dirty = stripslashes($dirty);
-		}
-		$clean = $mysqli->real_escape_string($dirty);
-	}
-	else {
-		if(!get_magic_quotes_gpc()) {
-			$clean = addslashes($dirty);
-		}
-	}
-	return $clean;
 }
 ?>';
 	   fwrite($h,$data);

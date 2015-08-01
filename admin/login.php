@@ -1,6 +1,8 @@
 <?php
 @session_start();
+
 $msg = '';
+
 if (isset($_POST['password']) && $_SESSION['logtries'] < 5) {
 	if($setting['password'] == md5($_POST['password'])) {
 		$_SESSION['admin'] = "logged";
@@ -16,15 +18,20 @@ if (isset($_POST['password']) && $_SESSION['logtries'] < 5) {
 		$msg = "<span style=\"text-align:center; display:block;\">Wrong password, sorry. Attempts: ".$_SESSION['logtries']."</span>";
 	}
 }
-if ($_SESSION['timer'] == 0) {
-	$tdif = 0;
-} else {
-	$tdif = time() - $_SESSION['timer'];
-	if ($tdif >= 900) { // 15 minute timeout
-		$_SESSION['timer'] = 0;
+if ( isset($_SESSION['timer'])) {
+	if ($_SESSION['timer'] == 0) {
 		$tdif = 0;
-		$_SESSION['logtries'] = 0;
+	} else {
+		$tdif = time() - $_SESSION['timer'];
+		if ($tdif >= 900) { // 900 seconds or 15 minute timeout
+			//reset the login process and allow user to login again
+			$_SESSION['timer'] = 0;
+			$tdif = 0;
+			$_SESSION['logtries'] = 0;
+		}
 	}
+} else {
+	$_SESSION['timer'] = 0;
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -35,7 +42,7 @@ if ($_SESSION['timer'] == 0) {
 <div align="center">
 <div id="admincontent"><br/>
 <?php
-if ($_SESSION['logtries'] > 0) {
+if (isset($_SESSION['logtries']) && $_SESSION['logtries'] > 0) {
 	?>
 	<div id="message" style="color:red;text-align:center;"><?php echo $msg; ?></div><br/>
 	<?php

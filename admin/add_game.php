@@ -64,31 +64,31 @@ $file_types=array(
 if (isset($_POST['add'])) {
 	include_once ("../includes/db_functions.inc.php");
 	if (!isset($_FILES['file']['name']) || !isset($_FILES['thumbnail']['name'])) {
-		echo '<center>No file or thumbnail detected</center>';
+		echo '<div style="text-align: center;">No file or thumbnail detected</div>';
 		exit();
 	}
-	$thumb_ext = get_file_extension($_FILES["thumbnail"]["name"]) or die("<center>You must include a game pic.</center>");
-	$file_ext = get_file_extension($_FILES["file"]["name"]) or die("<center>You must include a game file.</center>");
+	$thumb_ext = get_file_extension($_FILES["thumbnail"]["name"]) or die("<div style=\"text-align: center;\">You must include a game pic.</div>");
+	$file_ext = get_file_extension($_FILES["file"]["name"]) or die("<div style=\"text-align: center;\">You must include a game file.</div>");
 	if (in_array($thumb_ext, $thumb_types) || in_array($file_ext, $file_types)) {
 		if ($_FILES["file"]["error"] > 0) {
 			echo "<center>Return Code: " . $_FILES["thumbnail"]["error"] . "</center>";
 		} else {
 			move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $setting['sitepath']."/img/" . $num . preg_replace('/[^a-zA-Z0-9.-_]/', '', $_FILES["thumbnail"]["name"]));
 			move_uploaded_file($_FILES["file"]["tmp_name"], $setting['sitepath']."/swf/" . $num . preg_replace('/[^a-zA-Z0-9.-_]/', '', $_FILES["file"]["name"]));
-			$img = yasDB_admin("img/" .  $num . preg_replace('/[^a-zA-Z0-9.-_]/', '', $_FILES["thumbnail"]["name"]));
-			$file = yasDB_admin("swf/" .  $num . preg_replace('/[^a-zA-Z0-9.-_]/', '', $_FILES["file"]["name"]));
-			$desc = yasDB_admin(trim($_POST['description']));
-			$title = yasDB_admin($_POST['title']);
+			$img = yasDB_clean("img/" .  $num . preg_replace('/[^a-zA-Z0-9.-_]/', '', $_FILES["thumbnail"]["name"]));
+			$file = yasDB_clean("swf/" .  $num . preg_replace('/[^a-zA-Z0-9.-_]/', '', $_FILES["file"]["name"]));
+			$desc = yasDB_clean(trim($_POST['description']));
+			$title = yasDB_clean($_POST['title']);
 			$height = intval($_POST['height']);
 			$width = intval($_POST['width']);
-			$instr = yasDB_admin(trim($_POST['instructions']));
-			$keywords = yasDB_admin($_POST['keywords']);
+			$instr = yasDB_clean(trim($_POST['instructions']));
+			$keywords = yasDB_clean($_POST['keywords']);
 			if($file_ext == 'swf'){
 				if ($_POST['height'] OR $_POST['width'] <= 0 ) {
 					list($width, $height, $type, $attributes) = getimagesize($setting['sitepath'].'/'.$file);
 				}
 			}	
-			$query = yasDB_insert("INSERT INTO games (title, description, instructions, keywords, category, thumbnail, file, height, width, type) VALUES ('$title', '$desc', '$instr', '$keywords', ".intval($_POST['category']).", '$img', '$file', $height, $width, '".yasDB_admin($_POST['type'])."')",false);
+			$query = yasDB_insert("INSERT INTO games (title, description, instructions, keywords, category, thumbnail, file, height, width, type) VALUES ('$title', '$desc', '$instr', '$keywords', ".intval($_POST['category']).", '$img', '$file', $height, $width, '".yasDB_clean($_POST['type'])."')",false);
 			if ($query) { 
 				echo '<center><p align="center"><b>Game successfully added!</b></p></center>';
 			} else {

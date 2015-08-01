@@ -53,7 +53,7 @@ if (isset($_POST['jobsSubmit'])) {
 	yasDB_update("UPDATE `settings` SET `jobs` = '$finished_jobs' WHERE `id` = 1");
 	include("../includes/settings_function.inc.php");
 	createConfigFile();
-	?><center>Scheduled Jobs updated!<br/><a href="index.php?act=managejobs" />Continue</a></center><?php
+	?><div style="text-align: center;">Scheduled Jobs updated!<br/><a href="index.php?act=managejobs" />Continue</a></div><?php
 } else if(isset($_GET['run'])) {
 	$_SESSION['runjobs'] = 'good-to-go';
 	$runjob = $_GET['run'];
@@ -81,7 +81,7 @@ if (isset($_POST['jobsSubmit'])) {
 		}
     }
 	include("../includes/jobs2.php");
-	?><center>Job run successfully!<br/><a href="index.php?act=managejobs" />Continue</a></center><?php
+	?><div style="text-align: center;">Job run successfully!<br/><a href="index.php?act=managejobs" />Continue</a></div><?php
 } else {
 	?>
 	<div class="table">
@@ -147,13 +147,13 @@ if (isset($_POST['jobsSubmit'])) {
 			<option value="30"<?php echo($job[0] == 30?' selected="selected"':null); ?>>Monthly</option>
 		</select>
 		</td>
-		<td ><a href="index.php?act=managejobs&run=<?php echo $jobNames[$i];?>"><font color="#cc0000">Run Job Now</font></a></td>
+		<td ><a href="index.php?act=managejobs&run=<?php echo $jobNames[$i];?>"><span style="color: #cc0000; ">Run Job Now</span></a></td>
 		</tr><?php
 		$i++;
 	} ?>
 	</table>
 	<br/>
-	<center><input type="submit" class="button" name="jobsSubmit" value="Submit">&nbsp;<input type="reset" class="button" value="Reset"></center>
+	<div style="text-align: center;"><input type="submit" class="button" name="jobsSubmit" value="Submit">&nbsp;<input type="reset" class="button" value="Reset"></div>
 	</form>
 	</div>
 	<?php

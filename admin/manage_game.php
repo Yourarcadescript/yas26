@@ -248,11 +248,11 @@ if(!empty($_GET['edit'])) {
 	
 } elseif(isset($_POST['edit'])) {
 	if(empty($_POST['title']) || empty($_POST['thumbnail'])) {
-		echo '<center>One or more fields was left empty.<br />';
-		echo '<a href="index.php?act=managegames&edit=' . intval($_POST['id']) . '">Click here to go back</a></center>';
+		echo '<div style="text-align: center;">One or more fields was left empty.<br />';
+		echo '<a href="index.php?act=managegames&edit=' . intval($_POST['id']) . '">Click here to go back</a></div>';
 	} else {
 		$pid = intval($_POST['id']);
-		yasDB_update("UPDATE games SET title = '". yasDB_clean($_POST['title'])."', description = '".yasDB_clean($_POST['description'])."', instructions = '".yasDB_clean($_POST['instructions'])."', code = '".yasDB_clean($_POST['gamecode'])."',keywords = '".yasDB_clean($_POST['keywords'])."', category = ".intval($_POST['category']).", height = ".intval($_POST['gameheight']).", width = ".intval($_POST['gamewidth']).", type = '".yasDB_clean($_POST['type'])."', thumbnail = '".yasDB_clean($_POST['thumbnail'])."', file = '".yasDB_clean($_POST['file'])."', active=".intval($_POST['active']).", review='".yasDB_clean($_POST['review'])."' where id = $pid",false);
+		yasDB_update("UPDATE games SET title = '". yasDB_clean($_POST['title'])."', description = '".yasDB_clean($_POST['description'])."', instructions = '".yasDB_clean($_POST['instructions'])."', code = '".yasDB_clean($_POST['gamecode'],false,false)."',keywords = '".yasDB_clean($_POST['keywords'])."', category = ".intval($_POST['category']).", height = ".intval($_POST['gameheight']).", width = ".intval($_POST['gamewidth']).", type = '".yasDB_clean($_POST['type'])."', thumbnail = '".yasDB_clean($_POST['thumbnail'])."', file = '".yasDB_clean($_POST['file'])."', active=".intval($_POST['active']).", review='".yasDB_clean($_POST['review'])."' where id = $pid",false);
 		$result = yasDB_select("SELECT gameid FROM featuredgames WHERE gameid = $pid");
 		if ($_POST['featured'] == 'yes') {
 			if ($result->num_rows == 0) {
@@ -269,17 +269,17 @@ if(!empty($_GET['edit'])) {
 			} else {
 				$eurl = 'index.php?act=managegames';
 			}
-			echo '<center><a href="'.$eurl.'">Click here to proceed</a></p></center>';
+			echo '<div style="text-align: center;"><a href="'.$eurl.'">Click here to proceed</a></p></div>';
 			$_SESSION['editurl'] = '';	
 		} else {
-			echo '<center><a href="index.php?act=brokenfiles">Click here to proceed</a></p></center>';
+			echo '<div style="text-align: center;"><a href="index.php?act=brokenfiles">Click here to proceed</a></p></div>';
 		}
 	}
 } elseif(!empty($_GET['delete'])) {
 	$query = yasDB_select("SELECT id, file, thumbnail, source, sourceid FROM games WHERE id = ".intval($_GET['delete']),false);
 	if($query->num_rows == 0) {
-		echo '<center>You cannot delete a game that does not exist!<br />';
-		echo '<a href="index.php?act=managegames">Click here to go back</a></center>';
+		echo '<div style="text-align: center;">You cannot delete a game that does not exist!<br />';
+		echo '<a href="index.php?act=managegames">Click here to go back</a></div>';
 	} else {
 		$table = array (
 					'MOCHI'=>'mochigames',
@@ -302,8 +302,8 @@ if(!empty($_GET['edit'])) {
 				yasDB_update("UPDATE `".$table[$row['source']]."` SET `installed` = '0' WHERE `id` = ".$row['sourceid']);
 			}
 		}
-		echo '<center><p style="text-align:center;">Game successfully deleted.<br />';
-		echo '<a href="index.php?act=managegames">Click here to proceed</a></p></center>';
+		echo '<div style="text-align: center;"><p style="text-align:center;">Game successfully deleted.<br />';
+		echo '<a href="index.php?act=managegames">Click here to proceed</a></p></div>';
 	}
 } else {
 	$catName = array();
@@ -346,7 +346,7 @@ if(!empty($_GET['edit'])) {
         Keywords: <input type="text" name="keywords"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		Featured: <input type="checkbox" name="featured" id="featured">
         </p><br/>
-        <center><input type="submit" class="button" name="filter" value="Filter Games" /></center>
+        <div style="text-align: center;"><input type="submit" class="button" name="filter" value="Filter Games" /></div>
 		</fieldset>
 	</form><br/>	
 			

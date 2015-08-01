@@ -95,8 +95,8 @@ if(isset($_POST['add'])) {
 			}
 		}
 		yasDB_insert("INSERT INTO games (title, description, category, thumbnail, keywords, file, height, width, type) values ('$title', '$desc', ".intval($_POST['category']).", '$thumb', '$keywords', '$file', '$height', '$width', '{$_POST['type']}')",false);
-		echo '<center>Media successfully added!</font><br/>';
-		echo '<a href="index.php?act=addmedia">Click here to proceed</a></center>';
+		echo '<div style="text-align: center;">Media successfully added!<br/>';
+		echo '<a href="index.php?act=addmedia">Click here to proceed</a></div>';
 	
 } else {
 ?><div class="table">

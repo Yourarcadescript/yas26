@@ -1,28 +1,5 @@
-25-02-2015, 04:14 - Daily game plays emptied triggered by visitor 127.0.0.1
-25-02-2015, 04:14 - Feeds updated triggered by visitor 127.0.0.1
-25-02-2015, 04:14 - Sitemap updated triggered by visitor 127.0.0.1
-25-02-2015, 04:14 - GameQue update triggered by visitor 127.0.0.1
-26-02-2015, 13:10 - Daily game plays emptied triggered by visitor 127.0.0.1
-26-02-2015, 13:10 - Feeds updated triggered by visitor 127.0.0.1
-26-02-2015, 13:10 - Sitemap updated triggered by visitor 127.0.0.1
-26-02-2015, 13:10 - GameQue update triggered by visitor 127.0.0.1
-27-02-2015, 09:16 - Daily game plays emptied triggered by visitor 127.0.0.1
-27-02-2015, 09:16 - Feeds updated triggered by visitor 127.0.0.1
-27-02-2015, 09:16 - Sitemap updated triggered by visitor 127.0.0.1
-27-02-2015, 09:16 - GameQue update triggered by visitor 127.0.0.1
-28-02-2015, 00:01 - Daily game plays emptied triggered by visitor 127.0.0.1
-28-02-2015, 00:01 - Feeds updated triggered by visitor 127.0.0.1
-28-02-2015, 00:01 - Sitemap updated triggered by visitor 127.0.0.1
-28-02-2015, 00:01 - GameQue update triggered by visitor 127.0.0.1
-01-03-2015, 11:49 - Daily game plays emptied triggered by visitor 127.0.0.1
-01-03-2015, 11:49 - Feeds updated triggered by visitor 127.0.0.1
-01-03-2015, 11:49 - Sitemap updated triggered by visitor 127.0.0.1
-01-03-2015, 11:49 - GameQue update triggered by visitor 127.0.0.1
-02-03-2015, 20:03 - Daily game plays emptied triggered by visitor 127.0.0.1
-02-03-2015, 20:03 - Feeds updated triggered by visitor 127.0.0.1
-02-03-2015, 20:03 - Sitemap updated triggered by visitor 127.0.0.1
-02-03-2015, 20:03 - GameQue update triggered by visitor 127.0.0.1
-03-03-2015, 03:39 - Daily game plays emptied triggered by visitor 127.0.0.1
-03-03-2015, 03:39 - Feeds updated triggered by visitor 127.0.0.1
-03-03-2015, 03:39 - Sitemap updated triggered by visitor 127.0.0.1
-03-03-2015, 03:39 - GameQue update triggered by visitor 127.0.0.1
+
+01-08-2015, 17:13 - Daily game plays emptied triggered by visitor ::1
+01-08-2015, 17:13 - Feeds updated triggered by visitor ::1
+01-08-2015, 17:13 - Sitemap updated triggered by visitor ::1
+01-08-2015, 17:14 - GameQue update triggered by visitor ::1
