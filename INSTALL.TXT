@@ -1,4 +1,4 @@
-**To install YourArcadeScript 2.5**
+**To install YourArcadeScript 2.5***
 1) FTP all the files and folders to your host.
 
 2) You will need a host with a PHP server and MySql database with a user which can create and delete tables (best to create a user with all prividges if unsure).
