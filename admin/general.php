@@ -94,9 +94,6 @@
 <a href="index.php?act=manageagffeed" title="Arcade Game Feed"><img src="img/cpanel/agf.png" alt="Arcade Game Feed" height="42" width="42" /><br />Arcade Game Feed</a>
 </div>
 <div class="imagebox">
-<a href="index.php?act=managemgffeed" title="Mochi Game Feed"><img src="img/cpanel/managemochi.png" alt="Install Mochi Games" height="42" width="42" /><br />Mochi Games</a>
-</div>
-<div class="imagebox">
 <a href="index.php?act=managefgdfeed" title="Install FGD Games"><img src="img/cpanel/fgd.png" alt="Install FGD Games" height="42" width="42" /><br />FGD Games</a>
 </div>
 <div class="imagebox">

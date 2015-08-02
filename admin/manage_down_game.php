@@ -134,7 +134,6 @@ if(!empty($_GET['edit'])) {
 						<th>Game Title</th>
 						<th>Description</th>
 						<th>Down</th>
-						<th>D.Mochi</th>
 						<th>Edit</th>
 						<th class="last">Delete</th>
 					</tr>
@@ -150,7 +149,6 @@ if(!empty($_GET['edit'])) {
 				<td><?php echo $row['title'];?></td>
 				<td><?php echo $row['description'];?></td>
 				<td><?php echo $row['downloadtimes'];?></td>	
-				<td><?php echo $row['mochidownloads'];?></td>
 				<td ><a href="index.php?act=managedowngame&edit=<?php echo $row['id'];?>&m=1"><font color="#cc0000">Edit</font></a></td>
 				<td class="last"><font color=red><a href="index.php?act=managedowngame&delete=<?php echo $row['id'];?>" onclick="return confirm(\'Are you sure you want to delete this game?\')"><font color="#cc0000">Delete</font></a><br/><input name="checkbox[]" type="checkbox" id="checkbox[]" value="<?php echo $row['id'];?>"></td>
 				</tr>

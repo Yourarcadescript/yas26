@@ -421,9 +421,6 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		`description` text NOT NULL,
 		`thumbnail` text NOT NULL,
 		`file` text NOT NULL,
-		`mochi` text,
-		`downloadtimes` int(10) NOT NULL,
-		`mochidownloads` int(10) NOT NULL,
 		PRIMARY KEY (`id`)
 		) ENGINE=MyISAM CHARACTER SET = utf8 COLLATE utf8_unicode_ci");
 
@@ -563,13 +560,6 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		  `source` enum('OTHER','FGD','FOG','KONGREGATE','AGF','MGF') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'OTHER',
 		  `sourceid` int(11) unsigned NOT NULL,
 		  `thumbnail` text COLLATE utf8_unicode_ci NOT NULL,
-		  `ismochi` int(10) NOT NULL DEFAULT '0',
-		  `thumbnail_200` varchar(255) CHARACTER SET utf8 NOT NULL,
-		  `screen1` varchar(255) CHARACTER SET utf8 NOT NULL,
-		  `screen2` varchar(255) CHARACTER SET utf8 NOT NULL,
-		  `screen3` varchar(255) CHARACTER SET utf8 NOT NULL,
-		  `screen4` varchar(255) CHARACTER SET utf8 NOT NULL,
-		  `review` text CHARACTER SET utf8 NOT NULL,
 		  `active` tinyint(4) NOT NULL DEFAULT '1',
 		  PRIMARY KEY (`id`),
 		  KEY `source` (`source`)
@@ -648,36 +638,6 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		PRIMARY KEY (`id`)
 		) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
 		
-		$mysqli->query("CREATE TABLE IF NOT EXISTS `mgffeed` (
-		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-		`uid` int(11) unsigned NOT NULL,
-		`title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		`controls` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		`instructions` text COLLATE utf8_unicode_ci NOT NULL,
-		`description` text COLLATE utf8_unicode_ci NOT NULL,
-		`category` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		`thumbnail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		`medthumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		`lgthumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		`installdate` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-		`file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		`zip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		`game_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		`screen1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		`screen2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		`review` text COLLATE utf8_unicode_ci NOT NULL,
-		`width` int(11) NOT NULL,
-		`height` int(11) NOT NULL,
-		`rating` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-		`ads` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-		`hsapi` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-		`keywords` text COLLATE utf8_unicode_ci NOT NULL,
-		`installed` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-		`hidden` tinyint(1) NOT NULL DEFAULT '0',
-		PRIMARY KEY (`id`),
-		KEY `uid` (`uid`)
-		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;");
-		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `agffeed` (
 		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 		`uid` int(11) unsigned NOT NULL,
@@ -730,9 +690,6 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		  `theme` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'minix_26',
 		  `skin` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'arcadegames',
 		  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-		  `mochi_pub_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `mochi_secret_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `mochi_offset` int(11) NOT NULL DEFAULT '0',
 		  `userecaptcha` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
 		  `lightbox` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
 		  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -782,8 +739,8 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		$jobs['backup'][2] = 1;
 		$jobstring = $mysqli->real_escape_string(serialize($jobs));
 				
-		$mysqli->query("INSERT INTO `settings` (`id`, `main`, `gperpage`, `numbgames`, `gamesort`, `seolink`, `seo`, `approvelinks`, `numblinks`, `version`, `theme`, `skin`, `password`, `mochi_pub_key`, `mochi_secret_key`, `userecaptcha`, `lightbox`, `email`, `disabled`, `regclosed`, `fb_app_id`, `fb_app_secret`, `tw_app_id`, `tw_app_secret`, `cachelife`, `siteurl`, `sitepath`, `sitename`, `slogan`, `metades`, `metakeywords`, `jobs`, `galogin`, `gapassword`, `gaurl`) VALUES
-        (1, 1, 15, 3, 'newest', 'yes', 'no', 'no', 10, '2.6', '".$mysqli->real_escape_string($_POST['theme'])."', '".$mysqli->real_escape_string($_POST['skin'])."', '".md5('admin')."', '', '', 'yes', 'no', '".$mysqli->real_escape_string($_POST['supportemail'])."', 'no', 'no', '".$mysqli->real_escape_string($_POST['fbAppId'])."', '".$mysqli->real_escape_string($_POST['fbAppSecret'])."', '".$mysqli->real_escape_string($_POST['twAppId'])."', '".$mysqli->real_escape_string($_POST['twAppSecret'])."', 60, '".$mysqli->real_escape_string($_POST['siteurl'])."', '".$mysqli->real_escape_string($_POST['sitepath'])."', '".$mysqli->real_escape_string($_POST['sitename'])."', '".$mysqli->real_escape_string($_POST['slogan'])."', '".$mysqli->real_escape_string($_POST['metades'])."', '".$mysqli->real_escape_string($_POST['keywords'])."', '$jobstring', '', '', '')");
+		$mysqli->query("INSERT INTO `settings` (`id`, `main`, `gperpage`, `numbgames`, `gamesort`, `seolink`, `seo`, `approvelinks`, `numblinks`, `version`, `theme`, `skin`, `password`, `userecaptcha`, `lightbox`, `email`, `disabled`, `regclosed`, `fb_app_id`, `fb_app_secret`, `tw_app_id`, `tw_app_secret`, `cachelife`, `siteurl`, `sitepath`, `sitename`, `slogan`, `metades`, `metakeywords`, `jobs`, `galogin`, `gapassword`, `gaurl`) VALUES
+        (1, 1, 15, 3, 'newest', 'yes', 'no', 'no', 10, '2.6', '".$mysqli->real_escape_string($_POST['theme'])."', '".$mysqli->real_escape_string($_POST['skin'])."', '".md5('admin')."', 'yes', 'no', '".$mysqli->real_escape_string($_POST['supportemail'])."', 'no', 'no', '".$mysqli->real_escape_string($_POST['fbAppId'])."', '".$mysqli->real_escape_string($_POST['fbAppSecret'])."', '".$mysqli->real_escape_string($_POST['twAppId'])."', '".$mysqli->real_escape_string($_POST['twAppSecret'])."', 60, '".$mysqli->real_escape_string($_POST['siteurl'])."', '".$mysqli->real_escape_string($_POST['sitepath'])."', '".$mysqli->real_escape_string($_POST['sitename'])."', '".$mysqli->real_escape_string($_POST['slogan'])."', '".$mysqli->real_escape_string($_POST['metades'])."', '".$mysqli->real_escape_string($_POST['keywords'])."', '$jobstring', '', '', '')");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `stats` (
 		  `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -812,7 +769,6 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		  `date` int(10) NOT NULL DEFAULT '0',
 		  `location` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
 		  `aboutme` text COLLATE utf8_unicode_ci NOT NULL,
-		  `job` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
 		  `points` int(11) NOT NULL DEFAULT '0',
 		  `endban` int(10) DEFAULT '0',
 		  `oauth_uid` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -821,8 +777,6 @@ function yasDB_admin($dirty, $encode_ent = false) {
 		  `twitter_oauth_token_secret` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
 		  `randomkey` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
 		  `activated` tinyint(1) NOT NULL,
-		  `gender` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-		  `birthday` int(11) DEFAULT NULL,
 		  `hobbies` text COLLATE utf8_unicode_ci NOT NULL,
 		  `posts` int(11) NOT NULL DEFAULT '0',
 		  `topics` int(11) NOT NULL DEFAULT '0',

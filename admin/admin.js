@@ -1,17 +1,3 @@
-function getMochiFeed() {
-	$('#screenoverlay').css("display", "block");
-	$('#loading').activity(true);
-	$.get('mochi_feed_ajax.php', { ajax:true }, function(data) {
-		$('#loading').activity(false);
-		$('#screenoverlay').css("display", "none");
-		showNotification({
-			message: data,
-			type: "information",
-			autoClose: false,
-			reloadPage: true
-		});
-	});
-}
 function doQue(gameid, theAction, source, title, thumb) {
 	$.post("gameque.php", { type: source, queid: gameid, action: theAction, title: title, thumb: thumb }, function(data) {
 		if (theAction == "que") {

@@ -282,12 +282,9 @@ if(!empty($_GET['edit'])) {
 		echo '<a href="index.php?act=managegames">Click here to go back</a></center>';
 	} else {
 		$table = array (
-					'MOCHI'=>'mochigames',
 					'FGD'=>'fgdfeed',
-					'PLAYTOMIC'=>'playtomicfeed',
 					'FOG'=>'fogfeed',
 					'KONGREGATE'=>'kongregate',
-					'VASCOGAMES'=>'vascogames'
 				);
 		$row = $query->fetch_array(MYSQLI_ASSOC);
 		@unlink('../' . $row['file']);
@@ -296,11 +293,8 @@ if(!empty($_GET['edit'])) {
 		
 		yasDB_delete("delete from games where id = ".intval($_GET['delete']),false);
 		if ($row['source'] != 'OTHER') {
-			if ($row['source'] == 'MOCHI' || $row['source'] == 'PLAYTOMIC') {
-				yasDB_update("UPDATE `".$table[$row['source']]."` SET `isinstalled` = '0' WHERE `id` = ".$row['sourceid']);
-			} else {
-				yasDB_update("UPDATE `".$table[$row['source']]."` SET `installed` = '0' WHERE `id` = ".$row['sourceid']);
-			}
+		yasDB_update("UPDATE `".$table[$row['source']]."` SET `installed` = '0' WHERE `id` = ".$row['sourceid']);
+
 		}
 		echo '<center><p style="text-align:center;">Game successfully deleted.<br />';
 		echo '<a href="index.php?act=managegames">Click here to proceed</a></p></center>';

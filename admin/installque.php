@@ -12,13 +12,6 @@ if ($check->num_rows == 0) {
 }
 while ($row = $check->fetch_array(MYSQLI_ASSOC)) {
 	switch ($row['source']) {
-		case 'mochi':
-			include_once("mochi_functions.php");
-			$success = install_mochigame($row['sourceid']);
-			if ($success) {
-				yasDB_delete("DELETE FROM `gameque` WHERE `source` = '".$row['source']."' AND `sourceid` = ".$row['sourceid']);
-			}
-			break;
 		default:
 			break;
 	}

@@ -219,7 +219,7 @@ function install_foggame($gameid) {
 	}
 	$query = yasDB_update("UPDATE fogfeed SET installed = '1' WHERE id = {$result['id']}", false);
 	if (!$query) {
-		echo 'Error updating mochigame database';
+		echo 'Error updating fog game database';
 		return false;
 	}
 	return true; 													
