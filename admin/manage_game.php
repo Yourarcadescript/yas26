@@ -29,11 +29,6 @@ if (!isset($_GET['category']) || empty($_GET['category'])) {
 } else {
 	$box_category = $_GET['category'];
 }
-if (isset($_GET['leaderboard']) ) {
-	$box_leaderboard = $_GET['leaderboard'] == 'on'?'yes':'no';
-} else {
-	$box_leaderboard === '---';
-}
 if (isset($_GET['featured']) ) {
 	$box_featured = $_GET['featured'] == 'on'?'yes':'no';
 } else {
@@ -65,7 +60,7 @@ $allgames = array();
 while ($row = $query->fetch_array(MYSQLI_ASSOC)) {
 	$allgames[] = array('id'=>$row['id'], 'title'=>$row['title']);
 }
-$query->close;
+$query->close();
 
 ?>
 <script language="JavaScript">
@@ -196,14 +191,15 @@ if(!empty($_GET['edit'])) {
 			<td class="last"><select name="type">
 				<option value="<?php echo $row['type'];?>"><?php echo $row['type'];?></option>
 				<option value="SWF">swf</option>
-				<option value="DCR">dcr</option>
-				<option value="FLV">flv</option>
+				<option value="UNITY">Unity</option>
+				<option value="FLV">No slider</option>
 				<option value="WMV">wmv</option>
 				<option value="AVI">avi</option>
 				<option value="MPG">mpg</option>
 				<option value="MOV">mov</option>
 				<option value="IMAGE">image</option>
 				<option value="YOUTUBE">youtube</option>
+				<option value="CustomCode">code</option>
 				</select> <input type="text" name="file" value="<?php echo $row['file'];?>" style="width:202px;" /></td>
 			</tr>
 			<tr class="bg">
@@ -223,12 +219,6 @@ if(!empty($_GET['edit'])) {
 				<option value="0" <?php if ($row['active']==0) { echo 'selected="selected"';}?>>No</option>
 				</select>
 			</td>
-			</tr>
-			<tr class="bg">
-			<td class="first"><strong>Game Review</strong></td><td class="last"></td>
-			</tr>
-			<tr>
-			<td style="background-color:#fff;width:100%;"><textarea name="review" id="review" cols="35" rows="5" style="width:100%;"/><?php echo $row['review'];?></textarea></td>
 			</tr>
 			<tr>
 			<td class="first"></td>
@@ -252,8 +242,8 @@ if(!empty($_GET['edit'])) {
 		echo '<a href="index.php?act=managegames&edit=' . intval($_POST['id']) . '">Click here to go back</a></center>';
 	} else {
 		$pid = intval($_POST['id']);
-		yasDB_update("UPDATE games SET title = '". yasDB_clean($_POST['title'])."', description = '".yasDB_clean($_POST['description'])."', instructions = '".yasDB_clean($_POST['instructions'])."', code = '".yasDB_clean($_POST['gamecode'])."',keywords = '".yasDB_clean($_POST['keywords'])."', category = ".intval($_POST['category']).", height = ".intval($_POST['gameheight']).", width = ".intval($_POST['gamewidth']).", type = '".yasDB_clean($_POST['type'])."', thumbnail = '".yasDB_clean($_POST['thumbnail'])."', file = '".yasDB_clean($_POST['file'])."', active=".intval($_POST['active']).", review='".yasDB_clean($_POST['review'])."' where id = $pid",false);
-		$result = yasDB_select("SELECT gameid FROM featuredgames WHERE gameid = $pid");
+		        yasDB_update("UPDATE games SET title = '". yasDB_admin($_POST['title'])."', description = '".yasDB_admin(trim($_POST['description']))."', instructions = '".yasDB_admin(trim($_POST['instructions']))."', code = '".yasDB_admin($_POST['gamecode'])."',keywords = '".yasDB_admin($_POST['keywords'])."', category = ".intval($_POST['category']).", height = ".intval($_POST['gameheight']).", width = ".intval($_POST['gamewidth']).", type = '".yasDB_admin($_POST['type'])."', thumbnail = '".yasDB_admin($_POST['thumbnail'])."', file = '".yasDB_admin($_POST['file'])."', active=".intval($_POST['active']).", where id = $pid",false); 
+$result = yasDB_select("SELECT gameid FROM featuredgames WHERE gameid = $pid");
 		if ($_POST['featured'] == 'yes') {
 			if ($result->num_rows == 0) {
 				yasDB_insert("INSERT INTO featuredgames (gameid) VALUES($pid)");
@@ -293,8 +283,9 @@ if(!empty($_GET['edit'])) {
 		
 		yasDB_delete("delete from games where id = ".intval($_GET['delete']),false);
 		if ($row['source'] != 'OTHER') {
-		yasDB_update("UPDATE `".$table[$row['source']]."` SET `installed` = '0' WHERE `id` = ".$row['sourceid']);
-
+			  {
+				yasDB_update("UPDATE `".$table[$row['source']]."` SET `installed` = '0' WHERE `id` = ".$row['sourceid']);
+			}
 		}
 		echo '<center><p style="text-align:center;">Game successfully deleted.<br />';
 		echo '<a href="index.php?act=managegames">Click here to proceed</a></p></center>';
@@ -359,10 +350,10 @@ if(!empty($_GET['edit'])) {
 	   $pageno = 1;
 	} 
 	$category = isset($_GET['category'])?$_GET['category']:'all';
-	$title = isset($_GET['title'])?yasDB_clean($_GET['title']):'';
-	$description = isset($_GET['description'])?yasDB_clean($_GET['description']):'';
-	$keywords = isset($_GET['keywords'])?yasDB_clean($_GET['keywords']):'';
-	$featured = isset($_GET['featured'])?yasDB_clean($_GET['featured']):'';
+	$title = isset($_GET['title'])?yasDB_admin($_GET['title']):'';
+	$description = isset($_GET['description'])?yasDB_admin($_GET['description']):'';
+	$keywords = isset($_GET['keywords'])?yasDB_admin($_GET['keywords']):'';
+	$featured = isset($_GET['featured'])?yasDB_admin($_GET['featured']):'';
 	if (isset($_GET['filter'])) {
 		if(isset($_GET['exact'])) {
 			$sql = "SELECT * FROM `games` WHERE `id` = ".intval($_GET['exact']);
@@ -420,7 +411,7 @@ if(!empty($_GET['edit'])) {
 	}
 	$query = yasDB_select($sql);
 	$numrows = $query->num_rows;
-	$query->close;
+	$query->close();
 	// Number of games per page **************************	
 	$rows_per_page = 20;
 	//****************************************************
@@ -447,7 +438,7 @@ if(!empty($_GET['edit'])) {
 		$q2 = yasDB_select("SELECT `title` FROM `games` WHERE `id` = ".intval($_GET['exact']));
 		$q2result = $q2->fetch_array(MYSQLI_ASSOC);
 		$box_title = $q2result['title'];
-		$q2->close;
+		$q2->close();
 	}
 	?>
 	<div style="float:left;width:230px;margin:0 0 5px 0;padding:5px;text-align:left;">
