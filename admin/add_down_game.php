@@ -43,11 +43,11 @@ if (isset($_POST['upload']) && $_POST['upload']=="1") {
 	} else echo "Zip failed";
 
 	copy($_FILES['file']['tmp_name'][0], $setting['sitepath'] . "/ourgames/img/" . $_FILES['file']['name'][0]);
-	$gamename = yasDB_admin($_POST["gamename"]);
-	$gamedescript = yasDB_admin($_POST["description"]);
-	$thumbpath = yasDB_admin("../ourgames/img/" . $_FILES['file']['name'][0]);
-	$gamefilepath = yasDB_admin('../ourgames/games/'. $num . str_replace(GetFileExtension($_FILES['file']['name'][1]), 'zip', $_FILES['file']['name'][1]));
-	$mochilink = yasDB_admin($_POST['mochigame']);
+	$gamename = yasDB_clean($_POST["gamename"]);
+	$gamedescript = yasDB_clean($_POST["description"]);
+	$thumbpath = yasDB_clean("../ourgames/img/" . $_FILES['file']['name'][0]);
+	$gamefilepath = yasDB_clean('../ourgames/games/'. $num . str_replace(GetFileExtension($_FILES['file']['name'][1]), 'zip', $_FILES['file']['name'][1]));
+	$mochilink = yasDB_clean($_POST['mochigame']);
 	$query = yasDB_insert("INSERT INTO downgames (title, description, thumbnail, file, mochi) VALUES ('$gamename', '$gamedescript', '$thumbpath', '$gamefilepath', '$mochilink')",false);
 	if (!$query){
 		echo("Database Error!");

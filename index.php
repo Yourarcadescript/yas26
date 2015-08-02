@@ -7,6 +7,8 @@
 #       
 #--------------------------------
 session_start();
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); else ob_start();
 if (!file_exists("includes/db_functions.inc.php") || !file_exists("includes/config.inc.php")) {
 	echo "Site is not installed";

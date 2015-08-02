@@ -18,8 +18,8 @@ if (isset($_POST['add_link'])) {
 	$email = yasDB_clean($_POST['email']);
 	yasDB_insert("INSERT INTO links ( `id` , `url` , `text`, `description`, `email`, `in`, `out`, `reciprocal`, `approved`) VALUES ('', '".$url."', '".$text."', '".$des."', '".$email."', '0', '0', '".$reciprocal."', 'yes')");
 	 
-		echo '<center>Link added!<br>
-		<a href="index.php?act=addlink" />Continue</a></center>';?>
+		echo '<div style="text-align: center;">Link added!<br>
+		<a href="index.php?act=addlink" />Continue</a></div>';?>
 <?php } else { ?>
             <div class="table">
 		    <img src="img/bg-th-left.gif" width="8" height="7" alt="" class="left" />
