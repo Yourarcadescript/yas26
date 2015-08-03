@@ -67,7 +67,6 @@ if($numrows == 0){
       <label for="ads_filter">Game Ads:</label>
       <select id="ads" name="ads">
       <option value="None" selected>None</option>
-      <option value="Mochi">Mochi</option>
       <option value="CPM">CPM</option>
       <option value="Star">Star</option>
       <option value="Other">Other</option>

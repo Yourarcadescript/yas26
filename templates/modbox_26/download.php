@@ -49,17 +49,11 @@ if ($_POST['upload']=="1")
 		echo '<div class="gameholderimg">
 		<img align="absmiddle" src="'.resize($thumbpath, $pic_settings,"download").'" alt="' . $thumbpath . '" width="130" height="100" />
 		</div>';
-		if ($games['mochi']<>'') {
-			echo '<div class="downloadgame"><center><a href="'.$setting['siteurl'].$filepath.'" onclick="return download_link('.$games['id'].')"><img align="absmiddle" src="'.$setting['siteurl'].'templates/'.$setting['theme'].'/skins/'.$setting['skin'].'/images/buttons/download.png" width="100" height="30" /></a></center></div>';
-			echo '<div class="downloadmochi"><center><a href="'.$games['mochi'].'" rel="nofollow" onclick="return download_link_mochi('.$games['id'].')"><img align="absmiddle" src="'.$setting['siteurl'].'templates/'.$setting['theme'].'/skins/'.$setting['skin'].'/images/buttons/downloadmochi.png" width="100" height="30" /></a></center></div>';
-			echo '</div>';
-			echo '</div>';
-		} else {
-			echo '<div class="downloadgame"><center><a href="'.$setting['siteurl'].$filepath.'" onclick="return download_link('.$games['id'].')"><img align="absmiddle" src="'.$setting['siteurl'].'templates/'.$setting['theme'].'/skins/'.$setting['skin'].'/images/buttons/download.png" width="100" height="30" /></a></center></div>';
-			//echo '<div class="downloadgame"><center><a href="'.$setting['siteurl'].'includes/link_download.php?id='.$games['id'].'" ><img align="absmiddle" src="'.$setting['siteurl'].'templates/'.$setting['theme'].'/skins/'.$setting['skin'].'/images/buttons/download.png" width="100" height="30" /></a></center></div>';
-			echo '</div>';
-			echo '</div>';
-		}
+
+		echo '<div class="downloadgame"><center><a href="'.$setting['siteurl'].$filepath.'" onclick="return download_link('.$games['id'].')"><img align="absmiddle" src="'.$setting['siteurl'].'templates/'.$setting['theme'].'/skins/'.$setting['skin'].'/images/buttons/download.png" width="100" height="30" /></a></center></div>';
+		//echo '<div class="downloadgame"><center><a href="'.$setting['siteurl'].'includes/link_download.php?id='.$games['id'].'" ><img align="absmiddle" src="'.$setting['siteurl'].'templates/'.$setting['theme'].'/skins/'.$setting['skin'].'/images/buttons/download.png" width="100" height="30" /></a></center></div>';
+		echo '</div>';
+		echo '</div>';
 	}
 	$select_games->close();	 
 }

@@ -255,14 +255,6 @@ if (($jobs['gameque'][2] != 0 && $jobs['gameque'][1] <= $now) || $runjob == 'gam
 		$success = false;
 		while ($row = $check->fetch_array(MYSQLI_ASSOC)) {
 			switch ($row['source']) {
-				case 'mochi':
-					$installed = yasDB_select("SELECT `id` FROM `games` WHERE `source` = 'MOCHI' AND `sourceid` = ".$row['sourceid']);
-					if ($installed->num_rows > 0) {
-						$success = true;
-					} else {
-						$success = install_mochigame($row['sourceid']);
-					}
-					break;
 				case 'fgd':
 					$installed = yasDB_select("SELECT `id` FROM `games` WHERE `source` = 'FGD' AND `sourceid` = ".$row['sourceid']);
 					if ($installed->num_rows > 0) {
@@ -279,28 +271,12 @@ if (($jobs['gameque'][2] != 0 && $jobs['gameque'][1] <= $now) || $runjob == 'gam
 						$success = install_foggame($row['sourceid']);
 					}
 					break;
-				case 'playtomic':
-					$installed = yasDB_select("SELECT `id` FROM `games` WHERE `source` = 'PLAYTOMIC' AND `sourceid` = ".$row['sourceid']);
-					if ($installed->num_rows > 0) {
-						$success = true;
-					} else {
-						$success = install_playtomic($row['sourceid']);
-					}
-					break;
 				case 'kongregate':
 					$installed = yasDB_select("SELECT `id` FROM `games` WHERE `source` = 'KONGREGATE' AND `sourceid` = ".$row['sourceid']);
 					if ($installed->num_rows > 0) {
 						$success = true;
 					} else {
 						$success = install_konggame($row['sourceid']);
-					}
-					break;	
-				case 'vasco':
-					$installed = yasDB_select("SELECT `id` FROM `games` WHERE `source` = 'VASCOGAMES' AND `sourceid` = ".$row['sourceid']);
-					if ($installed->num_rows > 0) {
-						$success = true;
-					} else {
-						$success = install_vascogame($row['sourceid']);
 					}
 					break;	
 				default:

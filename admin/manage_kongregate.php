@@ -61,7 +61,6 @@ while ($source = $result2->fetch_array(MYSQLI_NUM)) {
                         </form></center>
                         <div style="position:relative;float:right;margin-bottom:5px;">
 						<form action="index.php" method="get">                               	 
-							 <input type="hidden" name="act" value="mochiall"/>
 							 <input type="submit" class="button" name="install" value="Install Filtered List"/></center>
 							 <input type="hidden" name = "category" value="<?php if (isset($_GET['category'])) {echo $_GET['category'];} else {echo '';} ?>"/>	
 							 <input type="hidden" name = "description" value="<?php if (isset($_GET['description'])) {echo $_GET['description'];} else {echo '';} ?>"/>

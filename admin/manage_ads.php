@@ -10,9 +10,9 @@
 </div>
 <?php
 include ($setting['sitepath'].'/templates/'.$setting['theme'].'/adschedule.php');
-$id = isset($_POST["id"])?yasDB_clean($_POST["id"]):'';
-$name = isset($_POST['name'])?yasDB_clean($_POST['name']):'';
-$code = isset($_POST['code'])?yasDB_clean(stripslashes($_POST['code'])):'';
+$id = isset($_POST["id"])?yasDB_admin($_POST["id"]):'';
+$name = isset($_POST['name'])?yasDB_admin($_POST['name']):'';
+$code = isset($_POST['code'])?yasDB_admin(stripslashes($_POST['code'])):'';
 if(isset($_POST['edit_ads'])) {
 	if ($id > 0 && $id < 12 ) {
 		yasDB_update("UPDATE `ads` SET code = '$code' WHERE id = '$id'",false);

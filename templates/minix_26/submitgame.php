@@ -146,7 +146,7 @@ if (isset($_POST['add'])) {
     <th class="tg-s6z2" colspan="2">Width:</th>
     </tr>
     <tr>
-    <td class="tg-s6z2" colspan="2"><input type="text" name="height" id="s-a-g" name="width"/></td>
+    <td class="tg-s6z2" colspan="2"><input type="text" name="height" id="s-a-g"/></td>
     <td class="tg-s6z2" colspan="2"><input type="text" id="s-a-g" name="width"/></td>
     </tr>
     <tr>

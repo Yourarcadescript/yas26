@@ -21,7 +21,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == "logged") {
 	include ("../includes/config.inc.php");
 	if (substr($setting['siteurl'], -1) != '/') $setting['siteurl'] .= '/';
 	if(!isset($_GET['act'])) $_GET['act'] = '';
-	if ($_GET['act'] != "mochiall" && $_GET['act'] != "logout")	include ("header.php");
+	if ($_GET['act'] != "logout")	include ("header.php");
 	switch($_GET['act']) {
 		case 'manage_users':
 			include ("manage_users.php");
@@ -41,14 +41,8 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == "logged") {
 		case 'cache':
 			include ("cache.php");
 			break;
-		case 'managemochi':
-			include ("manage_mochigames.php");
-			break;
 		case 'manageagffeed':
 			include ("manageagffeed.php");
-			break;
-		case 'managemgffeed':
-			include ("managemgffeed.php");
 			break;
 		case 'managefgdfeed':
 			include ("managefgdfeed.php");
@@ -56,17 +50,8 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == "logged") {
 		case 'managefogfeed':
 			include ("managefogfeed.php");
 			break;
-		case 'manageplaytomic':
-			include ("manageplaytomic.php");
-			break;
 		case 'managekong':
 			include ("manage_kongregate.php");
-			break;
-		case 'managevasco':
-			include ("manage_vascogames.php");
-			break;
-		case 'mochifeed':
-			include ("mochi_feed.php");
 			break;
 		case 'memberscomment':
 			include ("manage_memberscomment.php");
@@ -76,12 +61,6 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == "logged") {
 			break;
 		case 'newsblogfeed':
 			include ("newsblogfeed.php");
-			break;
-		case 'mochiid':
-			include ("id_mochigames.php");
-			break;
-		case 'mochiall':
-			include ("mochi_all.php");
 			break;
 		case 'addmedia':
 			include ("add_media.php");
@@ -162,7 +141,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == "logged") {
 			include ("general.php");
 			break;
 	}	
-	if ($_GET['act'] != "mochiall" && $_GET['act'] != "logout") include ("footer.php");
+	if ($_GET['act'] != "logout") include ("footer.php");
 } else {
 	include ("../includes/db_functions.inc.php");
 	include ("../includes/config.inc.php");

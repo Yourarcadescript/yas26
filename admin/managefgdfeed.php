@@ -86,7 +86,6 @@ $(document).ready(function() {
 <?php // display:none --- Install All on development To-Do list *********************************************************************************?>
 <div style="position:relative;display:none;float:left;margin:5px 0 0 0;"> 
 	<form action="index.php" method="get">
-		<input type="hidden" name="act" value="mochiall"/>
 		<input type="submit" class="button" name="install" value="Install Filtered List"/></center>
 		<input type="hidden" name = "category" value="<?php echo $_GET['category']; ?>"/>
 		<input type="hidden" name= "rating" value ="<?php echo $_GET['rating']; ?>"/>
