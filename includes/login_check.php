@@ -1,11 +1,10 @@
 <?php
 session_start();
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST") { //we should be coming from an ajax call
 	include("db_functions.inc.php");
 	include("config.inc.php");
 	$username = yasDB_clean($_POST["username"]);
 	$password = md5($_POST["password"]);
-	$rememberme = $_POST["remember"];
 	$result = yasDB_select("select * from user where username='$username' LIMIT 1",false);
 	$rows = $result->fetch_array(MYSQLI_ASSOC);
 	if (!$result || $result->num_rows == 0) {
@@ -30,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	if ($loginok === TRUE){
 		$ref = $_SERVER['HTTP_REFERER'];
-		if ($rememberme == "remember"){
+		if (isset($_POST['rememberme'])){
 			setcookie("user", $username, time()+86400); // cookie lasts 24 hours
 		}
 		$_SESSION['user'] = $username;		 

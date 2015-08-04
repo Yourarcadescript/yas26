@@ -49,13 +49,13 @@ if (isset($_SESSION['logtries']) && $_SESSION['logtries'] > 0) {
 } ?>
 <h3>Please login to access the admin area.</h3><br />
 <?php
-if ($tdif == 0)  {
+if (!isset($tdif) || $tdif == 0)  {
 ?>
-<form name="login" id="login" method="post" action="index.php">
-Admin Password:<br />
-<input type="password" name="password" id="password"/><br /><br/>
-<input type="submit" name="login" value="Login"/><br/><br/>
-</form>
+	<form name="login" id="login" method="post" action="index.php">
+	Admin Password:<br />
+	<input type="password" name="password" id="password"/><br /><br/>
+	<input type="submit" name="login" value="Login"/><br/><br/>
+	</form>
 <?php
 } else {
 	echo 'You can try again in '. gmdate("i:s", abs(900-$tdif))."<br/><br/>";
