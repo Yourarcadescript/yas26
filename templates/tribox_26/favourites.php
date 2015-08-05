@@ -11,7 +11,7 @@ if(isset($_SESSION["user"])) {
 	if (isset($_POST['favourite'])) {
 		yasDB_delete("DELETE FROM favourite WHERE userid='$userid' AND gameid = '{$_POST['gamedelete']}'",false);
 	}
-	$result = yasDB_select("SELECT gameid FROM favourite WHERE userid='{$_SESSION['userid']}'",false);
+	$result = yasDB_select("SELECT gameid FROM favourite WHERE userid=".$userid,false);
 	$numrows = $result->num_rows;
 	$result->close();
 	$pageurl = new pagination($numrows, $setting['seo'], 'favourites', 20, 3);
