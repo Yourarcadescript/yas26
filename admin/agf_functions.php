@@ -90,7 +90,7 @@ function get_agffeed() {
       $medium_thumburl = yasDB_clean($json['medthumb']);
       $large_thumburl = yasDB_clean($json['lgthumb']);
       $screen1 = yasDB_clean($json['screen1']);
-      $screen1 = yasDB_clean($json['screen2']);
+      $screen2 = yasDB_clean($json['screen2']);
       $zip = yasDB_clean($json['zip']);
       $controls = yasDB_clean(stripslashes($json['controls']));
       $created = yasDB_clean($json['installdate']);
@@ -152,15 +152,13 @@ function install_agfgame($gameid) {
   $keywords = yasDB_clean($result['keywords']);
   $gamefile = yasDB_clean(str_replace("../", "", $game_url));
   $gamethumb = yasDB_clean(str_replace("../", "", $sm_thumb));
-  $gamethumb200 = yasDB_clean(str_replace("../", "", $med_thumb));
   $height = intval($result['height']);
   $width = intval($result['width']);
   $instructions = yasDB_clean($result['instructions']);
   $keywords = yasDB_clean($result['keywords']);
   $category = $result['category'];
-  $review = yasDB_clean($result['review']);
   $query->close();
-  $query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `ismochi`, `thumbnail_200`, `screen1`, `screen2`, `screen3`, `screen4`, `review`, `active`) VALUES (NULL, '$gamename', '$desc', '$instructions', '$keywords', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'OTHER', $gameid, '$gamethumb', 0, '$gamethumb200', '', '','','', '$review', 1)",false);
+  $query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `active`) VALUES (NULL, '$gamename', '$desc', '$instructions', '$keywords', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'OTHER', $gameid, '$gamethumb', 1, )",false);
   if (!$query) {
     echo 'Error updating Games database';
     return false;

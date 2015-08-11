@@ -41,7 +41,7 @@ function wordsArray($string){
 	$punct = array('.',';','?','!',':',',');
 	$string = str_replace($punct, ' ', $string);
 	$string = trim($string); // trim the string
-    $string = preg_replace('/[^a-zA-Z0-9 -]/', '', $string); // only take alphanumerical characters, but keep the spaces and dashes too…
+    $string = preg_replace('/[^a-zA-Z0-9 -]/', '', $string); // only take alphanumerical characters, but keep the spaces and dashes tooï¿½
     $string = strtolower($string); // make it lowercase
     $matchWords = explode(" ", $string);
 	foreach ( $matchWords as $key=>$item ) {
@@ -206,7 +206,7 @@ function install_fgdgame($gameid) {
 		$category = $categories[$c[0]];
 	}
 	$query->close();
-	$query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `thumbnail_200`, `screen1`, `screen2`, `screen3`, `screen4`) VALUES (NULL, '$gamename', '$desc', '', '$tags', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'FGD', $gameid, '$gamethumb', '', '', '','','')",false);
+	$query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`) VALUES (NULL, '$gamename', '$desc', '', '$tags', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'FGD', $gameid, '$gamethumb')",false);
 	if (!$query) { 
 		echo 'Error updating Games database';
 		return false;
