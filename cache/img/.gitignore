@@ -1,0 +1,3 @@
+### For development, ignore versioning all files here except the .gitignore file itself
+*
+!.gitignore

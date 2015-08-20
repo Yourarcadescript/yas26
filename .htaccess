@@ -16,7 +16,7 @@ RewriteEngine on
  RedirectMatch 403 (?i)(\"|\.|\_|\&|\&amp)$
  RedirectMatch 403 (?i)(\=\\\'|\=\\%27|/\\\'/?)\.
  RedirectMatch 403 (?i)/(([0-9]{5})|([0-9]{6}))\-([0-9]{10})\.(gif|jpg|png)
- RedirectMatch 403 (?i)(\,|//|\)\+|/\,/|\{0\}|\(/\(|\+\+\+|\||\\\"\\\")
+ #RedirectMatch 403 (?i)(\,|//|\)\+|/\,/|\{0\}|\(/\(|\+\+\+|\||\\\"\\\")
  RedirectMatch 403 (?i)\.(asp|bash|cfg|cgi|dll|exe|git|hg|ini|jsp|log|mdb|out|sql|svn|swp|tar|rar|rdf|well)
  RedirectMatch 403 (?i)/(^$|1|addlink|btn_hover|contact?|dkscsearch|dompdf|easyboard|ezooms|formvars|fotter|fpw|i|imagemanager|index1|install|iprober|legacy\-comments|join|js\-scraper|mapcms|mobiquo|phpinfo|phpspy|pingserver|playing|postgres|product|register|scraper|shell|signup|single\-default|t|sqlpatch|test|textboxes.css|thumb|timthumb|topper|tz|ucp_profile|visit|webring.docs|webshell|)\.php
  RedirectMatch 403 (?i)/(\=|\$\&|\_mm|administrator|auth|bytest|cachedyou|cgi\-|cvs|config\.|crossdomain\.xml|dbscripts|e107|etc/passwd|function\.array\-rand|function\.parse\-url|livecalendar|localhost|makefile|muieblackcat|release\-notes|rnd|sitecore|tapatalk|wwwroot)
@@ -24,13 +24,13 @@ RewriteEngine on
 </ifModule>
 # 6G:[QUERY STRINGS]
 <IfModule mod_rewrite.c>
- RewriteCond %{REQUEST_URI} !^/$ [NC]
- RewriteCond %{QUERY_STRING} (mod|path|tag)= [NC,OR]
- # {too small kills captcha image}
+RewriteCond %{REQUEST_URI} !^/$ [NC]
+RewriteCond %{QUERY_STRING} (mod|path|tag)= [NC,OR]
+# {too small kills captcha image}
  RewriteCond %{QUERY_STRING} ([a-z0-9]{75}) [NC,OR]
  RewriteCond %{QUERY_STRING} (localhost|loopback|127\.0\.0\.1) [NC,OR]
  RewriteCond %{QUERY_STRING} (\?|\*|;|'|"|\)|\[|\]|=\\\'$|%0A|%0D|%22|%27|%3C|%00|%2e%2e) [NC,OR]
- RewriteCond %{QUERY_STRING} (benchmark|boot.ini|declare|drop|echo.*kae|environ|etc/passwd|execute|input_file|insert|md5|mosconfig|scanner|select|union|update) [NC]
+ RewriteCond %{QUERY_STRING} (benchmark|boot.ini|declare|drop|echo.*kae|environ|etc/passwd|execute|input_file|insert|md5|mosconfig|scanner|select|union) [NC]
  RewriteRule .* - [F,L]
 </IfModule>
 # 6G:[USER AGENTS]

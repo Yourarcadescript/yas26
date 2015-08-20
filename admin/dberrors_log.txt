@@ -1,0 +1,47 @@
+
+08-13-2015, 05:28
+	Error No: 0 - MySQL error Table 'yas26.fogfeed' doesn't exist 
+	Query: "SELECT COUNT(id) FROM `fogfeed`"
+	#0 C:\wamp\www\yas261\admin\managefogfeed.php(18): yasDB_select('SELECT COUNT(id...')
+	#1 C:\wamp\www\yas261\admin\index.php(51): include('C:\\wamp\\www\\yas...')
+	#2 {main}
+08-13-2015, 05:30
+	Error No: 1146 - MySQL error Table 'yas26.fogfeed' doesn't exist 
+	Query: "SELECT COUNT(id) FROM `fogfeed`"
+	#0 C:\wamp\www\yas261\admin\managefogfeed.php(18): yasDB_select('SELECT COUNT(id...')
+	#1 C:\wamp\www\yas261\admin\index.php(51): include('C:\\wamp\\www\\yas...')
+	#2 {main}
+08-16-2015, 06:52
+	Error No: 1064 - MySQL error You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' 0, '', 'SWF', 'KONGREGATE', 431, 'img/kong_RollerRider.png', '', '', '','','')' at line 1 
+	Query: "INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `thumbnail_200`, `screen1`, `screen2`, `screen3`, `screen4`) VALUES (NULL, 'Roller Rider', 'Roller Rider challenges you to race hundreds of feet above the ground, screaming up and down winding narrow tracks, and blasting past your opponents. Dare to take your hands of the wheel and wave in the air for extra turbo!\n100 Challenges featuring Race, Versus, Time Trial, No Walls and Pick-Up Events.\nMultiple character opponents and upgrades.\n9 Varied and dangerous tracks to master.', '', '', 'swf/kong_RollerRider.swf', 512, 800, , 0, '', 'SWF', 'KONGREGATE', 431, 'img/kong_RollerRider.png', '', '', '','','')"
+	#0 C:\wamp\www\yas261\admin\kongregate_function.php(185): yasDB_insert('INSERT INTO `ga...', false)
+	#1 C:\wamp\www\yas261\admin\manage_kongregate.php(240): install_konggame('431')
+	#2 C:\wamp\www\yas261\admin\index.php(54): include('C:\\wamp\\www\\yas...')
+	#3 {main}
+08-17-2015, 04:13
+	Error No: 1064 - MySQL error You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' 0, '', 'SWF', 'KONGREGATE', 422, 'img/kong_TheEverloom.jpg', '', '', '','','')' at line 1 
+	Query: "INSERT INTO `games` (`title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `thumbnail_200`, `screen1`, `screen2`, `screen3`, `screen4`) VALUES ('The Everloom', 'A boy falls asleep one night and wakes up in an enchanted forest floating high above the clouds. The Weaver, a mysterious figure buried in sand, greets him with cryptic words: it does not understand, all it can give him is time&amp;amp;#8230;\nThis is a top-down adventure game in the style of Monkey Island or Kings Quest. The game is fairly simple and moves quickly. It takes about an hour for most players to complete.', '', '', 'swf/kong_TheEverloom.swf', 550, 700, , 0, '', 'SWF', 'KONGREGATE', 422, 'img/kong_TheEverloom.jpg', '', '', '','','')"
+	#0 C:\wamp\www\yas261\admin\kongregate_function.php(185): yasDB_insert('INSERT INTO `ga...', false)
+	#1 C:\wamp\www\yas261\admin\manage_kongregate.php(240): install_konggame('422')
+	#2 C:\wamp\www\yas261\admin\index.php(54): include('C:\\wamp\\www\\yas...')
+	#3 {main}
+08-17-2015, 04:27
+	Error No: 1146 - MySQL error Table 'yas26.fogfeed' doesn't exist 
+	Query: "SELECT COUNT(id) FROM `fogfeed`"
+	#0 C:\wamp\www\yas261\admin\managefogfeed.php(18): yasDB_select('SELECT COUNT(id...')
+	#1 C:\wamp\www\yas261\admin\index.php(51): include('C:\\wamp\\www\\yas...')
+	#2 {main}
+08-17-2015, 04:27
+	Error No: 1146 - MySQL error Table 'yas26.fogfeed' doesn't exist 
+	Query: "SELECT `uid` FROM `fogfeed`"
+	#0 C:\wamp\www\yas261\admin\fog_functions.php(119): yasDB_select('SELECT `uid` FR...', false)
+	#1 C:\wamp\www\yas261\admin\managefogfeed.php(4): get_fogfeed()
+	#2 C:\wamp\www\yas261\admin\index.php(51): include('C:\\wamp\\www\\yas...')
+	#3 {main}
+08-18-2015, 01:51
+	Error No: 1146 - MySQL error Table 'yas26.fogfeed' doesn't exist 
+	Query: "SELECT `uid` FROM `fogfeed`"
+	#0 C:\wamp\www\yas261\admin\fog_functions.php(119): yasDB_select('SELECT `uid` FR...', false)
+	#1 C:\wamp\www\yas261\admin\managefogfeed.php(4): get_fogfeed()
+	#2 C:\wamp\www\yas261\admin\index.php(51): include('C:\\wamp\\www\\yas...')
+	#3 {main}

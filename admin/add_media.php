@@ -1,5 +1,7 @@
 <?php
 function get_youtube_data($yt_url, $idOnly = false) {
+	$api_key = 'AIzaSyDX_tS5U_dTvn9AufXdKrCh9TeLrArPPOU';
+	;
 	$parts = explode("=",$yt_url);
 	$video_id = end($parts);
 	if(!is_numeric($video_id)) {
@@ -7,13 +9,17 @@ function get_youtube_data($yt_url, $idOnly = false) {
 		$video_id = $match[1];
     }
 	if($idOnly) return $video_id;
+	$v3_api_url = 'https://www.googleapis.com/youtube/v3/videos?id='. $video_id . '&key='. $api_key . '&part=snippet';
 	//Using cURL php extension to make the request to youtube API
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'http://gdata.youtube.com/feeds/api/videos?q=' . $video_id);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    //curl_setopt($ch, CURLOPT_URL, 'http://gdata.youtube.com/feeds/api/videos?q=' . $video_id);
+	curl_setopt($ch, CURLOPT_URL, $v3_api_url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     //$feed holds a rss feed xml returned by youtube API
     $feed = curl_exec($ch);
-    if (!$feed) { return false; }
+    print_r($feed);
+	exit;
+	if (!$feed) { return false; }
     curl_close($ch);
     //Using SimpleXML to parse youtube's feed
     $xml = simplexml_load_string($feed);
@@ -83,6 +89,8 @@ if(isset($_POST['add'])) {
 		$keywords = yasDB_clean($_POST['keywords']);
 		if ($_POST['type'] == 'YOUTUBE') {
 			$data = get_youtube_data($_POST['file']);
+			print_r($data);
+			exit;
 			$tn = $data['thumbnail'];
 			$title = yasDB_clean($data['title']);
 			$desc = yasDB_clean($data['description']);

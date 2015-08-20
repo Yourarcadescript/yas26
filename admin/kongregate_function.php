@@ -33,12 +33,16 @@ function GetFileName($filepath) {
 } 
 // cURL function to download and save a file
 function download_file($url, $local_file) { // $url is the file we are getting, full address.....$local_file is the file to save to
+	$agent= 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
 	set_time_limit(0);
 	//ini_set('display_errors',true);
 
 	$fp = fopen ($local_file, 'wb+');//This is the file where we save the information
 	$ch = curl_init($url);//Here is the file we are downloading
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_VERBOSE, true);
 	curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+	//curl_setopt($ch, CURLOPT_USERAGENT, $agent);
 	curl_setopt($ch, CURLOPT_FILE, $fp);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	curl_exec($ch);
@@ -180,15 +184,16 @@ function install_konggame($gameid) {
 	$height = $result['height'];
 	$width = $result['width'];
 	$c = $result['category'];
+	$c = htmlspecialchars_decode($c);
 	$category = $categories[$c];
 	$query->close();
-	$query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`) VALUES (NULL, '$gamename', '$desc', '', '', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'KONGREGATE', $gameid, '$gamethumb')",false);
+	$query = yasDB_insert("INSERT INTO `games` (`title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `thumbnail_200`, `screen1`, `screen2`, `screen3`, `screen4`) VALUES ('$gamename', '$desc', '', '', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'KONGREGATE', $gameid, '$gamethumb', '', '', '','','')",false);
 	if (!$query) { 
 		echo 'Error updating Games database';
 		return false;
 	}
 	$query = yasDB_update("UPDATE kongregate SET installed = 1 WHERE id = {$result['id']}", false);
-	if (!query) {
+	if (!$query) {
 		echo 'Error updating kongergate database';
 		return false;
 	}

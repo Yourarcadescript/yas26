@@ -1,7 +1,5 @@
-includes/db_functions.inc.php
-includes/config.inc.php
-cache
-swf
-img
-avatars
+!.gitignore
 .idea
+rss-arcade.xml
+rss-arcade-huge.xml
+Sitemap.xml

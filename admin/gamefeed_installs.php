@@ -28,7 +28,9 @@ if (!function_exists('GetFileName')) {
 // cURL function to get file contents
 function get_content_of_url($url){
     $ohyeah = curl_init();
-    curl_setopt($ohyeah, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ohyeah, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ohyeah, CURLOPT_VERBOSE, true);
+	curl_setopt($ohyeah, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ohyeah, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($ohyeah, CURLOPT_URL, $url);
     $data = curl_exec($ohyeah);
@@ -200,13 +202,12 @@ function install_fgdgame($gameid) {
 		return false;
 	}
 	$query = yasDB_update("UPDATE fgdfeed SET installed = 1 WHERE id = {$result['id']}", false);
-	if (!query) {
+	if (!$query) {
 		return false;
 	}
 	return true; 													
 }
 function install_foggame($gameid) {
-	global $mysqli;
 	global $setting;
 	$query = yasDB_select("SELECT * FROM `fogfeed` WHERE `id` = '$gameid'", false);
 	$result = $query->fetch_array(MYSQLI_ASSOC);
@@ -302,12 +303,12 @@ function install_konggame($gameid) {
 	$c = $result['category'];
 	$category = $categories[$c];
 	$query->close();
-	$query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `thumbnail_200`, `screen1`, `screen2`, `screen3`, `screen4`) VALUES (NULL, '$gamename', '$desc', '', '', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'KONGREGATE', $gameid, '$gamethumb', '', '', '','','')",false);
+	$query = yasDB_insert("INSERT INTO `games` (`title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `thumbnail_200`, `screen1`, `screen2`, `screen3`, `screen4`) VALUES ('$gamename', '$desc', '', '', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'KONGREGATE', $gameid, '$gamethumb', '', '', '','','')",false);
 	if (!$query) { 
 		return false;
 	}
 	$query = yasDB_update("UPDATE kongregate SET installed = 1 WHERE id = {$result['id']}", false);
-	if (!query) {
+	if (!$query) {
 		return false;
 	}
 	return true; 													

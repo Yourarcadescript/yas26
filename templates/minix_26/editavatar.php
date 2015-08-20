@@ -6,12 +6,12 @@ if(isset($_SESSION["user"])) {
 	$id=$_SESSION["userid"];
 	?>	
 	<div class="container_box1"><div id="headergames2">Edit Avatar:</div>	
-	<div class="containbox2">
+	<di v class="containbox2">
 	Upload from your computer!
 	<form enctype="multipart/form-data" name="settings" method="post" action="<?php echo $setting['siteurl'];?>includes/avatarupload.php">
-	<input type="hidden" name="MAX_FILE_SIZE" value="102400" />
-	<input type="hidden" name="userid" value="<?php echo $_SESSION['userid'];?>" />
-	<input type="file" name="file" class="fileUpload" multiple><button id="px-submit" type="submit">Upload</button>
+	<input type="hidden" name="MAX_FILE_SIZE" value="102400" >
+	<input type="hidden" name="userid" value="<?php echo $_SESSION['userid'];?>" >
+	<input type="file" name="file" class="fileUpload" multiple ><button id="px-submit" type="submit">Upload</button>
 	<button id="px-clear" type="reset">Clear</button>
 	</form>	
 	</div>

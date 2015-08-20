@@ -17,7 +17,7 @@ if (!isset($runjob)) $runjob = '';
 $jobs = array();
 $jobs = unserialize(stripslashes($setting['jobs']));
 if($jobs['jobstate'] != 1) exit;
-if (!class_exists(usersOnline)) {
+if (!class_exists('usersOnline')) {
 	class usersOnline {
 		//minified version of class declared in inc.php for use in ajax call
 		public function usersOnline () {

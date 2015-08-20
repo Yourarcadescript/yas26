@@ -20,19 +20,6 @@ while ($source = $result2->fetch_array(MYSQLI_NUM)) {
 	$queids[] = $source[0];
 }
 ?>
-<script type="text/javascript">
-		$(document).ready(function() {
-			$("#game").fancybox({
-				'type'              : 'swf',
-				'padding'			: 0,
-				'autoScale'			: true,
-				'transitionIn'		: 'elastic',
-				'transitionOut'		: 'elastic'
-				/*'width'             : '<?php echo $row['width'];?>',
-				'height'            : '<?php echo $row['height'];?>'*/
-			});
-		});
-</script>
                       <center>
 					<form id="kongfeed" action="index.php" method="get">
 						<input type="hidden" name="act" value="managekong">
@@ -124,7 +111,7 @@ while ($source = $result2->fetch_array(MYSQLI_NUM)) {
 	} else {
 		$sql_category = " category LIKE '%$category%' AND";
 	}
-	if ($keywords == '') {
+	if (!isset($keywords) || $keywords == '') {
 		$sql_keywords = '';
 	} else {
 		$sql_keywords = " keywords LIKE '%$keywords%' AND";
@@ -184,7 +171,6 @@ while ($source = $result2->fetch_array(MYSQLI_NUM)) {
 				'autoScale'			: true,
 				'transitionIn'		: 'elastic',
 				'transitionOut'		: 'elastic'
-				
 			});
 		});
 		</script>
