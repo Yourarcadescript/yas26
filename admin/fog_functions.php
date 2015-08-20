@@ -51,7 +51,7 @@ function wordsArray($string){
 	$string = str_replace($punct, ' ', $string);
 	$string = preg_replace('/ss+/i', '', $string);
     $string = trim($string); // trim the string
-    $string = preg_replace('/[^a-zA-Z0-9 -]/', '', $string); // only take alphanumerical characters, but keep the spaces and dashes too…
+    $string = preg_replace('/[^a-zA-Z0-9 -]/', '', $string); // only take alphanumerical characters, but keep the spaces and dashes tooï¿½
     $string = strtolower($string); // make it lowercase
     $matchWords = explode(" ", $string);
 	foreach ( $matchWords as $key=>$item ) {
@@ -206,13 +206,12 @@ function install_foggame($gameid) {
 	$gamename = yasDB_clean($result['title']);
 	$gamefile = yasDB_clean(str_replace("../", "", $game_url));
 	$gamethumb = yasDB_clean(str_replace("../", "", $sm_thumb));
-	$gamethumb200 = yasDB_clean(str_replace("../", "", $large_thumb));
 	$height = $result['height'];
 	$width = $result['width'];
 	$controls = yasDB_clean($result['controls']);
 	$category = $result['category'];
 	$query->close();
-	$query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `thumbnail_200`, `screen1`, `screen2`, `screen3`, `screen4`) VALUES (NULL, '$gamename', '$desc', '$controls', '', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'FOG', $gameid, '$gamethumb', '$gamethumb200', '', '','','')",false);
+	$query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`) VALUES (NULL, '$gamename', '$desc', '$controls', '', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'FOG', $gameid, '$gamethumb')",false);
 	if (!$query) { 
 		echo 'Error updating Games database';
 		return false;

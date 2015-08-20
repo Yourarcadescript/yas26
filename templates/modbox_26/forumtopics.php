@@ -140,41 +140,49 @@ if (isset($_SESSION['user'])) {
 		$text = yasDB_clean($_POST['text']);
 		$date = yasDB_clean($_POST['date']);
 
-		if (isset($_POST['name'])) {
-			$name = yasDB_clean($_POST['name']);
-		} else if (isset($_SESSION['user'])) {
-			$name = $_SESSION['user'];
-		} else {
-			$name = '';
+		if (strlen($_POST['text'])<1) { // check if post is empty
+			echo "<h3 class='align-center'>Message cannot be empty</h3>";
+			echo "<button onclick='history.go(-1);'>Go back</button></div>";
 		}
+		else {
 
-		$date = date("F j, Y, g:i a"); //create date time
-
-		$sql = "INSERT INTO `forumposts` (id, text, date, topic, name) VALUES ('', '$text', '$date', '$topic', '$name')";
-		$result = yasDB_insert($sql);		
-		if (isset($_SESSION['user'])) {
-			$user = yasDB_clean($_SESSION['user']);
-			yasDB_update("UPDATE `forumtopics` set `lastupdate` = ".time()." WHERE `id`=$topic");
-			yasDB_update("UPDATE `user` set posts = posts +1 WHERE username = '$user'"); // add a post to the user
-			yasDB_update("UPDATE `user` set totalposts = totalposts +1 WHERE username = '$user'"); // add a post to the user Total
-			yasDB_update("UPDATE `stats` set numbers = numbers +1 WHERE id = '3'"); // adds a post to Forum Post Totals
-			yasDB_update("UPDATE `stats` set numbers = numbers +1 WHERE id = '4'"); // adds a post to Post Today
-		}
-
-		if($result){
-			?><center>Successful<br/></center>
-			<?php
-			$query = yasDB_select("SELECT max(id) AS lastid FROM forumposts");
-			$answer = $query->fetch_array(MYSQLI_ASSOC);
-			if ($setting['seo']=='yes') {
-				$answerlink = $setting['siteurl'].'forumtopics/'.$topic.'/1.html';
+			if (isset($_POST['name'])) {
+				$name = yasDB_clean($_POST['name']);
+			} else if (isset($_SESSION['user'])) {
+				$name = $_SESSION['user'];
 			} else {
-				$answerlink = $setting['siteurl'].'index.php?act=forumtopics&id='.$topic.'#pid'.$answer['lastid'];
+				$name = '';
 			}
-			?>
-			<center><a href="<?php echo $answerlink;?>">View your Reply</a></center><?php
-		} else {
-			echo "Could not Reply to Topic.";
+
+			$date = date("F j, Y, g:i a"); //create date time
+
+			$sql = "INSERT INTO `forumposts` (id, text, date, topic, name) VALUES ('', '$text', '$date', '$topic', '$name')";
+			$result = yasDB_insert($sql);
+			if (isset($_SESSION['user'])) {
+				$user = yasDB_clean($_SESSION['user']);
+				yasDB_update("UPDATE `forumtopics` set `lastupdate` = " . time() . " WHERE `id`=$topic");
+				yasDB_update("UPDATE `user` set posts = posts +1 WHERE username = '$user'"); // add a post to the user
+				yasDB_update("UPDATE `user` set totalposts = totalposts +1 WHERE username = '$user'"); // add a post to the user Total
+				yasDB_update("UPDATE `stats` set numbers = numbers +1 WHERE id = '3'"); // adds a post to Forum Post Totals
+				yasDB_update("UPDATE `stats` set numbers = numbers +1 WHERE id = '4'"); // adds a post to Post Today
+			}
+
+			if ($result) {
+				?>
+				<center>Successful<br/></center>
+				<?php
+				$query = yasDB_select("SELECT max(id) AS lastid FROM forumposts");
+				$answer = $query->fetch_array(MYSQLI_ASSOC);
+				if ($setting['seo'] == 'yes') {
+					$answerlink = $setting['siteurl'] . 'forumtopics/' . $topic . '/1.html';
+				} else {
+					$answerlink = $setting['siteurl'] . 'index.php?act=forumtopics&id=' . $topic . '#pid' . $answer['lastid'];
+				}
+				?>
+				<center><a href="<?php echo $answerlink; ?>">View your Reply</a></center><?php
+			} else {
+				echo "Could not Reply to Topic.";
+			}
 		}
 	} else {
 		?>
