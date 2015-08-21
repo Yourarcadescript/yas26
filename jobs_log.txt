@@ -41,3 +41,8 @@
 20-08-2015, 03:17 - Feeds updated triggered by visitor ::1
 20-08-2015, 03:17 - Sitemap updated triggered by visitor ::1
 20-08-2015, 03:17 - GameQue update triggered by visitor ::1
+21-08-2015, 04:37 - Daily game plays emptied triggered by visitor ::1
+21-08-2015, 04:37 - Feeds updated triggered by visitor ::1
+21-08-2015, 04:37 - Sitemap updated triggered by visitor ::1
+21-08-2015, 04:38 - GameQue update triggered by visitor ::1
+21-08-2015, 04:38 - Database optimized triggered by visitor ::1
