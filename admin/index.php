@@ -2,8 +2,8 @@
 #--------------------------------
 # http://www.yourarcadescript.com
 #       index.php
-#		VERSION 2.4
-#		CC BY-ND 3.0(http://creativecommons.org/licenses/by-nd/3.0/) Liscensed
+#		VERSION 2.6
+#		CC BY-ND 3.0(http://creativecommons.org/licenses/by-nd/3.0/) Licensed
 #       
 #--------------------------------
 session_start();
@@ -124,13 +124,14 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == "logged") {
             break;
         case 'managetopics':
 		    include ("manage_topics.php");
-            break;		
-		case 'gainfo':
-			include ("gainfo.php");
-			break;
-		case 'manage_ga':
-			include ("manage_ga.php");
-			break;
+            break;
+		// Google Analytics API has changed so that it breaks this functionality. Removed until the code can be updated
+		//case 'gainfo':
+			//include ("gainfo.php");
+			//break;
+		//case 'manage_ga':
+			//include ("manage_ga.php");
+			//break;
 		case 'managedbbackup':
 			include ("manage_db_backup.php");
 			break;

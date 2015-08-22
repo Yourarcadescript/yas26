@@ -45,3 +45,9 @@
 	#1 C:\wamp\www\yas261\admin\managefogfeed.php(4): get_fogfeed()
 	#2 C:\wamp\www\yas261\admin\index.php(51): include('C:\\wamp\\www\\yas...')
 	#3 {main}
+08-22-2015, 03:53
+	Error No: 1146 - MySQL error Table 'yas26.fogfeed' doesn't exist 
+	Query: "SELECT COUNT(id) FROM `fogfeed`"
+	#0 C:\wamp\www\yas261\admin\managefogfeed.php(18): yasDB_select('SELECT COUNT(id...')
+	#1 C:\wamp\www\yas261\admin\index.php(51): include('C:\\wamp\\www\\yas...')
+	#2 {main}

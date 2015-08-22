@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: dberrors_log.txt
+Disallow: jobs_log.txt
+Disallow: /admin
+Disallow: /avatars/useruploads
+Disallow: /cache
+Disallow: /includes
+Disallow: /media
+Disallow: /swf
+Disallow: /templates

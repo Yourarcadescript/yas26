@@ -1,5 +1,11 @@
 !.gitignore
+!swf/.gitignore
+!img/.gitignore
+!admin/backup/.gitignore
+!.gitkeep
 .idea
 rss-arcade.xml
 rss-arcade-huge.xml
 Sitemap.xml
+jobs_log.txt
+dberrors_log.txt
