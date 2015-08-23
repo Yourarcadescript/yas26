@@ -1,8 +1,8 @@
 <?php
 #--------------------------------
 # http://www.yourarcadescript.com
-#       YAS26install.php
-#		VERSION 2.6
+#       YAS261install.php
+#		VERSION 2.6.1
 #		CC BY-ND 3.0 Licensed(http://creativecommons.org/licenses/by-nd/3.0/)
 #       
 #--------------------------------
@@ -150,7 +150,7 @@ if (file_exists("includes/db_functions.inc.php") || file_exists("includes/config
 				Site Keywords:<br/><input type="text" name="keywords" size="30"><br/>
 				<br/>
 				Social App IDs for Facebook and Twitter logins (*)<br/>
-				Facebook App ID:<br/><input type="text" name="fbAppID" size="30"><br/>
+				Facebook App ID:<br/><input type="text" name="fbAppId" size="30"><br/>
 				Facebook App Secret:<br/><input type="text" name="fbAppSecret" size="30"><br/>
 				Twitter Consumer key:<br/><input type="text" name="twAppId" size="30"><br/>
 				Twitter Consumer secret:<br/><input type="text" name="twAppSecret" size="30"><br/><br/>
@@ -844,7 +844,7 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 			curl_setopt($ch,CURLOPT_POSTFIELDS, 'or=' . urlencode(PageURL()) . '&fo=install&ver=2.6.1');
 			$result = curl_exec($ch);
 			curl_close($ch);
-			echo "<br/>Site data set. YAS26install.php must be renamed or deleted before you can use your site.<br/><br/>";
+			echo "<br/>Site data set. YAS261install.php must be renamed or deleted before you can use your site.<br/><br/>";
 			echo '</div>
 	</div>
 	</body>
