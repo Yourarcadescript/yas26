@@ -150,7 +150,7 @@ function PageURL() {
 		Site Keywords:<br/><input type="text" name="keywords" size="30"><br/>
 		<br/>
 		Social App IDs for Facebook and Twitter logins (*)<br/>
-		Facebook App ID:<br/><input type="text" name="fbAppID" size="30"><br/>
+		Facebook App ID:<br/><input type="text" name="fbAppId" size="30"><br/>
 		Facebook App Secret:<br/><input type="text" name="fbAppSecret" size="30"><br/>
 		Twitter Consumer key:<br/><input type="text" name="twAppId" size="30"><br/>
 		Twitter Consumer secret:<br/><input type="text" name="twAppSecret" size="30"><br/><br/>
@@ -749,8 +749,8 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		$jobs['backup'][2] = 1;
 		$jobstring = $mysqli->real_escape_string(serialize($jobs));
 				
-		$mysqli->query("INSERT INTO `settings` (`id`, `main`, `gperpage`, `numbgames`, `gamesort`, `seolink`, `seo`, `approvelinks`, `numblinks`, `version`, `theme`, `skin`, `password`, `userecaptcha`, `lightbox`, `email`, `disabled`, `regclosed`, `fb_app_id`, `fb_app_secret`, `tw_app_id`, `tw_app_secret`, `cachelife`, `siteurl`, `sitepath`, `sitename`, `slogan`, `metades`, `metakeywords`, `jobs`, `galogin`, `gapassword`, `gaurl`) VALUES
-        (1, 1, 15, 3, 'newest', 'yes', 'no', 'no', 10, '2.6', '".$mysqli->real_escape_string($_POST['theme'])."', '".$mysqli->real_escape_string($_POST['skin'])."', '".md5('admin')."', 'yes', 'no', '".$mysqli->real_escape_string($_POST['supportemail'])."', 'no', 'no', '".$mysqli->real_escape_string($_POST['fbAppId'])."', '".$mysqli->real_escape_string($_POST['fbAppSecret'])."', '".$mysqli->real_escape_string($_POST['twAppId'])."', '".$mysqli->real_escape_string($_POST['twAppSecret'])."', 60, '".$mysqli->real_escape_string($_POST['siteurl'])."', '".$mysqli->real_escape_string($_POST['sitepath'])."', '".$mysqli->real_escape_string($_POST['sitename'])."', '".$mysqli->real_escape_string($_POST['slogan'])."', '".$mysqli->real_escape_string($_POST['metades'])."', '".$mysqli->real_escape_string($_POST['keywords'])."', '$jobstring', '', '', '')");
+		$mysqli->query("INSERT INTO `settings` (`id`, `main`, `gperpage`, `numbgames`, `gamesort`, `seolink`, `seo`, `approvelinks`, `numblinks`, `version`, `theme`, `skin`, `password`, `userecaptcha`, `lightbox`, `email`, `disabled`, `regclosed`, `fb_app_id`, `fb_app_secret`, `tw_app_id`, `tw_app_secret`, `cachelife`, `siteurl`, `sitepath`, `sitename`, `slogan`, `metades`, `metakeywords`, `jobs`) VALUES
+        (1, 1, 15, 3, 'newest', 'yes', 'no', 'no', 10, '2.6', '".$mysqli->real_escape_string($_POST['theme'])."', '".$mysqli->real_escape_string($_POST['skin'])."', '".md5('admin')."', 'yes', 'no', '".$mysqli->real_escape_string($_POST['supportemail'])."', 'no', 'no', '".$mysqli->real_escape_string($_POST['fbAppId'])."', '".$mysqli->real_escape_string($_POST['fbAppSecret'])."', '".$mysqli->real_escape_string($_POST['twAppId'])."', '".$mysqli->real_escape_string($_POST['twAppSecret'])."', 60, '".$mysqli->real_escape_string($_POST['siteurl'])."', '".$mysqli->real_escape_string($_POST['sitepath'])."', '".$mysqli->real_escape_string($_POST['sitename'])."', '".$mysqli->real_escape_string($_POST['slogan'])."', '".$mysqli->real_escape_string($_POST['metades'])."', '".$mysqli->real_escape_string($_POST['keywords'])."', '$jobstring')");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `stats` (
         `id` int(10) NOT NULL AUTO_INCREMENT,
