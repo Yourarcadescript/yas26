@@ -230,6 +230,7 @@ table.list.style1 a:hover {font-size:12px;font-weight:bold;color:#CD6600;text-al
 #crumbnav a {height:24px;display:block;background: url('images/nav/bc_separator.png');background-repeat:no-repeat;background-position:right;padding-right: 15px;text-decoration: none;color:#FFFF00;}
 #crumbnav a:hover {color:#35acc5;}
 /*End crumbnav game.php*/
+#slider{width:300px; border: solid #1266bc 2px; color: #CD6600;margin-left:100px;}
 #resetSlider {
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);

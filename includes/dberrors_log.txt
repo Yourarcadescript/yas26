@@ -1,0 +1,6 @@
+
+08-23-2015, 12:40
+	Error No: 0 - MySQL error Unknown column 'job' in 'field list' 
+	Query: "UPDATE `user` SET website = 'www.hej.se', name = 'roy', email = 'royal.87@hotmail.com', location='växjö', job='', aboutme='', hobbies='', shhobs = 'show', cmtsdisabled = 'show', shloc = 'show',  sheml = 'show', shname = 'show', shabout = 'show', deact = 'show', birthday='1440326415', gender=''  WHERE id = '1'"
+	#0 /Applications/XAMPP/xamppfiles/htdocs/yas26/includes/profile_update.php(39): yasDB_update('UPDATE `user` S...')
+	#1 {main}

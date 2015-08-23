@@ -230,6 +230,7 @@ table.list.style1 a:hover {font-size:12px;font-weight:bold;color:#CD6600;text-al
 .tg .tg-s6z2{text-align:center;}
 .tg .tg-vn4c{text-align:left;background-color:#ffffff;}
 /* end submit game */
+#slider{width:300px; border: solid #9b0000 2px; color: #008320;margin-left:100px;}
 #resetSlider {
   background: #008320;
   background-image: -webkit-linear-gradient(top, #008320, #9b0000);

@@ -300,7 +300,7 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
     if ($encode_ent) {
         $dirty = htmlentities($dirty);
     }
-    if(version_compare(phpversion(),'4.3.0') >= 0) {
+    if(version_compare(phpversion(),\'4.3.0\') >= 0) {
         if(get_magic_quotes_gpc()) {
             $dirty = stripslashes($dirty);
         }

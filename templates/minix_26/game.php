@@ -314,11 +314,7 @@ $(function(){
     }
 });//]]>
 </script>
-<?php if ($setting['skins'] == 'arcadegames') { ?>
-<div id="slider" style="width:300px; border: solid #1266bc 2px; color: #CD6600;margin-left:100px;" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left:0%; background: #CD6600;"></a></div>
-<?php } else { ?>
-<div id="slider" style="width:300px; border: solid #9b0000 2px; color: #008320;margin-left:100px;" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left:0%; background: #008320;"></a></div>
-<?php } ?>
+<div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left:0%; background: #008320;"></a></div>
 </div><div style="Float:right;margin-right:40px;margin-top:-6px;"><input type="button" id="resetSlider" value="Reset" height="30" width="90"/></div><br></center>
 <?php
 }

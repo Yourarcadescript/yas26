@@ -237,8 +237,8 @@ table.listing .style5 {font-size:11px;color:#333;text-align:left;}
 #fav_box{float:right;margin-right:1px;margin-top:1px;padding:0px;width:40px;height:40px;}
 /* submit game */
 #p-c-l{text-align:center;color:#000;text-decoration:none;color:#333;margin-left:300px;}
-#d-i-k{border: 2px solid #A01819;border-radius:5px;color:#FFFEFF;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;font-family:Arial;font-size:12px;height:100px;padding:5px;width:200px;margin:5px;}
-#s-a-g{border: 2px solid #A01819;border-radius:5px;color:#FFFEFF;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;font-family:Arial;font-size:14px;height:20px;padding:5px;width:160px;margin:5px;}
+#d-i-k{border: 2px solid #A01819;border-radius:5px;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;font-family:Arial;font-size:12px;height:100px;padding:5px;width:200px;margin:5px;}
+#s-a-g{border: 2px solid #A01819;border-radius:5px;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;font-family:Arial;font-size:14px;height:20px;padding:5px;width:160px;margin:5px;}
 select,option,.white {font-family: "Andale Mono", "Courier New", Courier, monospace;font-size: 15px;background-color:white;border:2px solid #A01819;font-weight:bold;font-size:12px;color:#000;}
 /* This is for edit profile and submit game */
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#fff333;margin-bottom:6px;width:738px;}
