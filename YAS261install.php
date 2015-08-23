@@ -300,7 +300,7 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
     if ($encode_ent) {
         $dirty = htmlentities($dirty);
     }
-    if(version_compare(phpversion(),\'4.3.0\') >= 0) {
+    if(version_compare(phpversion(),'4.3.0') >= 0) {
         if(get_magic_quotes_gpc()) {
             $dirty = stripslashes($dirty);
         }
@@ -321,7 +321,7 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `ads` (
 		  `id` int(10) NOT NULL AUTO_INCREMENT,
 		  `name` varchar(255) NOT NULL DEFAULT '',
-		  `code` text COLLATE utf8_unicode_ci NOT NULL,
+		  `code` text NOT NULL,
 		  PRIMARY KEY (`id`)
 		) ENGINE=MyISAM  CHARACTER SET = utf8 COLLATE utf8_unicode_ci AUTO_INCREMENT=12 ;");
 
@@ -346,13 +346,13 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `categories` (
 		  `id` int(11) NOT NULL AUTO_INCREMENT,
-		  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-		  `active` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-		  `order` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-		  `parent` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'yes',
-		  `home` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'yes',
-		  `desc` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-		  `pid` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  `name` varchar(255) NOT NULL DEFAULT '',
+		  `active` varchar(3) NOT NULL DEFAULT '',
+		  `order` char(3) NOT NULL DEFAULT '0',
+		  `parent` varchar(3) NOT NULL DEFAULT 'yes',
+		  `home` varchar(3) NOT NULL DEFAULT 'yes',
+		  `desc` varchar(255) NOT NULL DEFAULT '',
+		  `pid` varchar(3) NOT NULL DEFAULT '',
 		  PRIMARY KEY (`id`)
 		) ENGINE=MyISAM  CHARACTER SET = utf8 COLLATE utf8_unicode_ci AUTO_INCREMENT=11 ;");
 
@@ -371,9 +371,9 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `comments` (
 		  `id` int(11) NOT NULL AUTO_INCREMENT,
 		  `gameid` int(11) NOT NULL DEFAULT '0',
-		  `ipaddress` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-		  `comment` text COLLATE utf8_unicode_ci NOT NULL,
-		  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  `ipaddress` varchar(255) NOT NULL DEFAULT '',
+		  `comment` text NOT NULL,
+		  `name` varchar(255) NOT NULL DEFAULT '',
 		  PRIMARY KEY (`id`)
 		) ENGINE=MyISAM CHARACTER SET = utf8 COLLATE utf8_unicode_ci AUTO_INCREMENT=1 ;");
 		
@@ -384,18 +384,18 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		  `message` text COLLATE utf8_bin,
 		  `created_date` int(11) DEFAULT NULL,
 		  PRIMARY KEY (`id`)
-		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;");
+		) ENGINE=MyISAM CHARACTER SET = utf8 COLLATE utf8_unicode_ci;");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `tellafriend` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-        `friendsname` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-        `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-        `friendsemail` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-        `message` text CHARACTER SET utf8 COLLATE utf8_bin,
-        `created_date` int(11) DEFAULT NULL,
-        PRIMARY KEY (`id`)
-      ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;");		
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+		  `friendsname` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+		  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+		  `friendsemail` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+		  `message` text CHARACTER SET utf8 COLLATE utf8_bin,
+		  `created_date` int(11) DEFAULT NULL,
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");		
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `downgames` (
 		`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -403,19 +403,18 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		`description` text NOT NULL,
 		`thumbnail` text NOT NULL,
 		`file` text NOT NULL,
-		`downloadtimes` int(10) NOT NULL,
 		PRIMARY KEY (`id`)
-		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1");
+		) ENGINE=MyISAM CHARACTER SET = utf8 COLLATE utf8_unicode_ci");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `memberscomments` (
-        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-        `userid` int(11) NOT NULL,
-        `ipaddress` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-        `comment` text COLLATE utf8_unicode_ci NOT NULL,
-        `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-        PRIMARY KEY (`id`),
-        KEY `name` (`name`)
-      ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;");
+		  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+		  `userid` int(11) NOT NULL,
+		  `ipaddress` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+		  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  PRIMARY KEY (`id`),
+		  KEY `name` (`name`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `featuredgames` (
 		`gameid` int(11) unsigned NOT NULL,
@@ -444,7 +443,7 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		  `hidden` tinyint(1) NOT NULL DEFAULT '0',
 		  PRIMARY KEY (`id`),
 		  KEY `uuid` (`uuid`)
-		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=28824 ;");
+		) ENGINE=MyISAM  CHARACTER SET = utf8 COLLATE utf8_unicode_ci AUTO_INCREMENT=1 ;");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `fogfeed` (
 		  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -466,19 +465,19 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		  `hidden` tinyint(1) NOT NULL DEFAULT '0',
 		  PRIMARY KEY (`id`),
 		  KEY `uid` (`uid`)
-		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=496 ;");
+		) ENGINE=MyISAM  CHARACTER SET = utf8 COLLATE utf8_unicode_ci;");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `forumcats` (
-	        `id` int(11) NOT NULL AUTO_INCREMENT,
-	        `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-	        `active` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-	        `order` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-	        `parent` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'yes',
-	        `home` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'yes',
-	        `desc` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-	        `pid` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-	        PRIMARY KEY (`id`)
-		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7;");
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  `active` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  `order` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+		  `parent` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'yes',
+		  `home` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'yes',
+		  `desc` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  `pid` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 		
 		$mysqli->query("INSERT INTO `forumcats` (`id`, `name`, `active`, `order`, `parent`, `home`, `desc`, `pid`) VALUES
 		(1, 'Announcements', 'yes', '1', 'yes', 'yes', 'New things we may add to site or site is disabled we will let all know', ''),
@@ -489,43 +488,43 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		(6, 'Games', 'yes', '6', 'yes', 'yes', 'Chat about the best flash games you have ever played', '');");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `forumposts` (
-        `id` int(8) NOT NULL AUTO_INCREMENT,
-        `text` text COLLATE utf8_unicode_ci NOT NULL,
-        `date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `topic` int(8) NOT NULL,
-        `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-        PRIMARY KEY (`id`)
-      ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;");
+		  `id` int(8) NOT NULL AUTO_INCREMENT,
+		  `text` text NOT NULL,
+		  `date` varchar(255) NOT NULL,
+		  `topic` int(8) NOT NULL,
+		  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `forumtopics` (
-        `id` int(8) NOT NULL AUTO_INCREMENT,
-        `subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `cat` int(8) NOT NULL,
-        `date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-        `text` text COLLATE utf8_unicode_ci NOT NULL,
-        `views` int(11) NOT NULL DEFAULT '0',
-        `lastupdate` int(11) unsigned NOT NULL,
-        PRIMARY KEY (`id`),
-        KEY `cat` (`cat`)
-      ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;");
+		  `id` int(8) NOT NULL AUTO_INCREMENT,
+		  `subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `cat` int(8) NOT NULL,
+		  `date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  `text` text COLLATE utf8_unicode_ci NOT NULL,
+		  `views` int(11) NOT NULL DEFAULT '0',
+		  `lastupdate` int(11) unsigned NOT NULL,
+		  PRIMARY KEY (`id`),
+		  KEY `cat` (`cat`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `favourite` (
 		`userid` int(10) NOT NULL DEFAULT '0',
 		`gameid` int(11) NOT NULL DEFAULT '0',
 		KEY `userid` (`userid`),
 		KEY `gameid` (`gameid`)
-		) ENGINE=MyISAM DEFAULT CHARSET=latin1;");
+		) ENGINE=MyISAM CHARACTER SET = latin1;");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `gameque` (
-        `source` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
-        `sourceid` int(11) NOT NULL,
-        `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `thumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `order` int(11) unsigned NOT NULL DEFAULT '0',
-        KEY `source` (`source`),
-        KEY `sourceid` (`sourceid`)
-      ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
+		  `source` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
+		  `sourceid` int(11) NOT NULL,
+		  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `thumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `order` int(11) unsigned NOT NULL DEFAULT '0',
+		  KEY `source` (`source`),
+		  KEY `sourceid` (`sourceid`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `games` (
 		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -546,37 +545,37 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		  `active` tinyint(4) NOT NULL DEFAULT '1',
 		  PRIMARY KEY (`id`),
 		  KEY `source` (`source`)
-		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12;");
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `kongregate` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `kong_id` int(11) NOT NULL,
-        `title` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-        `file` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
-        `thumbnail` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
-        `width` int(11) NOT NULL,
-        `height` int(11) NOT NULL,
-        `category` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-        `description` text COLLATE utf8_unicode_ci NOT NULL,
-        `rating` float NOT NULL,
-        `developer` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
-        `installed` tinyint(4) NOT NULL DEFAULT '0',
-        `hidden` tinyint(1) NOT NULL DEFAULT '0',
-        PRIMARY KEY (`id`)
-      ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=436 ;");
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `kong_id` int(11) NOT NULL,
+		  `title` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+		  `file` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
+		  `thumbnail` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
+		  `width` int(11) NOT NULL,
+		  `height` int(11) NOT NULL,
+		  `category` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+		  `description` text COLLATE utf8_unicode_ci NOT NULL,
+		  `rating` float NOT NULL,
+		  `developer` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
+		  `installed` tinyint(4) NOT NULL DEFAULT '0',
+		  `hidden` tinyint(1) NOT NULL DEFAULT '0',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `links` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-        `text` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-        `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-        `in` int(11) NOT NULL DEFAULT '0',
-        `out` int(11) NOT NULL DEFAULT '0',
-        `approved` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `reciprocal` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        PRIMARY KEY (`id`)
-      ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5");
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `url` varchar(255) NOT NULL DEFAULT '',
+		  `text` varchar(255) NOT NULL DEFAULT '',
+		  `description` varchar(255) NOT NULL DEFAULT '',
+		  `in` int(11) NOT NULL DEFAULT '0',
+		  `out` int(11) NOT NULL DEFAULT '0',
+		  `approved` varchar(255) NOT NULL DEFAULT 'no',
+		  `reciprocal` varchar(255) NOT NULL,
+		  `email` varchar(255) NOT NULL,
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  CHARACTER SET = utf8 COLLATE utf8_unicode_ci");
 
 		$mysqli->query("INSERT INTO `links` (`id`, `url`, `text`, `description`, `in`, `out`, `approved`, `reciprocal`, `email`) VALUES
 		(1, 'http://www.arcadehangout.com', 'Cool Arcade Games', 'Cool Free Arcade Games!', 0, 0, 'yes', '', 'admin@arcadehangout.com'),
@@ -585,143 +584,116 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		(4, 'http://www.flashpilot.net/', 'Flashpilot', 'Play free online games', 0, 0, 'yes', '', '');");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `membersonline` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `memberid` int(11) NOT NULL,
-        `timeactive` int(11) NOT NULL,
-        PRIMARY KEY (`id`),
-        UNIQUE KEY `memberid` (`memberid`)
-      ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6;");
-
-		$mysqli->query("CREATE TABLE IF NOT EXISTS `mgffeed` (
-        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-        `uid` int(11) unsigned NOT NULL,
-        `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `controls` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `instructions` text COLLATE utf8_unicode_ci NOT NULL,
-        `description` text COLLATE utf8_unicode_ci NOT NULL,
-        `category` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `thumbnail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `medthumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `lgthumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `installdate` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-        `file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `zip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `game_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `screen1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `screen2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `review` text COLLATE utf8_unicode_ci NOT NULL,
-        `width` int(11) NOT NULL,
-        `height` int(11) NOT NULL,
-        `rating` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-        `ads` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-        `hsapi` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-        `keywords` text COLLATE utf8_unicode_ci NOT NULL,
-        `installed` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-        `hidden` tinyint(1) NOT NULL DEFAULT '0',
-        PRIMARY KEY (`id`),
-        KEY `uid` (`uid`)
-      ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;");
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `memberid` int(11) NOT NULL,
+		  `timeactive` int(11) NOT NULL,
+		  PRIMARY KEY (`id`),
+		  UNIQUE KEY `memberid` (`memberid`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=latin1;");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `news` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `news_text` text COLLATE utf8_unicode_ci NOT NULL,
-        `edit` int(11) DEFAULT '0',
-        `date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `topic` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        PRIMARY KEY (`id`)
-      ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2;");
+		`id` int(11) NOT NULL AUTO_INCREMENT,
+		`news_text` text NOT NULL,
+		`edit` int(11) DEFAULT '0',
+		`date` varchar(255) NOT NULL,
+		`topic` varchar(255) NOT NULL,
+		PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARACTER SET = utf8 COLLATE utf8_unicode_ci;");
 
 		$mysqli->query("INSERT INTO `news` (`id`, `news_text`, `edit`, `date`, `topic`) VALUES (1, 'We are excited to bring you the best in browser Flash games!', 0, '".date("D, j F Y")."','Welcome to ".$_POST['sitename']."')");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `newsblog` (
-        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-        `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-        `newsid` int(11) unsigned NOT NULL,
-        `ipaddress` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-        `comment` text COLLATE utf8_unicode_ci NOT NULL,
-        `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        PRIMARY KEY (`id`),
-        KEY `username` (`username`),
-        KEY `newsid` (`newsid`)
-      ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;");
+		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+		`username` varchar(100) NOT NULL,
+		`newsid` int(11) unsigned NOT NULL,
+		`ipaddress` varchar(255) NOT NULL DEFAULT '',
+		`comment` text NOT NULL,
+		`timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+		PRIMARY KEY (`id`),
+		KEY `username` (`username`),
+		KEY `newsid` (`newsid`)
+		) ENGINE=MyISAM CHARACTER SET = utf8 COLLATE utf8_unicode_ci;");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `notifydown` (
-        `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-        `email` text,
-        PRIMARY KEY (`id`)
-      ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
+		`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		`email` text,
+		PRIMARY KEY (`id`)
+		) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `agffeed` (
-		  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-		  `uid` int(11) unsigned NOT NULL,
-		  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `controls` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `instructions` text COLLATE utf8_unicode_ci NOT NULL,
-		  `description` text COLLATE utf8_unicode_ci NOT NULL,
-		  `category` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `thumbnail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `medthumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `lgthumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `installdate` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-		  `file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `zip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `game_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `screen1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `screen2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-		  `review` text COLLATE utf8_unicode_ci NOT NULL,
-		  `width` int(11) NOT NULL,
-		  `height` int(11) NOT NULL,
-		  `rating` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-		  `ads` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-		  `hsapi` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-		  `keywords` text COLLATE utf8_unicode_ci NOT NULL,
-		  `installed` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-		  `hidden` tinyint(1) NOT NULL DEFAULT '0',
-		  PRIMARY KEY (`id`),
-		  KEY `uid` (`uid`)
-		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1747 ;");
+		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+		`uid` int(11) unsigned NOT NULL,
+		`title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		`controls` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		`instructions` text COLLATE utf8_unicode_ci NOT NULL,
+		`description` text COLLATE utf8_unicode_ci NOT NULL,
+		`category` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		`thumbnail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		`medthumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		`lgthumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		`installdate` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+		`file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		`zip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		`game_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		`screen1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		`screen2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		`review` text COLLATE utf8_unicode_ci NOT NULL,
+		`width` int(11) NOT NULL,
+		`height` int(11) NOT NULL,
+		`rating` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+		`ads` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+		`hsapi` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+		`keywords` text COLLATE utf8_unicode_ci NOT NULL,
+		`installed` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+		`hidden` tinyint(1) NOT NULL DEFAULT '0',
+		PRIMARY KEY (`id`),
+		KEY `uid` (`uid`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;");
 		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `ratingsbar` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `total_votes` int(11) NOT NULL DEFAULT '0',
-        `total_value` int(11) NOT NULL DEFAULT '0',
-        `used_ips` longtext,
-        PRIMARY KEY (`id`)
-      ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;");
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `total_votes` int(11) NOT NULL DEFAULT '0',
+		  `total_value` int(11) NOT NULL DEFAULT '0',
+		  `used_ips` longtext,
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
 
         $mysqli->query("CREATE TABLE IF NOT EXISTS `settings` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `main` int(11) NOT NULL DEFAULT '1',
-        `gperpage` int(11) NOT NULL DEFAULT '15',
-        `numbgames` int(11) NOT NULL DEFAULT '0',
-        `gamesort` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'newest',
-        `seolink` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `seo` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `approvelinks` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `numblinks` int(11) NOT NULL DEFAULT '10',
-        `version` varchar(12) COLLATE utf8_unicode_ci NOT NULL DEFAULT '2.6',
-        `theme` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'minix_26',
-        `skin` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'arcadegames',
-        `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-        `userecaptcha` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `lightbox` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `disabled` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `regclosed` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `fb_app_id` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-        `fb_app_secret` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-        `tw_app_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-        `tw_app_secret` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-        `cachelife` int(11) NOT NULL DEFAULT '60',
-        `siteurl` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `sitepath` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `sitename` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-        `slogan` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `metades` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `metakeywords` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `jobs` text COLLATE utf8_unicode_ci NOT NULL,
+          `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `main` int(11) NOT NULL DEFAULT '1',
+		  `gperpage` int(11) NOT NULL DEFAULT '15',
+		  `numbgames` int(11) NOT NULL DEFAULT '0',
+		  `gamesort` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'newest',
+		  `seolink` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `seo` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `approvelinks` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `numblinks` int(11) NOT NULL DEFAULT '10',
+		  `version` varchar(12) COLLATE utf8_unicode_ci NOT NULL DEFAULT '2.6',
+		  `theme` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'minix_26',
+		  `skin` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'arcadegames',
+		  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  `userecaptcha` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `lightbox` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `disabled` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `regclosed` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `fb_app_id` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+		  `fb_app_secret` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+		  `tw_app_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+		  `tw_app_secret` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
+		  `cachelife` int(11) NOT NULL DEFAULT '60',
+		  `siteurl` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `sitepath` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `sitename` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+		  `slogan` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `metades` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `metakeywords` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `jobs` text COLLATE utf8_unicode_ci NOT NULL,
+		  `galogin` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `gapassword` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `gaurl` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
         PRIMARY KEY (`id`)
-      ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;");
+        ) ENGINE=MyISAM  CHARACTER SET = utf8 COLLATE utf8_unicode_ci AUTO_INCREMENT=1 ;");
         
 		$midnight_today = mktime(23,59,59);
 		$plus_week = strtotime('+7 days', $midnight_today);
@@ -753,11 +725,11 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
         (1, 1, 15, 3, 'newest', 'yes', 'no', 'no', 10, '2.6', '".$mysqli->real_escape_string($_POST['theme'])."', '".$mysqli->real_escape_string($_POST['skin'])."', '".md5('admin')."', 'yes', 'no', '".$mysqli->real_escape_string($_POST['supportemail'])."', 'no', 'no', '".$mysqli->real_escape_string($_POST['fbAppId'])."', '".$mysqli->real_escape_string($_POST['fbAppSecret'])."', '".$mysqli->real_escape_string($_POST['twAppId'])."', '".$mysqli->real_escape_string($_POST['twAppSecret'])."', 60, '".$mysqli->real_escape_string($_POST['siteurl'])."', '".$mysqli->real_escape_string($_POST['sitepath'])."', '".$mysqli->real_escape_string($_POST['sitename'])."', '".$mysqli->real_escape_string($_POST['slogan'])."', '".$mysqli->real_escape_string($_POST['metades'])."', '".$mysqli->real_escape_string($_POST['keywords'])."', '$jobstring', '', '', '')");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `stats` (
-        `id` int(10) NOT NULL AUTO_INCREMENT,
-        `name` varchar(255) NOT NULL DEFAULT '',
-        `numbers` int(10) NOT NULL DEFAULT '0',
-        PRIMARY KEY (`id`)
-      ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5;");
+		  `id` int(10) NOT NULL AUTO_INCREMENT,
+		  `name` varchar(255) NOT NULL DEFAULT '',
+		  `numbers` int(10) NOT NULL DEFAULT '0',
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
 
 		$mysqli->query("INSERT INTO `stats` (`id`, `name`, `numbers`) VALUES
 		(1, 'totalplays', 0),
@@ -766,53 +738,50 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		(4, 'totalposts', 0);");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `user` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `username` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-        `password` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-        `repeatpassword` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-        `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-        `useavatar` tinyint(1) NOT NULL DEFAULT '0',
-        `avatarfile` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
-        `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-        `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-        `plays` int(11) NOT NULL DEFAULT '0',
-        `date` int(10) NOT NULL DEFAULT '0',
-        `location` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
-        `aboutme` text COLLATE utf8_unicode_ci NOT NULL,
-        -- `job` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
-        `points` int(11) NOT NULL DEFAULT '0',
-        `endban` int(10) DEFAULT '0',
-        `oauth_uid` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-        `oauth_provider` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-        `twitter_oauth_token` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-        `twitter_oauth_token_secret` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-        `randomkey` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-        `activated` tinyint(1) NOT NULL,
-        --`gender` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-        --`birthday` int(11) DEFAULT NULL,
-        `hobbies` text COLLATE utf8_unicode_ci NOT NULL,
-        `posts` int(11) NOT NULL DEFAULT '0',
-        `topics` int(11) NOT NULL DEFAULT '0',
-        `totalposts` int(11) NOT NULL DEFAULT '0',
-        `shloc` char(6) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'show',
-        `sheml` char(6) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'show',
-        `shname` char(6) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'show',
-        `shhobs` char(6) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'show',
-        `shabout` char(6) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'show',
-        `deact` char(6) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'show',
-        `cmtsdisabled` char(6) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'show',
-        `passreset` int(11) NOT NULL,
-        PRIMARY KEY (`id`)
-      ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2;");
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `username` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+		  `password` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+		  `repeatpassword` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+		  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+		  `useavatar` tinyint(1) NOT NULL DEFAULT '0',
+		  `avatarfile` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
+		  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+		  `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+		  `plays` int(11) NOT NULL DEFAULT '0',
+		  `date` int(10) NOT NULL DEFAULT '0',
+		  `location` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
+		  `aboutme` text COLLATE utf8_unicode_ci NOT NULL,
+		  `points` int(11) NOT NULL DEFAULT '0',
+		  `endban` int(10) DEFAULT '0',
+		  `oauth_uid` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+		  `oauth_provider` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+		  `twitter_oauth_token` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+		  `twitter_oauth_token_secret` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+		  `randomkey` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+		  `activated` tinyint(1) NOT NULL,
+		  `hobbies` text COLLATE utf8_unicode_ci NOT NULL,
+		  `posts` int(11) NOT NULL DEFAULT '0',
+		  `topics` int(11) NOT NULL DEFAULT '0',
+		  `totalposts` int(11) NOT NULL DEFAULT '0',
+		  `shloc` char(6) NOT NULL DEFAULT 'show',
+		  `sheml` char(6) NOT NULL DEFAULT 'show',
+		  `shname` char(6) NOT NULL DEFAULT 'show',
+		  `shhobs` char(6) NOT NULL DEFAULT 'show',
+		  `shabout` char(6) NOT NULL DEFAULT 'show',
+		  `deact` char(6) NOT NULL DEFAULT 'show',
+		  `cmtsdisabled` char(6) NOT NULL DEFAULT 'show',
+		  `passreset` int(11) NOT NULL,
+		  PRIMARY KEY (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `useronline` (
-        `id` int(10) NOT NULL AUTO_INCREMENT,
-        `ip` varchar(15) NOT NULL DEFAULT '',
-        `timestamp` varchar(15) NOT NULL DEFAULT '',
-        `agent` varchar(256) NOT NULL DEFAULT 'human',
-        PRIMARY KEY (`id`),
-        UNIQUE KEY `id` (`id`)
-      ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=126;");
+		  `id` int(10) NOT NULL AUTO_INCREMENT,
+		  `ip` varchar(15) NOT NULL DEFAULT '',
+		  `timestamp` varchar(15) NOT NULL DEFAULT '',
+		  `agent` varchar(256) NOT NULL DEFAULT 'human',
+		  PRIMARY KEY (`id`),
+		  UNIQUE KEY `id` (`id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=latin1;");
 $data = '';
 $name = array();
 $value = array();

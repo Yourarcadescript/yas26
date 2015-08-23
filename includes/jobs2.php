@@ -1,8 +1,8 @@
 <?php
 #--------------------------------
 # http://www.yourarcadescript.com
-#       VERSION 2.5
-#		jobs.php
+#       VERSION 2.6.1
+#		jobs2.php
 #		Called by jQuery in includes/inc.php on Document load
 #		Purpose: Run jobs scheduled from admin panel
 #		CC BY-ND 3.0 Licensed (http://creativecommons.org/licenses/by-nd/3.0/) 

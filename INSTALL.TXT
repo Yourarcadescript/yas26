@@ -1,6 +1,6 @@
 		
 	********************************************
-	***** To install YourArcadeScript 2.6 ******
+	***** To install YourArcadeScript 2.6.1 ******
 	** For WAMP there is a guide further down **
 	******************************************** 
 
@@ -30,10 +30,10 @@ If for some reason you encounter any errors during or after installing, please d
 For assistance please go to http://www.yourarcadescript.com/forum or email support@yourarcadescript.com.
 
 	*********************************************
-	**To install YourArcadeScript 2.6 with WAMP**
+	**To install YourArcadeScript 2.6.1 with WAMP**
 	*********************************************
 
-1) Put all the files from "yas26full" to "www" directory.
+1) Put all the files from "yas261full" to "www" directory.
 The www folder should be in C:\wamp\www or you can find it
 in the Wamp panel.
  
@@ -48,7 +48,7 @@ In Apache you need "rewrite _module" in modules set for seo url rewrites.
 In php.ini search for "error_reporting = E_ALL" and change it to "error_reporting = E_ALL & ~E_NOTICE | E_STRICT".
 Restart all Services.
 
-3) Run the install file YAS26install.php from your browser. The install script will ask for your database details and allow you to enter specifics for your arcade.
+3) Run the install file YAS261install.php from your browser. The install script will ask for your database details and allow you to enter specifics for your arcade.
 If you havent change anything in the settings the username is "root" and the password should be blank.
 
 4) The admin panel is located in http://yoursitename/admin.com and the default password is “admin” without quotes. Change  password immediately.

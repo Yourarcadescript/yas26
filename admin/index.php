@@ -2,7 +2,7 @@
 #--------------------------------
 # http://www.yourarcadescript.com
 #       index.php
-#		VERSION 2.6
+#		VERSION 2.6.1
 #		CC BY-ND 3.0(http://creativecommons.org/licenses/by-nd/3.0/) Licensed
 #       
 #--------------------------------

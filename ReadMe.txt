@@ -1,4 +1,23 @@
-YAS 2.6  http://www.yourarcadescript/forum for support
+YAS 2.6.1  http://www.yourarcadescript/forum for support
+--------------------------------------------------------------
+-                Whats New ?                                 -
+--------------------------------------------------------------
+What's been added?
+1. Update to play Unity games
+
+This update addressed issues with game feeds and other services using APIs which have changed or are no longer available.
+Current game feeds now available via admin dashboard
+1. Arcade Game Feed
+2. Free Online Games
+3. Kongregate
+4. Flash Game Distribution
+
+Removed Google Analytics graphing, Youtube auto retrieval of video data and Mochimedia game feed. The removal of Google Analytics and Youtube retrieval is due to a complete change in APIs
+ and the need to completely rewrite the script code for these...which is on the agenda.
+
+A number of small bugs addressed and security enhancements applied.
+
+YAS 2.6
 --------------------------------------------------------------
 -                Whats New ?                                 -
 --------------------------------------------------------------
