@@ -27,24 +27,26 @@ if (!isset($_SESSION['user'])) {
 	<?php	}
 	}
 	$query->close();
-	if ($setting['regclosed'] == 'yes') { ?>
-	<div style="float:right; width:100px;">
-	<?php if ($setting['seo']=='yes') { ?>
-	<a href="<?php echo $setting['siteurl'];?>forgotpassword.php" title="Forgot Password">Forgot Password</a>
-	<?php } else { ?>
-	<a href="<?php echo $setting['siteurl'];?>index.php?act=forgotpassword" title="Forgot Password">Forgot Password</a>
-	<?php } ?>
-	</div>
-	<?php } else { ?>
-	<div style="float:right; width:160px;">
-	<?php
-		if ($setting['seo']=='yes') { ?>
-			  <a href="<?php echo $setting['siteurl'];?>forgotpassword.php" title="Forgot Password">Forgot Password</a>&nbsp;/&nbsp;<a href="<?php echo $setting['siteurl'];?>register.html" title="Register">Register</a>
-	<?php } else { ?>
-			  <a href="<?php echo $setting['siteurl'];?>index.php?act=forgotpassword" title="Forgot Password">Forgot Password</a>&nbsp;/&nbsp;<a href="<?php echo $setting['siteurl'];?>index.php?act=register" title="Register">Register</a>
-	<?php } ?>
-	</div>
-<?php } ?>
+	if (!isset($_SESSION['user'])) {
+		if ($setting['regclosed'] == 'yes') { ?>
+		<div style="float:right; width:100px;">
+		<?php if ($setting['seo']=='yes') { ?>
+		<a href="<?php echo $setting['siteurl'];?>forgotpassword.php" title="Forgot Password">Forgot Password</a>
+		<?php } else { ?>
+		<a href="<?php echo $setting['siteurl'];?>index.php?act=forgotpassword" title="Forgot Password">Forgot Password</a>
+		<?php } ?>
+		</div>
+		<?php } else { ?>
+		<div style="float:right; width:160px;">
+		<?php
+			if ($setting['seo']=='yes') { ?>
+				  <a href="<?php echo $setting['siteurl'];?>forgotpassword.php" title="Forgot Password">Forgot Password</a>&nbsp;/&nbsp;<a href="<?php echo $setting['siteurl'];?>register.html" title="Register">Register</a>
+		<?php } else { ?>
+				  <a href="<?php echo $setting['siteurl'];?>index.php?act=forgotpassword" title="Forgot Password">Forgot Password</a>&nbsp;/&nbsp;<a href="<?php echo $setting['siteurl'];?>index.php?act=register" title="Register">Register</a>
+		<?php } ?>
+		</div>
+	<?php }
+	} ?>
   </div>
 <div id="content_wrapper">    
 <div id="loginbox"><?php include ("templates/$setting[theme]/columnone.php");?></div>
