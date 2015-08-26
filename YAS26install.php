@@ -690,36 +690,36 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
       ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;");
 
         $mysqli->query("CREATE TABLE IF NOT EXISTS `settings` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `main` int(11) NOT NULL DEFAULT '1',
-        `gperpage` int(11) NOT NULL DEFAULT '15',
-        `numbgames` int(11) NOT NULL DEFAULT '0',
-        `gamesort` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'newest',
-        `seolink` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `seo` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `approvelinks` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `numblinks` int(11) NOT NULL DEFAULT '10',
-        `version` varchar(12) COLLATE utf8_unicode_ci NOT NULL DEFAULT '2.6',
-        `theme` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'minix_26',
-        `skin` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'arcadegames',
-        `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-        `userecaptcha` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `lightbox` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `disabled` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `regclosed` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
-        `fb_app_id` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-        `fb_app_secret` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-        `tw_app_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-        `tw_app_secret` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-        `cachelife` int(11) NOT NULL DEFAULT '60',
-        `siteurl` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `sitepath` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `sitename` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-        `slogan` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `metades` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `metakeywords` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-        `jobs` text COLLATE utf8_unicode_ci NOT NULL,
+          `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `main` int(11) NOT NULL DEFAULT '1',
+		  `gperpage` int(11) NOT NULL DEFAULT '15',
+		  `numbgames` int(11) NOT NULL DEFAULT '0',
+		  `gamesort` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'newest',
+		  `seolink` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `seo` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `approvelinks` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `numblinks` int(11) NOT NULL DEFAULT '10',
+		  `version` varchar(12) COLLATE utf8_unicode_ci NOT NULL DEFAULT '2.6',
+		  `theme` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'minix_26',
+		  `skin` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'arcadegames',
+		  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+		  `userecaptcha` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `lightbox` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `disabled` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `regclosed` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
+		  `fb_app_id` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+		  `fb_app_secret` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+		  `tw_app_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+		  `tw_app_secret` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
+		  `cachelife` int(11) NOT NULL DEFAULT '60',
+		  `siteurl` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `sitepath` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `sitename` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+		  `slogan` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `metades` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `metakeywords` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `jobs` text COLLATE utf8_unicode_ci NOT NULL,
         PRIMARY KEY (`id`)
       ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;");
         
@@ -748,10 +748,10 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		$jobs['backup'][1] = $plus_month;
 		$jobs['backup'][2] = 1;
 		$jobstring = $mysqli->real_escape_string(serialize($jobs));
-				
+
 		$mysqli->query("INSERT INTO `settings` (`id`, `main`, `gperpage`, `numbgames`, `gamesort`, `seolink`, `seo`, `approvelinks`, `numblinks`, `version`, `theme`, `skin`, `password`, `userecaptcha`, `lightbox`, `email`, `disabled`, `regclosed`, `fb_app_id`, `fb_app_secret`, `tw_app_id`, `tw_app_secret`, `cachelife`, `siteurl`, `sitepath`, `sitename`, `slogan`, `metades`, `metakeywords`, `jobs`) VALUES
         (1, 1, 15, 3, 'newest', 'yes', 'no', 'no', 10, '2.6', '".$mysqli->real_escape_string($_POST['theme'])."', '".$mysqli->real_escape_string($_POST['skin'])."', '".md5('admin')."', 'yes', 'no', '".$mysqli->real_escape_string($_POST['supportemail'])."', 'no', 'no', '".$mysqli->real_escape_string($_POST['fbAppId'])."', '".$mysqli->real_escape_string($_POST['fbAppSecret'])."', '".$mysqli->real_escape_string($_POST['twAppId'])."', '".$mysqli->real_escape_string($_POST['twAppSecret'])."', 60, '".$mysqli->real_escape_string($_POST['siteurl'])."', '".$mysqli->real_escape_string($_POST['sitepath'])."', '".$mysqli->real_escape_string($_POST['sitename'])."', '".$mysqli->real_escape_string($_POST['slogan'])."', '".$mysqli->real_escape_string($_POST['metades'])."', '".$mysqli->real_escape_string($_POST['keywords'])."', '$jobstring')");
-
+		
 		$mysqli->query("CREATE TABLE IF NOT EXISTS `stats` (
         `id` int(10) NOT NULL AUTO_INCREMENT,
         `name` varchar(255) NOT NULL DEFAULT '',
@@ -779,7 +779,6 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
         `date` int(10) NOT NULL DEFAULT '0',
         `location` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
         `aboutme` text COLLATE utf8_unicode_ci NOT NULL,
-        -- `job` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
         `points` int(11) NOT NULL DEFAULT '0',
         `endban` int(10) DEFAULT '0',
         `oauth_uid` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -788,8 +787,6 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
         `twitter_oauth_token_secret` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
         `randomkey` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
         `activated` tinyint(1) NOT NULL,
-        --`gender` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-        --`birthday` int(11) DEFAULT NULL,
         `hobbies` text COLLATE utf8_unicode_ci NOT NULL,
         `posts` int(11) NOT NULL DEFAULT '0',
         `topics` int(11) NOT NULL DEFAULT '0',
