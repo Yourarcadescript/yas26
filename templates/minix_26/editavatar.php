@@ -6,7 +6,7 @@ if(isset($_SESSION["user"])) {
 	$id=$_SESSION["userid"];
 	?>	
 	<div class="container_box1"><div id="headergames2">Edit Avatar:</div>	
-	<di v class="containbox2">
+	<div class="containbox2">
 	Upload from your computer!
 	<form enctype="multipart/form-data" name="settings" method="post" action="<?php echo $setting['siteurl'];?>includes/avatarupload.php">
 	<input type="hidden" name="MAX_FILE_SIZE" value="102400" >
