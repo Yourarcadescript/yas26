@@ -564,6 +564,36 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		  PRIMARY KEY (`id`)
 		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
+			$mysqli->query("CREATE TABLE IF NOT EXISTS `mgffeed` (
+		  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+		  `uid` int(11) unsigned NOT NULL,
+		  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `controls` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `instructions` text COLLATE utf8_unicode_ci NOT NULL,
+		  `description` text COLLATE utf8_unicode_ci NOT NULL,
+		  `category` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `thumbnail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `medthumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `lgthumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `installdate` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+		  `file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `zip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `game_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `screen1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `screen2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		  `review` text COLLATE utf8_unicode_ci NOT NULL,
+		  `width` int(11) NOT NULL,
+		  `height` int(11) NOT NULL,
+		  `rating` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+		  `ads` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+		  `hsapi` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+		  `keywords` text COLLATE utf8_unicode_ci NOT NULL,
+		  `installed` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+		  `hidden` tinyint(1) NOT NULL DEFAULT '0',
+		  PRIMARY KEY (`id`),
+		  KEY `uid` (`uid`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;");
+
 			$mysqli->query("CREATE TABLE IF NOT EXISTS `links` (
 		  `id` int(11) NOT NULL AUTO_INCREMENT,
 		  `url` varchar(255) NOT NULL DEFAULT '',

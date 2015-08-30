@@ -148,7 +148,7 @@
             </div>
             <div class="imagebox">
                 <a href="index.php?act=managemgffeed" title="Install ex-Mochi Game Feed"><img
-                        src="img/cpanel/managemochi.png" alt="Install ex-Mochi Game Feed" height="42" width="42"/><br/>MGF
+                        src="img/cpanel/mgflogo.png" alt="Install ex-Mochi Game Feed" height="42" width="42"/><br/>MGF
                     Games</a>
             </div>
         </div>

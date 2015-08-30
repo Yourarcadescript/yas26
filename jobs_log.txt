@@ -54,3 +54,13 @@
 23-08-2015, 18:26 - Feeds updated triggered by visitor ::1
 23-08-2015, 18:26 - Sitemap updated triggered by visitor ::1
 23-08-2015, 18:26 - GameQue update triggered by visitor ::1
+29-08-2015, 20:01 - Daily game plays emptied triggered by visitor ::1
+29-08-2015, 20:01 - Feeds updated triggered by visitor ::1
+29-08-2015, 20:01 - Sitemap updated triggered by visitor ::1
+29-08-2015, 20:01 - GameQue update triggered by visitor ::1
+29-08-2015, 20:01 - Database optimized triggered by visitor ::1
+29-08-2015, 20:01 - Database update successful - triggered by visitor ::1
+30-08-2015, 16:05 - Daily game plays emptied triggered by visitor ::1
+30-08-2015, 16:05 - Feeds updated triggered by visitor ::1
+30-08-2015, 16:05 - Sitemap updated triggered by visitor ::1
+30-08-2015, 16:05 - GameQue update triggered by visitor ::1

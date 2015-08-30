@@ -53,6 +53,9 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == "logged") {
 		case 'managekong':
 			include ("manage_kongregate.php");
 			break;
+		case 'managemgffeed':
+			include ("managemgffeed.php");
+			break;
 		case 'memberscomment':
 			include ("manage_memberscomment.php");
 			break;
