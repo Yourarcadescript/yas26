@@ -50,45 +50,44 @@ $file_types=array(
 	'wmv'
 );
 if (isset($_POST['add'])) {
-	//include_once ("../../includes/db_functions.inc.php");
-	if (!isset($_FILES['file']['name']) || !isset($_FILES['thumbnail']['name'])) {
-		echo '<center>No file or thumbnail detected</center>';
-		exit();
-	}
-	$thumb_ext = get_file_extension($_FILES["thumbnail"]["name"]) or die("<center>You must include a game pic.</center>");
-	$file_ext = get_file_extension($_FILES["file"]["name"]) or die("<center>You must include a game file.</center>");
-	if (in_array($thumb_ext, $thumb_types) || in_array($file_ext, $file_types)) {
-		if ($_FILES["file"]["error"] > 0) {
-			echo "<center>Return Code: " . $_FILES["thumbnail"]["error"] . "</center>";
-		}
-		else {
-			move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $setting['sitepath']."/img/" . $num . $_FILES["thumbnail"]["name"]);
-			move_uploaded_file($_FILES["file"]["tmp_name"], $setting['sitepath']."/swf/" . $num . $_FILES["file"]["name"]);
-			$img = yasDB_clean("img/" . $num . $_FILES['thumbnail']['name']);
-			$file = yasDB_clean("swf/" . $num . $_FILES['file']['name']);
-			$desc = yasDB_clean($_POST['description']);
-			$title = yasDB_clean($_POST['title']);
-			$instructions = yasDB_clean($_POST['instructions']);
-			$keywords = yasDB_clean($_POST['keywords']);
-			$height = intval($_POST['height']);
-			$width = intval($_POST['width']);
-			$category = intval($_POST['category']);
-			$type = yasDB_clean($_POST['type']);
-			if ($height > 0 && $width > 0 ) {
-				$query = yasDB_insert("INSERT INTO games (title, description, instructions, keywords, category, thumbnail, file, height, width, type, active) VALUES ('$title', '$desc', '$instructions', '$keywords', $category, '$img', '$file', '$height', '$width'', '$type', '0')",false);
-				if ($query) echo '<center><span style="display:block;text-align:center;font-size:24px;padding:10px 0 50px 0;">Game successfully added!</span></center>';
-			}
-			else {
-				list($width, $height, $type, $attributes) = getimagesize($setting['sitepath'].'/'.$file);
-				$query = yasDB_insert("INSERT INTO games (title, description, instructions, keywords, category, thumbnail, file, height, width, type, active) VALUES ('$title', '$desc', '$instructions', '$keywords', $category, '$img', '$file', '$height', '$width', '$type', '0')",false);
-				if ($query) echo '<center><span style="display:block;text-align:center;font-size:24px;padding:10px 0 50px 0;">Game successfully added!</span></center>';
-			}
-		}
-	}
-	else {
-		echo '<center>File or thumbnail type not supported</center>';
-		exit();
-	}
+    if (!isset($_FILES['file']['name']) || !isset($_FILES['thumbnail']['name'])) {
+        echo '<center>No file or thumbnail detected</center>';
+        exit();
+    }
+    $thumb_ext = get_file_extension($_FILES["thumbnail"]["name"]) or die("<center>You must include a game pic.</center>");
+    $file_ext = get_file_extension($_FILES["file"]["name"]) or die("<center>You must include a game file.</center>");
+    if (in_array($thumb_ext, $thumb_types) || in_array($file_ext, $file_types)) {
+        if ($_FILES["file"]["error"] > 0) {
+            echo "<center>Return Code: " . $_FILES["thumbnail"]["error"] . "</center>";
+        }
+        else {
+            move_uploaded_file($_FILES["thumbnail"]["tmp_name"],
+            $setting['sitepath']."/img/" . $num . $_FILES["thumbnail"]["name"]);
+            move_uploaded_file($_FILES["file"]["tmp_name"],
+            $setting['sitepath']."/swf/" . $num . $_FILES["file"]["name"]);
+            $img = yasDB_clean("img/" .  $num . $_FILES['thumbnail']['name']);
+            $file = yasDB_clean("swf/" .  $num . $_FILES['file']['name']);
+            $desc = yasDB_clean($_POST['description']);
+            $title = yasDB_clean($_POST['title']);
+            $instructions = yasDB_clean($_POST['instructions']);
+            $keywords = yasDB_clean($_POST['keywords']);
+            $height = yasDB_clean($_POST['height']);
+            $width = yasDB_clean($_POST['width']);
+            if ($_POST['height'] && $_POST['width'] > 0 ) {
+                $query = yasDB_insert("INSERT INTO games (title, description, instructions, keywords, category, thumbnail, file, height, width, type, active) VALUES ('$title', '$desc', '$instructions', '$keywords', '{$_POST['category']}', '$img', '$file', '$height', '$width'', '{$_POST['type']}', '0')",false);
+                if ($query) echo '<center><span style="display:block;text-align:center;font-size:24px;padding:10px 0 50px 0;">Game successfully added!</span></center>';
+            }
+            else {
+                list($width, $height, $type, $attributes) = getimagesize($setting['sitepath'].'/'.$file);
+                $query = yasDB_insert("INSERT INTO games (title, description, instructions, keywords, category, thumbnail, file, height, width, type, active) VALUES ('$title', '$desc', '$instructions', '$keywords', '{$_POST['category']}', '$img', '$file', '$height', '$width', '{$_POST['type']}', '0')",false);
+                if ($query) echo '<center><span style="display:block;text-align:center;font-size:24px;padding:10px 0 50px 0;">Game successfully added!</span></center>';
+            }
+        }
+    }
+    else {
+        echo '<center>File or thumbnail type not supported</center>';
+        exit();
+    }
 }
 ?>
 </div><div class="clear"></div></div>

@@ -17,7 +17,6 @@ if ($query->num_rows == 0) {
     while($games = $query->fetch_array(MYSQLI_ASSOC)) {
         $gameurl = prepgame($games['title']);            
         $games['description'] = stripslashes($games['description']);
-        $description = str_replace(array("\r\n", "\r", "\n", "'", '"'), ' ', $games['description']);
         if (strlen($games['title']) > 25) {
             $title = substr($games['title'], 0, 22) . '...';
         } else {

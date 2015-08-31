@@ -391,7 +391,7 @@ h5{font-family:Tahoma, Arial, sans-serif;color:#FFF;font-size:16px;font-weight:7
 #fav_box{margin-right:1px;margin-top:1px;padding:0px;width:40px;height:40px;}
 /* submit game */
 #p-c-l{text-align:center;color:#000;text-decoration:none;color:#333;margin-left:300px;}
-#d-i-k{border: 2px solid #0969A2;border-radius:5px;color:#FFFEFF;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;font-family:Arial;font-size:12px;height:100px;padding:5px;width:200px;margin:5px;}
+#d-i-k{border: 2px solid #0969A2;border-radius:5px;color:#000;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;font-family:Arial;font-size:12px;height:100px;padding:5px;width:200px;margin:5px;}
 #s-a-g{border: 2px solid #0969A2;border-radius:5px;color:#FFFEFF;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;font-family:Arial;font-size:14px;height:20px;padding:5px;width:160px;margin:5px;}
 /* This is for edit profile and submit game */
 .tg  {border-collapse:collapse;border-spacing:0;margin-bottom:1px;width:560px;}
