@@ -227,8 +227,6 @@ if($row['type'] != ''){ ?>
 <center>
 <div style=" float: left; margin: 2px 2px 4px 140px; text-align: center; width: 500px;">
 <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.3.js"></script>  
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script> 
 <?php
 // ============[][][][][] Edit Below values to fit your needs, DON'T ADD 'PX' after numeric values
 

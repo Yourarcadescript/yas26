@@ -238,14 +238,12 @@ if ($setting['lightbox']=='no'){
 <li><?php
 $catcheck = yasDB_select("SELECT `name` FROM `categories` WHERE `id` = " . $row['category']);
 $catname = $catcheck->fetch_array(MYSQLI_ASSOC);
-if ($id = $row['category']) {
 if ($setting['seo']=='yes') { ?>
     <a href="<?php echo $setting['siteurl'];?>category/<?php echo $row['category'];?>/1.html" onMouseover="showhint('<b><?php echo ucfirst($catname['name']);?></b>',this, event, 'auto')"><?php echo ucfirst($catname['name']);?></a>
     <?php
 } else { ?>
     <a href="<?php echo $setting['siteurl'];?>index.php?act=cat&id=<?php echo $row['category'];?>" onMouseover="showhint('<b><?php echo ucfirst($catname['name']);?></b>',this, event, 'auto')"><?php echo ucfirst($catname['name']);?></a>
     <?php
-	}
 }
 ?>
 </li>
