@@ -596,5 +596,6 @@ foreach ($keywords as $keyword) {
 	</div>
 	<div class="clear"></div>
 </div>
-<script type="text/javascript" src="<?php echo $setting['siteurl'];?>includes/js/fullscreen.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+	<script type="text/javascript" src="<?php echo $setting['siteurl'];?>includes/js/fullscreen.js"></script>
 <div id="close" style="display:none;background-color:#000000;color:#ffffff;cursor:pointer;" onclick="cFull()">Close full screen [Esc]</div>
