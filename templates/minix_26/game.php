@@ -263,8 +263,6 @@ if($row['type'] != ''){ ?>
 <center>
 <div style=" float: left; margin: 2px 2px 4px 140px; text-align: center; width: 500px;">
 <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.3.js"></script>  
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script> 
 <?php
 // ============[][][][][] Edit Below values to fit your needs, DON'T ADD 'PX' after numeric values
 
@@ -328,11 +326,11 @@ $(function(){
 		include "media/swf.php";
 		echo '</div>';
     }else if($row['type']=='UNITY') {  // Or UNITY if you have changed it
-        echo '<div id="gameDiv" style="height: '.$new_height.'px; width: '.$new_width.'px; position:relative; top: 0; left: 0">';         
+        echo '<div id="gameDiv" style="height: '.$new_height.'px; width: '.$new_width.'px; position:relative; top: 0; left: 0">';
         include "media/unity.php"; // Or unity.php if you have changed it
 		echo '</div>';
-	}else if($row['type']=='DCR') {              
-		include "media/dcr.php"; 
+	}else if($row['type']=='DCR') {
+		include "media/dcr.php";
 	}else if($row['type']=='WMV') {
 		include "media/wmv.php";
 	}else if($row['type']=='MPG' && $displayed == 'no') {
@@ -349,7 +347,7 @@ $(function(){
 		include "media/youtube.php";
 	}else if($row['type']=='CustomCode') {
 		echo"$row[code]";
-	}	
+	}
     ?> </div> <div class="game_banner"><?php echo ad("9"); ?></div>
  <div class="game_ad">
 	<?php 

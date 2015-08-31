@@ -53,7 +53,7 @@ $thumb_types=array(
 );
 $file_types=array(
 	'swf',
-	'unity3d',
+	'UNITY',
 	'dcr',
 	'mov',
 	'mpg',
