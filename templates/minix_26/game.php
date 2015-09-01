@@ -18,7 +18,7 @@ if (isset($_POST['Favourites_x'])) {
 }
 $query = yasDB_select("SELECT * FROM `games` WHERE id = ".$id);
 $row = $query->fetch_array(MYSQLI_ASSOC);
-if ($row['type'] == 'SWF' || $row['type'] == 'UNITY'){ // Or UNITY if you have changed to it 
+if ($row['type'] == 'SWF' || $row['type'] == 'UNITY'){
 	if ($row['height']<350 || $row['width']<350) { // games are not likely less than 350px so lets double check the actual game size
 		list($width, $height, $type, $attributes) = getimagesize($setting['sitepath'].'/'.$row['file']);
 		$row['height'] = $height;
@@ -323,9 +323,9 @@ $(function(){
 		echo '<div id="gameDiv" style="height: '.$new_height.'px; width: '.$new_width.'px; position:relative; top: 0; left: 0">';
 		include "media/swf.php";
 		echo '</div>';
-    }else if($row['type']=='UNITY') {  // Or UNITY if you have changed it
+    }else if($row['type']=='UNITY') {
         echo '<div id="gameDiv" style="height: '.$new_height.'px; width: '.$new_width.'px; position:relative; top: 0; left: 0">';
-        include "media/unity.php"; // Or unity.php if you have changed it
+        include "media/unity.php";
 		echo '</div>';
 	}else if($row['type']=='DCR') {
 		include "media/dcr.php";

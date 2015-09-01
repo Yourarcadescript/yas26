@@ -53,7 +53,7 @@ $thumb_types=array(
 );
 $file_types=array(
 	'swf',
-	'UNITY',
+	'unity3d',
 	'dcr',
 	'mov',
 	'mpg',
@@ -145,11 +145,12 @@ if (isset($_POST['add'])) {
 		<td class="last"><select name="type">
 		<option value="SWF">swf</option>
 		<option value="DCR">dcr</option>
+		<option value="UNITY">unity</option>
 	    </select></td>
 		</tr>
 		<tr>
 		<td class="first" width="172"><strong>Game File</strong></td>
-		<td class="last"><input type="file" name="file" /> (swf/dcr)</td>
+		<td class="last"><input type="file" name="file" /> (swf/dcr/unity)</td>
 		</tr>
 		<tr class="bg">
 		<td class="first"><strong>Thumbnail</strong></td>
