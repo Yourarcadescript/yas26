@@ -166,7 +166,7 @@ if (isset($_POST['add'])) {
 		</tr>
 		<tr>
 		<td class="first" width="172"></td>
-		<td class="last"><input type="submit" class="button" name="add" value="Add Game!" /><!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use ftp?&nbsp;&nbsp;<input type="checkbox" name="ftp" id="ftp" /></td>-->
+		<td class="last"><input type="submit" class="button" name="add" value="Add Game!" />
 		</tr>
 		</table>
 		</div>
