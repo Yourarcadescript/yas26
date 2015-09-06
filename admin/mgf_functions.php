@@ -67,46 +67,50 @@ function get_mgffeed() {
   $data = get_content_of_url($feedUrl);
   $json_data = json_decode($data, true);
   unset($data);
-  $json_count = count($json_data);
   //$cat_array = array("puzzle", "action", "adventure", "sports", "shooter", "casino", "other", "girls", "education", "strategy", "jigsaw", "coloring", "driving", "fighting", "rhythm", "board game", "customize");
   $cat_array = array("puzzle", "action", "adventure", "sports", "shooter", "casino", "other", "dressup", "arcade", "strategy", "cartoon", "coloring");
-  foreach ($json_data as $json) {
-    if ($json['title'] == NULL) break;
-    if (!in_array($json['id'],$tags)) {
-      $cat = strtolower(yasDB_clean($json['category']));
-      if (in_array($cat, $cat_array)) {
-        $category = array_search($cat, $cat_array) + 1;
-      } else {
-        $category = 7; // if not found set category to other
-      }
-      $title = yasDB_clean($json['title']);
-      $uid = intval($json['id']);
-      $game_file = yasDB_clean($json['file']);
-      $game_url = "http://www.mochigamefeed.com/view/".intval($json['id'])."/".prepGame($title).".html";
-      $width = intval($json['width']);
-      $height = intval($json['height']);
-      $description = yasDB_clean($json['description']);
-      $instructions = yasDB_clean($json['instructions']);
-      $small_thumburl = yasDB_clean($json['thumbnail']);
-      $medium_thumburl = yasDB_clean($json['medthumb']);
-      $large_thumburl = yasDB_clean($json['lgthumb']);
-      $screen1 = yasDB_clean($json['screen1']);
-      $screen2 = yasDB_clean($json['screen2']);
-      $zip = yasDB_clean($json['zip']);
-      $controls = yasDB_clean(stripslashes($json['controls']));
-      $created = yasDB_clean($json['installdate']);
-      $review = yasDB_clean($json['review']);
-      $rating = yasDB_clean($json['rating']);
-      $ads = yasDB_clean($json['ads']);
-      $hsapi = yasDB_clean($json['hsapi']);
-      $keywords = yasDB_clean($json['keywords']);
+  if (count($json_data) > 0) {
+    foreach ($json_data as $json) {
+      if ($json['title'] == NULL) break;
+      if (!in_array($json['id'], $tags)) {
+        $cat = strtolower(yasDB_clean($json['category']));
+        if (in_array($cat, $cat_array)) {
+          $category = array_search($cat, $cat_array) + 1;
+        } else {
+          $category = 7; // if not found set category to other
+        }
+        $title = yasDB_clean($json['title']);
+        $uid = intval($json['id']);
+        $game_file = yasDB_clean($json['file']);
+        $game_url = "http://www.mochigamefeed.com/view/" . intval($json['id']) . "/" . prepGame($title) . ".html";
+        $width = intval($json['width']);
+        $height = intval($json['height']);
+        $description = yasDB_clean($json['description']);
+        $instructions = yasDB_clean($json['instructions']);
+        $small_thumburl = yasDB_clean($json['thumbnail']);
+        $medium_thumburl = yasDB_clean($json['medthumb']);
+        $large_thumburl = yasDB_clean($json['lgthumb']);
+        $screen1 = yasDB_clean($json['screen1']);
+        $screen2 = yasDB_clean($json['screen2']);
+        $zip = yasDB_clean($json['zip']);
+        $controls = yasDB_clean(stripslashes($json['controls']));
+        $created = yasDB_clean($json['installdate']);
+        $review = yasDB_clean($json['review']);
+        $rating = yasDB_clean($json['rating']);
+        $ads = yasDB_clean($json['ads']);
+        $hsapi = yasDB_clean($json['hsapi']);
+        $keywords = yasDB_clean($json['keywords']);
 
-      $sql = "INSERT INTO mgffeed (`id`, `uid`, `title`, `controls`, `installdate`, `game_url`, `description`, `instructions`, `category`, `thumbnail`, `medthumb`, `lgthumb`, `file`, `zip`, `screen1`, `screen2`, `width`, `height`, `review`, `rating`, `ads`, `hsapi`, `keywords`,`installed`, `hidden`)
+        $sql = "INSERT INTO mgffeed (`id`, `uid`, `title`, `controls`, `installdate`, `game_url`, `description`, `instructions`, `category`, `thumbnail`, `medthumb`, `lgthumb`, `file`, `zip`, `screen1`, `screen2`, `width`, `height`, `review`, `rating`, `ads`, `hsapi`, `keywords`,`installed`, `hidden`)
       VALUES (NULL, $uid, '$title', '$controls', '$created', '$game_url', '$description', '$instructions', $category, '$small_thumburl', '$medium_thumburl', '$large_thumburl', '$game_file', '$zip', '$screen1', '$screen2', $width, $height, '$review', '$rating', '$ads', '$hsapi', '$keywords', '0', '0')";
 
-      $return = yasDB_insert($sql,false);
-      if (!$return) break; // if there is a db insert error just keep going.
+        $return = yasDB_insert($sql, false);
+        if (!$return) break; // if there is a db insert error just keep going.
+      }
     }
+  } else {
+    echo "Feed returned empty.";
+    return false;
   }
   unset($json);
   unset($json_data);
@@ -119,9 +123,10 @@ function install_mgfgame($gameid) {
 
   // Download and save game file
   if($result['file']) {
+    $filename = preg_replace('/[^a-zA-Z0-9.-_]/', '',$result['title']);
     $g_url = str_replace("..", "", $result['file']);
     $game_file = basename($g_url);
-    $game_file = "mgf_" . $result['title'] . "." . GetFileExtension($result['file']);
+    $game_file = "mgf_" . $filename . "." . GetFileExtension($result['file']);
     $game_url = '../swf/' . $game_file;
     download_file($g_url, $game_url);
   } else {
@@ -130,9 +135,15 @@ function install_mgfgame($gameid) {
   // Download and save thumbnail pic
   if($result['thumbnail']) {
     $t_url = str_replace("..", "", $result['thumbnail']);
-    $smallthumb = "mgf_" . $result['title'] . "." . GetFileExtension($result['thumbnail']);
+    $smallthumb = "mgf_" . $filename . "." . GetFileExtension($result['thumbnail']);
     $sm_thumb = '../img/' . $smallthumb;
     download_file($t_url, $sm_thumb);
+  }
+  if($result['medthumb']) {
+    $t_url = str_replace("..", "", $result['medthumb']);
+    $medium_thumb = "mgf_" . $filename . "_med." . GetFileExtension($result['medthumb']);
+    $med_thumb = '../img/' . $medium_thumb;
+    download_file($t_url, $med_thumb);
   }
   $desc = yasDB_clean($result['description']);        // Prep for DB insert
   $gamename = yasDB_clean($result['title']);
@@ -147,7 +158,7 @@ function install_mgfgame($gameid) {
   $category = $result['category'];
   $review = yasDB_clean($result['review']);
   $query->close();
-  $query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `ismochi`, `thumbnail_200`, `screen1`, `screen2`, `screen3`, `screen4`, `review`, `active`) VALUES (NULL, '$gamename', '$desc', '$instructions', '$keywords', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'OTHER', $gameid, '$gamethumb', 0, '$gamethumb200', '', '','','', '$review', 1)",false);
+  $query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `ismochi`, `thumbnail_200`, `screen1`, `screen2`, `screen3`, `screen4`, `review`, `active`) VALUES (NULL, '$gamename', '$desc', '$instructions', '$keywords', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'OTHER', $gameid, '$gamethumb', 0, '', '$gamethumb200', '','','', '$review', 1)",false);
   if (!$query) {
     echo 'Error updating Games database';
     return false;

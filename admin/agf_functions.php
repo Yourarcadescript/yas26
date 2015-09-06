@@ -118,9 +118,10 @@ function install_agfgame($gameid) {
 
   // Download and save game file
   if($result['file']) {
+    $filename = preg_replace('/[^a-zA-Z0-9.-_]/', '',$result['title']);
     $g_url = str_replace("..", "", $result['file']);
     $game_file = basename($g_url);
-    $game_file = "agf_" . $result['title'] . "." . GetFileExtension($result['file']);
+    $game_file = "agf_" . $filename . "." . GetFileExtension($result['file']);
     $game_url = '../swf/' . $game_file;
     download_file($g_url, $game_url);
   } else {
@@ -129,21 +130,21 @@ function install_agfgame($gameid) {
   // Download and save 180x135 thumbnail pic
   if($result['thumbnail']) {
     $t_url = str_replace("..", "", $result['thumbnail']);
-    $smallthumb = "agf_180x135_" . $result['title'] . "." . GetFileExtension($result['thumbnail']);
+    $smallthumb = "agf_180x135_" . $filename . "." . GetFileExtension($result['thumbnail']);
     $sm_thumb = '../img/' . $smallthumb;
     download_file($t_url, $sm_thumb);
   }
   // Download and save 300x300 thumbnail pic
   if($result['medthumb']) {
     $t_url = str_replace("..", "", $result['medthumb']);
-    $mediumthumb = "agf_med_" . $result['title'] . "." . GetFileExtension($result['medthumb']);
+    $mediumthumb = "agf_med_" . $filename . "." . GetFileExtension($result['medthumb']);
     $med_thumb = '../img/' . $mediumthumb;
     download_file($t_url, $med_thumb);
   }
   // Download and save 100x100 thumbnail pic
   if($result['lgthumb']) {
     $t_url = str_replace("..", "", $result['lgthumb']);
-    $largethumb = "agf_100x100_" . $result['title'] . "." . GetFileExtension($result['lgthumb']);
+    $largethumb = "agf_100x100_" . $filename . "." . GetFileExtension($result['lgthumb']);
     $large_thumb = '../img/' . $largethumb;
     download_file($t_url, $large_thumb);
   }
@@ -158,7 +159,7 @@ function install_agfgame($gameid) {
   $keywords = yasDB_clean($result['keywords']);
   $category = $result['category'];
   $query->close();
-  $query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `active`) VALUES (NULL, '$gamename', '$desc', '$instructions', '$keywords', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'OTHER', $gameid, '$gamethumb', 1, )",false);
+  $query = yasDB_insert("INSERT INTO `games` (`id`, `title`, `description`, `instructions`, `keywords`, `file`, `height`, `width`, `category`, `plays`, `code`, `type`, `source`, `sourceid`, `thumbnail`, `active`) VALUES (NULL, '$gamename', '$desc', '$instructions', '$keywords', '$gamefile', $height, $width, $category, 0, '', 'SWF', 'OTHER', $gameid, '$gamethumb', 1)",false);
   if (!$query) {
     echo 'Error updating Games database';
     return false;

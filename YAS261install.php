@@ -226,7 +226,7 @@ function yasDB_insert($sql, $escape = false) {
     $result = $mysqli->query($sql);
     if ($mysqli->error) {
 		try {   
-			throw new Exception("MySQL error $mysqli->error \n\tQuery: \"$sql\"", $msqli->errno);   
+			throw new Exception("MySQL error $mysqli->error \n\tQuery: \"$sql\"", $mysqli->errno);
 		} catch(Exception $e ) {
 			$text =  "Error No: ".$e->getCode(). " - ". $e->getMessage() . "\n";
 			$text .= "\t".str_replace("\n", "\n\t",$e->getTraceAsString());
@@ -244,7 +244,7 @@ function yasDB_select($sql, $escape = false) {
     $result = $mysqli->query($sql);
     if ($mysqli->error) {
 		try {   
-			throw new Exception("MySQL error $mysqli->error \n\tQuery: \"$sql\"", $msqli->errno);   
+			throw new Exception("MySQL error $mysqli->error \n\tQuery: \"$sql\"", $mysqli->errno);
 		} catch(Exception $e ) {
 			$text =  "Error No: ".$e->getCode(). " - ". $e->getMessage() . "\n";
 			$text .= "\t".str_replace("\n", "\n\t",$e->getTraceAsString());
@@ -263,7 +263,7 @@ function yasDB_update($sql, $escape = false) {
     $result = $mysqli->query($sql);
     if ($mysqli->error) {
 		try {   
-			throw new Exception("MySQL error $mysqli->error \n\tQuery: \"$sql\"", $msqli->errno);   
+			throw new Exception("MySQL error $mysqli->error \n\tQuery: \"$sql\"", $mysqli->errno);
 		} catch(Exception $e ) {
 			$text =  "Error No: ".$e->getCode(). " - ". $e->getMessage() . "\n";
 			$text .= "\t".str_replace("\n", "\n\t",$e->getTraceAsString());
@@ -281,7 +281,7 @@ function yasDB_delete($sql, $escape = false) {
     $result = $mysqli->query($sql);
     if ($mysqli->error) {
 		try {   
-			throw new Exception("MySQL error $mysqli->error \n\tQuery: \"$sql\"", $msqli->errno);   
+			throw new Exception("MySQL error $mysqli->error \n\tQuery: \"$sql\"", $mysqli->errno);
 		} catch(Exception $e ) {
 			$text =  "Error No: ".$e->getCode(). " - ". $e->getMessage() . "\n";
 			$text .= "\t".str_replace("\n", "\n\t",$e->getTraceAsString());
@@ -542,6 +542,13 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 		  `source` enum('OTHER','FGD','FOG','KONGREGATE','AGF','MGF') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'OTHER',
 		  `sourceid` int(11) unsigned NOT NULL,
 		  `thumbnail` text COLLATE utf8_unicode_ci NOT NULL,
+		  `ismochi` tinyint(4) NOT NULL DEFAULT '0',
+          `thumbnail_200` varchar(255) CHARACTER SET utf8 NOT NULL,
+          `screen1` varchar(255) CHARACTER SET utf8 NOT NULL,
+          `screen2` varchar(255) CHARACTER SET utf8 NOT NULL,
+          `screen3` varchar(255) CHARACTER SET utf8 NOT NULL,
+          `screen4` varchar(255) CHARACTER SET utf8 NOT NULL,
+          `review` text CHARACTER SET utf8 NOT NULL,
 		  `active` tinyint(4) NOT NULL DEFAULT '1',
 		  PRIMARY KEY (`id`),
 		  KEY `source` (`source`)
@@ -752,7 +759,7 @@ function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
 			$jobstring = $mysqli->real_escape_string(serialize($jobs));
 
 			$mysqli->query("INSERT INTO `settings` (`id`, `main`, `gperpage`, `numbgames`, `gamesort`, `seolink`, `seo`, `approvelinks`, `numblinks`, `version`, `theme`, `skin`, `password`, `userecaptcha`, `lightbox`, `email`, `disabled`, `regclosed`, `fb_app_id`, `fb_app_secret`, `tw_app_id`, `tw_app_secret`, `cachelife`, `siteurl`, `sitepath`, `sitename`, `slogan`, `metades`, `metakeywords`, `jobs`, `galogin`, `gapassword`, `gaurl`) VALUES
-        (1, 1, 15, 3, 'newest', 'yes', 'no', 'no', 10, '2.6', '".$mysqli->real_escape_string($_POST['theme'])."', '".$mysqli->real_escape_string($_POST['skin'])."', '".md5('admin')."', 'yes', 'no', '".$mysqli->real_escape_string($_POST['supportemail'])."', 'no', 'no', '".$mysqli->real_escape_string($_POST['fbAppId'])."', '".$mysqli->real_escape_string($_POST['fbAppSecret'])."', '".$mysqli->real_escape_string($_POST['twAppId'])."', '".$mysqli->real_escape_string($_POST['twAppSecret'])."', 60, '".$mysqli->real_escape_string($_POST['siteurl'])."', '".$mysqli->real_escape_string($_POST['sitepath'])."', '".$mysqli->real_escape_string($_POST['sitename'])."', '".$mysqli->real_escape_string($_POST['slogan'])."', '".$mysqli->real_escape_string($_POST['metades'])."', '".$mysqli->real_escape_string($_POST['keywords'])."', '$jobstring', '', '', '')");
+        (1, 1, 15, 3, 'newest', 'yes', 'no', 'no', 10, '2.6.1', '".$mysqli->real_escape_string($_POST['theme'])."', '".$mysqli->real_escape_string($_POST['skin'])."', '".md5('admin')."', 'yes', 'no', '".$mysqli->real_escape_string($_POST['supportemail'])."', 'no', 'no', '".$mysqli->real_escape_string($_POST['fbAppId'])."', '".$mysqli->real_escape_string($_POST['fbAppSecret'])."', '".$mysqli->real_escape_string($_POST['twAppId'])."', '".$mysqli->real_escape_string($_POST['twAppSecret'])."', 60, '".$mysqli->real_escape_string($_POST['siteurl'])."', '".$mysqli->real_escape_string($_POST['sitepath'])."', '".$mysqli->real_escape_string($_POST['sitename'])."', '".$mysqli->real_escape_string($_POST['slogan'])."', '".$mysqli->real_escape_string($_POST['metades'])."', '".$mysqli->real_escape_string($_POST['keywords'])."', '$jobstring', '', '', '')");
 
 			$mysqli->query("CREATE TABLE IF NOT EXISTS `stats` (
 		  `id` int(10) NOT NULL AUTO_INCREMENT,

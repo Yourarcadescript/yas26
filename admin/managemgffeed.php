@@ -263,7 +263,7 @@ if (isset($_GET['install'])) {
       $category = 'all';
     }
     $description = yasDB_clean($_GET['description']);
-    echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php?act=managemgffeed&page='.$pageno.'&description='.$description.'&title='.$title.'&filter=Filter games;">';
+    echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php?act=managemgffeed&page='.$pageno.'&description='.$description.'&title='.$title.'&filter=Filter games">';
     exit();
   }
 }
