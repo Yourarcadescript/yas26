@@ -122,7 +122,7 @@ if ($data) {
 	<?php
 		$query1 = yasDB_select("SELECT id FROM categories WHERE active='yes' ORDER BY id LIMIT 10");
 		while($category = $query1->fetch_array(MYSQLI_ASSOC)) {
-			if ($query->num_rows == 0) {
+			if ($query1->num_rows == 0) {
 				echo '<center><h3>We have no Select Category games yet!</h3></center>';
 				break;
 			}
@@ -163,7 +163,7 @@ if ($data) {
 		}
 	?>
 	<div class="clear"></div></div>
-	<!-- start of Category Games -->
+	<!-- end of Category Games -->
 	</div>
 	<?php
 	$cache->write('home');
