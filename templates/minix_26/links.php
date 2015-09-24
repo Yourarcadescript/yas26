@@ -17,14 +17,13 @@ while($links = $select_links->fetch_array(MYSQLI_ASSOC)) {
 	<li class="even"><a href="' . $links['url'] . '" target="_blank" title="' . $links['url'] . '" onClick="addHit(\''.$links['id'].'\');return true;"><strong>' . $links['text'] . '</strong></a>&nbsp;-&nbsp;' . $links['description'] . '</li>
 	';
 	}
-?></ul>
-</div>
-<div class="clear"></div></div>
+?></ul></div>
 <br style="clear: both"/>
 <div id="page_box">
 <?php
 echo $pageurl->showPagination();
 ?>
+</div>
 </div>
 <div class="link_box6">
 <?php
@@ -34,7 +33,6 @@ if ($setting['seo']=='yes') {
 <?php } else { ?>
 <a href="<?php echo $setting['siteurl'];?>index.php?act=addlink">Add Link</a>
 <?php } ?>
-<div class="clear"></div>
-</div>
+</div><br/><br/>
 <div class="clear"></div>
 </div>
