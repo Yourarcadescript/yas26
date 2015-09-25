@@ -170,30 +170,35 @@ function validate_rcheck() {
 	var code = $("#security").val();	
 	var codeAlt = $("#code").val();
 	var emailFormat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-	if (!name || !email || !password) { 
-		$("#preview").slideDown('slow').html("<h3>Username, email and password are required!<h3>"); 
-		return false; 
+    var message = "";
+	if (!name || !email || !password) {
+        message += 'Username, email and password are required!<br>';
 	}
 	else if (password.length > 26 || password.length < 4) {
-		$("#preview").html("<br/><h3>Password must be between 4 and 26 characters!<h3>");
-		return false;
+        message += 'Password must be between 4 and 26 characters!<br>';
 	}
 	else if (email.search(emailFormat) == -1) {
-		$("#preview").html("<br/><h3>Invalid Email Address!<h3>");
-		return false;
+        message += 'Invalid Email Address!<br>';
 	}
-	if (!code) { 
+	if (!code) {
 		if (codeAlt) { return true; }
-		$("#preview").html("<br/><h3>Missing Security code!<h3>"); 
-		return false; 
-	}
+        message += 'Missing Security code!<br>';
+    }
 	else if (!codeAlt) {
 		if (code) { return true; }
-		$("#preview").html("<br/><h3>Missing Security code!<h3>"); 
-		return false; 
-	}
-	return true;
+        message += 'Missing Security code!<br>';
+    }
+
+    if (message != "")
+    {
+        $("#preview").slideDown('slow').html('<div class="validation">'+message+' </div>');
+        return false;
+    }
+
+    return true;
+
 }
+
 $('document').ready(function() {
 	$.get(siteurl + 'includes/jobs2.php', { sent: 'hello' }, function(data) {});
 	$('#addlink').ajaxForm( {

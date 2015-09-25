@@ -21,8 +21,8 @@ elseif ($settings['userecaptcha'] == "no") {
 }
 
 $username=yasDB_clean($_POST["username"]);
-$password=md5(yasDB_clean($_POST["password"]);
-$repeatpassword=md5(yasDB_clean($_POST["repeatpassword"]);
+$password=md5(yasDB_clean($_POST["password"]));
+$repeatpassword=md5(yasDB_clean($_POST["repeatpassword"]));
 $name=yasDB_clean($_POST["name"]);
 $email=yasDB_clean($_POST["email"],true);
 $website=yasDB_clean($_POST["website"],true);

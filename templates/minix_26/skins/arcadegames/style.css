@@ -1,6 +1,6 @@
 ﻿@import url('http://fonts.googleapis.com/css?family=Margarine');
 *{margin:0;padding:0;}
-a:visited{color:inherited;}
+/*a:visited{color:inherited;}*/
 body{background-repeat: repeat-x;background-position: top left;background-attachment: fixed;text-align: center;padding: 0 0 0 0;margin: 0 0 0 0;font-weight: normal;font-size: 12px;font-family: Tahoma, Arial, sans-serif;
 background-image: linear-gradient(bottom, #FFFFFF 0%, #D9D9D9 51%);background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #D9D9D9 51%);background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #D9D9D9 51%);background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #D9D9D9 51%);
 background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #D9D9D9 51%);background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #FFFFFF),color-stop(0.51, #D9D9D9));}
@@ -76,7 +76,7 @@ h3{font-family:Tahoma, Arial, sans-serif;font-size:11px;font-weight:200;margin:0
 .social{position: relative;float:right;width: 30%;height: 40px;margin:2px;}
 form.dropdown {float:right;color:#333;background:#DFEFF7;border:1px solid #3499CC;margin-right:2px;margin-top:0px;width:auto;}
 select,option,.white {font-family: "Andale Mono", "Courier New", Courier, monospace;font-size: 15px;background-color:white;border:2px ridge #CD6600;font-weight:bold;font-size:12px;color:#000;}
-.login {position: relative;float:right;width: 250px;height:auto;margin-right:16px;margin-bottom:4px;margin-top:0px;border:ridge #CD6600 1px;padding: 6px;overflow:hidden;color:#333;font-family:Tahoma, Arial, sans-serif;font-size:16px;background:#00A6FF;*/
+.login {position: relative;float:right;width: 250px;height:auto;margin-right:16px;margin-bottom:4px;margin-top:0px;border:ridge #CD6600 1px;padding: 6px;overflow:hidden;color:#333;font-family:Tahoma, Arial, sans-serif;font-size:16px;background:#00A6FF;
 -moz-border-radius:10px;-webkit-border-radius:10px;-khtml-border-radius: 10px;border-radius:10px;}
 #headergames{position:relative;float:left;color:#FFF;width:250px;height: 24px;background:#fff url('images/nav/nav11.png');padding-left:40px;line-height: 25px;text-align: left;
 font-size: 12px;font-family: Verdana, Geneva, sans-serif;margin:2px;-moz-border-radius: 4px;-webkit-border-radius: 4px;-khtml-border-radius: 4px;border-radius:4px;}
@@ -99,7 +99,7 @@ font-size: 12px;font-family: Verdana, Geneva, sans-serif;margin:2px;-moz-border-
 .avatar_images{background:#333 repeat-x top left;border:ridge #000 2px;color:#FFF;float:left;margin-bottom:2px;margin-left:10px;margin-top:2px;padding:2px;width:100px;height:115px;}
 .remove{float:left;margin-bottom:1px;margin-left:56px;margin-top:1px;}
 .remove input.submit{background:url(images/close.png);height:25px;width:25px;border:none;cursor:pointer;}
-#smiles{background:tranparent;color:#FFF;float:left;margin-left:90px;margin-top:4px;margin-bottom:4px;padding:4px;text-align:left;width:510px;}
+#smiles{background:transparent;color:#FFF;float:left;margin-left:90px;margin-top:4px;margin-bottom:4px;padding:4px;text-align:left;width:510px;}
 .link_box5 a,#right a,#copyright a{color:#000;font-family:Arial;font-size:12px;text-decoration:none;margin:0;padding-bottom:0;}
 .link_box5 a:hover,#copyright a:hover{color:#3399FF;font-family:Arial;font-size:12px;margin:0;padding-bottom:0;}
 .links1{color:#000;font-size:12px;}
@@ -112,7 +112,7 @@ font-size: 12px;font-family: Verdana, Geneva, sans-serif;margin:2px;-moz-border-
 .desc{width:160px;color:#333;margin:2px;padding:2px;position:relative;float:right;text-align:left;}
 .downloadgame{width:46%;padding:2px 2px 6px 2px;position:relative;float:left;}
 .downloadmochi{width:46%;padding:2px 2px 6px 2px;position:relative;float:right;}
-#hintbox {color: #000;position: absolute;top: 0px;background-color: #CCCCCC; /* box color */	width: 150px; /*Default width of hint.*/padding: 4px 4px 4px 6px;border: 1px solid #000;font:Verdana;font-size:11px;line-height: 18px;z-index: 100;border-right: 3px solid #000;border-bottom: 3px solid #000;-moz-border-radius: 6px;-webkit-border-radius:6px;-khtml-border-radius: 6px;border-radius: 6px;visibility: hidden;text-align: left;}
+#hintbox {color: #000;position: absolute;top: 0;background-color: #CCCCCC; /* box color */	width: 150px; /*Default width of hint.*/padding: 4px 4px 4px 6px;border: 1px solid #000;font:Verdana;font-size:11px;line-height: 18px;z-index: 100;border-right: 3px solid #000;border-bottom: 3px solid #000;-moz-border-radius: 6px;-webkit-border-radius:6px;-khtml-border-radius: 6px;border-radius: 6px;visibility: hidden;text-align: left;}
 #hintbox .title{color:#8C0605;margin:0;padding:0;text-align:center;font-weight:bold;font-family:Margarine, Tahoma, Arial, sans-serif;font-size:14px;}
 .hintanchor {/*CSS for link that shows hint onmouseover*/font-weight: bold;color: #000;margin: 0px 0px;}
 /* Avatar upload buttons style */
@@ -166,7 +166,7 @@ table.listing .style1 {font-size:11px;color:#161616;text-align:left;}
 table.listing .style1 a {font-size:12px;font-weight:bold;color:#026CB1;text-align:left;text-decoration:none;}
 table.listing .style1 a:hover {font-size:12px;font-weight:bold;color:#CD6600;text-align:left;text-decoration:none;}
 table.listing .style2 {font-size:11px;color:#161616;text-align:right;}
-table.listing .style2 a {color:#026CB1;font-weight:bold;text-align:rjght;font-size:11px;text-decoration:none;}
+table.listing .style2 a {color:#026CB1;font-weight:bold;text-align:right;font-size:11px;text-decoration:none;}
 table.listing .style2 a:hover {color:#CD6600;font-weight:bold;text-align:right;font-size:11px;text-decoration:none;}
 table.listing .style3 {color:#161616;font-weight:bold;font-size:14px;}
 table.listing .style4 {color:#161616;font-weight:bold;font-size:11px;text-align:center;background-position:center;}
@@ -238,8 +238,8 @@ table.list.style1 a:hover {font-size:12px;font-weight:bold;color:#CD6600;text-al
   background-image: -ms-linear-gradient(top, #3498db, #2980b9);
   background-image: -o-linear-gradient(top, #3498db, #2980b9);
   background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
   border-radius: 28px;
   font-family: Arial;
   color: #ffffff;
@@ -257,8 +257,8 @@ table.list.style1 a:hover {font-size:12px;font-weight:bold;color:#CD6600;text-al
 #fav_box{float:right;margin-right:1px;margin-top:1px;padding:0px;width:40px;height:40px;}
 /* submit game */
 #p-c-l{text-align:center;color:#000;text-decoration:none;color:#333;margin-left:300px;}
-#d-i-k{border: 2px solid #CD6600;border-radius:5px;olor:#FFFEFF;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;font-family:Arial;font-size:12px;height:100px;padding:5px;width:200px;margin:5px;}
-#s-a-g{border: 2px solid #CD6600;border-radius:5px;olor:#FFFEFF;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;font-family:Arial;font-size:14px;height:20px;padding:5px;width:160px;margin:5px;}
+#d-i-k{border: 2px solid #CD6600;border-radius:5px;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;font-family:Arial;font-size:12px;height:100px;padding:5px;width:200px;margin:5px;}
+#s-a-g{border: 2px solid #CD6600;border-radius:5px;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;font-family:Arial;font-size:14px;height:20px;padding:5px;width:160px;margin:5px;}
 /* This is for edit profile and submit game */
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#fff333;margin-bottom:6px;width:720px;}
 .tg td, .tg th{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#EDEDED;color:#333;background-color:#EDEDED;}
@@ -266,4 +266,123 @@ table.list.style1 a:hover {font-size:12px;font-weight:bold;color:#CD6600;text-al
 .tg .tg-0ord{text-align:left}
 .tg .tg-s6z2{text-align:center;}
 .tg .tg-vn4c{text-align:left;background-color:#ffffff;}
-/* end submit game */ 
+/* end submit game */
+/* css for message notes */
+.info, .success, .warning, .validation {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+.validation {
+    color: #D63301;
+    background-color: #FFCCBA;
+    background-image: url('images/knobAttention.ico');
+}
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url('images/knobSuccess.ico');
+}
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('images/knobError.ico');
+}
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url('images/knobInfo.ico');
+}
+
+/* css for Register form */
+.form-style-3{
+    max-width: 750px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    margin: auto;
+}
+.form-style-3 label{
+    display:block;
+    margin-bottom: 10px;
+}
+.form-style-3 label > span{
+    float: left;
+    width: 180px;
+    color: #1266BC;
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: 1px 1px 1px #fff;
+}
+.form-style-3 fieldset{
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin: 0px 0px 10px 0px;
+    border: 1px solid #1266BC;
+    padding: 20px;
+    background: #FFF;
+    box-shadow: inset 0px 0px 15px #1266BC;
+    -moz-box-shadow: inset 0px 0px 15px #1266BC;
+    -webkit-box-shadow: inset 0px 0px 15px #1266BC;
+}
+.form-style-3 fieldset legend{
+    color: #1266BC;
+    border-top: 1px solid #EBF5FF;
+    border-left: 1px solid #EBF5FF;
+    border-right: 1px solid #EBF5FF;
+    border-radius: 5px 5px 0px 0px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0px 0px;
+    background: #EBF5FF;
+    padding: 0px 8px 3px 8px;
+    box-shadow: -0px -1px 2px #EBF5FF;
+    -moz-box-shadow:-0px -1px 2px #EBF5FF;
+    -webkit-box-shadow:-0px -1px 2px #EBF5FF;
+    font-weight: normal;
+    font-size: 12px;
+}
+.form-style-3 textarea{
+    width:250px;
+    height:100px;
+}
+.form-style-3 input[type=text],
+.form-style-3 input[type=number],
+.form-style-3 input[type=password],
+.form-style-3 input[type=url],
+.form-style-3 input[type=email],
+.form-style-3 select,
+.form-style-3 textarea{
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border: 1px solid #EBF5FF;
+    outline: none;
+    color: #1266BC;
+    padding: 5px 8px 5px 8px;
+    box-shadow: inset 1px 1px 4px #1266BC;
+    -moz-box-shadow: inset 1px 1px 4px #1266BC;
+    -webkit-box-shadow: inset 1px 1px 4px #1266BC;
+    background: #EBF5FF;
+    width:50%;
+}
+.form-style-3  input[type=submit],
+.form-style-3  input[type=button]{
+    background: #28D625;
+    border: 1px solid #146D23;
+    padding: 5px 15px 5px 15px;
+    color: #FFFFFF;
+    box-shadow: inset -1px -1px 3px #36633C;
+    -moz-box-shadow: inset -1px -1px 3px #36633C;
+    -webkit-box-shadow: inset -1px -1px 3px #36633C;
+    border-radius: 3px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.required{
+    color:red;
+    font-weight:normal;
+}

@@ -64,3 +64,20 @@
 30-08-2015, 16:05 - Feeds updated triggered by visitor ::1
 30-08-2015, 16:05 - Sitemap updated triggered by visitor ::1
 30-08-2015, 16:05 - GameQue update triggered by visitor ::1
+24-09-2015, 21:28 - Daily game plays emptied triggered by visitor ::1
+24-09-2015, 21:28 - Feeds updated triggered by visitor ::1
+24-09-2015, 21:28 - Sitemap updated triggered by visitor ::1
+24-09-2015, 21:28 - GameQue update triggered by visitor ::1
+24-09-2015, 21:29 - Daily game plays emptied triggered by visitor ::1
+24-09-2015, 21:29 - Feeds updated triggered by visitor ::1
+24-09-2015, 21:29 - Sitemap updated triggered by visitor ::1
+24-09-2015, 21:29 - GameQue update triggered by visitor ::1
+24-09-2015, 21:30 - Daily game plays emptied triggered by visitor ::1
+24-09-2015, 21:30 - Feeds updated triggered by visitor ::1
+24-09-2015, 21:30 - Sitemap updated triggered by visitor ::1
+24-09-2015, 21:30 - GameQue update triggered by visitor ::1
+25-09-2015, 00:00 - Daily game plays emptied triggered by visitor ::1
+25-09-2015, 00:00 - Feeds updated triggered by visitor ::1
+25-09-2015, 00:00 - Sitemap updated triggered by visitor ::1
+25-09-2015, 00:00 - GameQue update triggered by visitor ::1
+25-09-2015, 00:00 - Database optimized triggered by visitor ::1

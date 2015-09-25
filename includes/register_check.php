@@ -29,30 +29,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $date = time() + (0 * 24 * 60 * 60);
         $plays = 0;
         $points = 0;
+
         if (preg_match("/[^\w-.]/", $_POST["username2"])) {
-            echo "<h3>invalid characters in username</h3>";
-        } else {
-            if (strlen($_POST['username2']) < 2 || strlen($_POST['username2']) > 20) {
-                echo "<h3>Username must be between 2 and 20 characters!</h3>";
-            } else {
-                $stmt = yasDB_select("SELECT `id` FROM `user` WHERE `username` LIKE '$username'");
+            $errorMessage = $errorMessage . "invalid characters in username" . "<br>";
+        }
+        if (strlen($_POST['username2'])<2 || strlen($_POST['username2'])>20) {
+            $errorMessage = $errorMessage . "Username must be between 2 and 20 characters!" . "<br>";
+        }
+        if (strlen($_POST['password'])<4 || strlen($_POST['password'])>26) {
+            $errorMessage = $errorMessage . "Password must be between 4 and 26 characters!" . "<br>";
+        }
+        if ($_POST['password'] != $_POST['repeatpassword']) {
+            $errorMessage = $errorMessage . "Password and repeat password are not the same!" . "<br>";
+        }
+
+        if(!$errorMessage){
+        $stmt = yasDB_select("SELECT `id` FROM `user` WHERE `username` LIKE '$username'");
                 $stmt2 = yasDB_select("SELECT `id` FROM `user` WHERE `email` LIKE '$email'");
                 if ($stmt->num_rows == 0 && $stmt2->num_rows == 0) {
                     $stmt3 = yasDB_insert("INSERT INTO `user` (`username`, `password`, `repeatpassword`, `name`, `email`, `website`, `plays`, `points`, `date`) VALUES ('$username','$password','$repeatpassword','$name','$email','$website','$plays','$points', '$date')", false);
                     if ($stmt3) {
-                        echo "<h3>Registered! You may now log in.</h3>";
+                        echo '<div class="success">Registered! You may now log in.</div>';
                     } else {
                         $stmt3->close();
-                        echo "<h3>Registration failed!</h3>";
+                        echo '<div class="warning">Registration failed!</div>';
                     }
                 } else {
                     $stmt->close();
-                    echo "<h3>Sorry, username or email exists. Please try again.</h3>";
+                    echo '<div class="validation">Sorry, username or email exists. Please try again.</div>';
                 }
-            }
+
+        }else{
+           // echo $errorMessage;
+            echo '<div class="validation"> ' . $errorMessage . ' </div>';
         }
     } else {
-            echo '<h3><span style="color:red;">The security question was answered incorrectly. Please try again.</span></h3>';
+            echo '<div class="validation">The security question was answered incorrectly. Please reload image and try again.</div>';
         }
 
     } else {
