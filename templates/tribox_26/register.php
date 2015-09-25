@@ -31,6 +31,7 @@
 				if ($passed) {
 					$username = yasDB_clean($_POST["username2"]);
 					$password = md5(yasDB_clean($_POST["password"]));
+                    $repeatpassword = md5(yasDB_clean($_POST["repeatpassword"]));
 					$name = yasDB_clean($_POST["name"]);
 					$email = yasDB_clean($_POST["email"]);;
 					$website = yasDB_clean($_POST["website"]);
@@ -72,6 +73,9 @@
              <input class="blue" type="text" name="username2" id="username2" size="35" /><br />
              Password: <br />
              <input class="formsheader" type="password" name="password" id="password" size="35" />
+             <Br />
+             Repeat Password: <br />
+             <input class="formsheader" type="password" name="repeatpassword" id="repeatpassword" size="35" />
              <Br />
              Name: <br />
              <input  type="text" name="name" size="35" />

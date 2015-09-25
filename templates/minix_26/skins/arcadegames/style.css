@@ -327,6 +327,7 @@ table.list.style1 a:hover {font-size:12px;font-weight:bold;color:#CD6600;text-al
     -webkit-box-shadow: inset 0px 0px 15px #1266BC;
 }
 .form-style-3 fieldset legend{
+    text-align: left;
     color: #1266BC;
     border-top: 1px solid #EBF5FF;
     border-left: 1px solid #EBF5FF;
