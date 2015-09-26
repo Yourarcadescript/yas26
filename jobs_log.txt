@@ -81,3 +81,7 @@
 25-09-2015, 00:00 - Sitemap updated triggered by visitor ::1
 25-09-2015, 00:00 - GameQue update triggered by visitor ::1
 25-09-2015, 00:00 - Database optimized triggered by visitor ::1
+26-09-2015, 12:10 - Daily game plays emptied triggered by visitor ::1
+26-09-2015, 12:10 - Feeds updated triggered by visitor ::1
+26-09-2015, 12:10 - Sitemap updated triggered by visitor ::1
+26-09-2015, 12:10 - GameQue update triggered by visitor ::1

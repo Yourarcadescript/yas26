@@ -82,25 +82,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				}
 			}
 		} else {
-			yasDB_insert("INSERT INTO contact (name,email,message,created_date) VALUES('$name','$email','$usermessage','$time')");
-			echo "<h2>Thank You !</h2>";
+			yasDB_insert("INSERT INTO contact (name,email,message,created_date) VALUES('$username','$email','$usermessage','$time')");
 			$headers  = 'MIME-Version: 1.0' . "\r\n";
 			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 			$headers .= 'To: Admin <'.$setting['email'].'>' . "\r\n";
 			$headers .= 'From: '.$username.' <'.$username.'>' . "\r\n";
 			$subject = 'Contact message from '.$username.' through '.$setting['sitename'];
-			$reason = yasDB_clean($_POST['reason']);
-			$message = "<br/><b>Name:</b> ".$username."<br/><br/><b>Return email:</b> ".$email."<br/><br/><b>Reason:</b> ".$reason."<br/><br/><b>Message:</b> ".$usermessage;
+			$message = "<br/><b>Name:</b> ".$username."<br/><br/><b>Return email:</b> ".$email."<br/><br/><b>Message:</b> ".$usermessage;
 			if (@mail($setting['email'], $subject, stripslashes($message), $headers)) {
-				echo '<span style="color:red;">Message sent</span><br/><br/>';
+				echo "<div class='success'>Thank you! <br> Your message was sent successfully</div>";
 			} else {
-				echo '<span style="color:red;">Error sending message</span><br/><br/>';
+				echo "<div class='warning'>Error sending message</div>";
 			}
 		}
 	} else {
-		echo "<h2>Security Check Failed!</h2>";
+		echo "<div class='validation'>Security Check Failed, please refresh captha image and try again!</div>";
 	}
 } else {
-	echo "<h2>Invalid Request!<h2>";
+	echo "<div class='warning'>Invalid Request!</div>";
 }
 ?>
