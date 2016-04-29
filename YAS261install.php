@@ -294,9 +294,10 @@ function yasDB_delete($sql, $escape = false) {
 function yasDB_clean($dirty, $encode_ent = false, $strip_tags = true) {
     global $mysqli;
     $dirty = @trim($dirty);
-	if ($strip_tags)
-		$dirty = strip_tags($dirty);
-	$dirty = htmlspecialchars($dirty);
+	if ($strip_tags){
+	    $dirty = strip_tags($dirty);
+	    $dirty = htmlspecialchars($dirty);
+	}
     if ($encode_ent) {
         $dirty = htmlentities($dirty);
     }
